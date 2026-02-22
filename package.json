@@ -31,6 +31,7 @@
   "homepage": "https://github.com/harmonicabot/harmonica-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
+    "better-sqlite3": "^11.10.0",
     "zod": "^3.24.0"
   },
   "devDependencies": {
