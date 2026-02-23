@@ -4,6 +4,16 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import { HarmonicaClient } from './client.js';
+import {
+  xpGetCrossPollinationPacket,
+  xpLogExposure,
+  xpLogCrosspollDisplay,
+  xpRegisterParticipant,
+  xpStoreInitialAnswer,
+  xpStoreOutcome,
+  xpStoreRephrase,
+  xpUpsertCrosspollPacket,
+} from './experiment/service.js';
 
 const HARMONICA_API_URL = process.env.HARMONICA_API_URL || 'https://app.harmonica.chat';
 const HARMONICA_API_KEY = process.env.HARMONICA_API_KEY;
@@ -171,6 +181,182 @@ server.tool(
       `Share the join URL with participants to start the session.`,
     ].join('\n');
     return { content: [{ type: 'text', text }] };
+  },
+);
+
+// ─── Experiment Tools ───────────────────────────────────────────────
+
+server.tool(
+  'xp_register_participant',
+  'Register a Harmonica participant for the cross-pollination experiment',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    harmonica_participant_id: z.string().describe('Harmonica participant ID'),
+  },
+  async ({ session_id, harmonica_participant_id }) => {
+    const result = xpRegisterParticipant(session_id, harmonica_participant_id);
+    return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
+  },
+);
+
+server.tool(
+  'xp_store_initial_answer',
+  'Store the participant initial vote/reasoning for the experiment',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    participant_id: z.string().describe('Experiment participant ID'),
+    message_id: z.string().describe('Harmonica message ID'),
+    answer_text: z.string().describe('Initial answer text (vote + reasoning)'),
+  },
+  async ({ session_id, participant_id, message_id, answer_text }) => {
+    const result = xpStoreInitialAnswer({
+      sessionId: session_id,
+      participantId: participant_id,
+      messageId: message_id,
+      answerText: answer_text,
+    });
+    return { content: [{ type: 'text', text: JSON.stringify({ ok: true, ...result }, null, 2) }] };
+  },
+);
+
+server.tool(
+  'xp_store_rephrase',
+  'Store a rephrased, shareable version of a participant answer',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    participant_id: z.string().describe('Experiment participant ID'),
+    answer_id: z.string().describe('Answer ID to rephrase'),
+    rephrase_text: z.string().describe('Rephrased answer text'),
+    redaction_notes: z.string().optional().describe('Optional redaction notes'),
+  },
+  async ({ session_id, participant_id, answer_id, rephrase_text, redaction_notes }) => {
+    const result = xpStoreRephrase({
+      sessionId: session_id,
+      participantId: participant_id,
+      answerId: answer_id,
+      rephraseText: rephrase_text,
+      redactionNotes: redaction_notes ?? null,
+    });
+    return { content: [{ type: 'text', text: JSON.stringify({ ok: true, ...result }, null, 2) }] };
+  },
+);
+
+server.tool(
+  'xp_get_cross_pollination_packet',
+  'Get the latest session-level cross-pollination packet',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    min_available: z.number().min(1).optional().describe('Minimum available perspectives (default: 1)'),
+    since_snapshot_id: z.string().optional().describe('If unchanged, return NoNewPacket'),
+  },
+  async ({ session_id, min_available, since_snapshot_id }) => {
+    try {
+      const result = xpGetCrossPollinationPacket({
+        sessionId: session_id,
+        minAvailable: min_available,
+        sinceSnapshotId: since_snapshot_id,
+      });
+      return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Not implemented';
+      return { content: [{ type: 'text', text: JSON.stringify({ ok: false, error: message }, null, 2) }] };
+    }
+  },
+);
+
+server.tool(
+  'xp_upsert_crosspoll_packet',
+  'Upsert the latest session-level cross-pollination packet',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    items: z.array(z.object({
+      from_participant_id: z.string().describe('Source participant ID'),
+      rephrase_id: z.string().describe('Rephrase ID'),
+      text: z.string().describe('Rephrased text'),
+    })).describe('Packet items'),
+    available_count: z.number().min(0).describe('Available perspectives count'),
+    meta: z.object({}).passthrough().optional().describe('Optional packet metadata'),
+  },
+  async ({ session_id, items, available_count, meta }) => {
+    const result = xpUpsertCrosspollPacket({
+      sessionId: session_id,
+      items: items.map((item) => ({
+        fromParticipantId: item.from_participant_id,
+        rephraseId: item.rephrase_id,
+        text: item.text,
+      })),
+      availableCount: available_count,
+      meta,
+    });
+    return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
+  },
+);
+
+server.tool(
+  'xp_log_crosspoll_display',
+  'Log that a cross-pollination packet was displayed',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    snapshot_id: z.string().describe('Snapshot ID'),
+    rephrase_ids: z.array(z.string()).describe('Rephrase IDs shown'),
+    display_type: z.enum(['initial', 'refresh']).describe('Display type'),
+    viewer_participant_id: z.string().optional().describe('Viewer participant ID (optional)'),
+    message_id: z.string().optional().describe('Message ID (optional)'),
+  },
+  async ({ session_id, snapshot_id, rephrase_ids, display_type, viewer_participant_id, message_id }) => {
+    const result = xpLogCrosspollDisplay({
+      sessionId: session_id,
+      snapshotId: snapshot_id,
+      rephraseIds: rephrase_ids,
+      displayType: display_type,
+      viewerParticipantId: viewer_participant_id ?? null,
+      messageId: message_id ?? null,
+    });
+    return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
+  },
+);
+
+server.tool(
+  'xp_log_exposure',
+  'Log which rephrased answers a participant has been exposed to',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    participant_id: z.string().describe('Experiment participant ID'),
+    snapshot_id: z.string().describe('Snapshot ID for the packet being shown'),
+    rephrase_ids: z.array(z.string()).describe('Rephrased answer IDs shown'),
+    exposure_type: z.enum(['initial', 'refresh']).optional().describe('Exposure type (default: initial)'),
+  },
+  async ({ session_id, participant_id, snapshot_id, rephrase_ids, exposure_type }) => {
+    const result = xpLogExposure({
+      sessionId: session_id,
+      participantId: participant_id,
+      snapshotId: snapshot_id,
+      exposureType: exposure_type ?? 'initial',
+      rephraseIds: rephrase_ids,
+    });
+    return { content: [{ type: 'text', text: JSON.stringify({ ok: true, ...result }, null, 2) }] };
+  },
+);
+
+server.tool(
+  'xp_store_outcome',
+  'Store post-exposure reflection and second vote',
+  {
+    session_id: z.string().describe('Session ID (UUID)'),
+    participant_id: z.string().describe('Experiment participant ID'),
+    reflection_text: z.string().describe('Reflection on the cross-pollination packet'),
+    vote_payload: z.object({}).passthrough().describe('Second vote payload object'),
+    why_changed: z.string().optional().describe('Optional reason why vote changed'),
+  },
+  async ({ session_id, participant_id, reflection_text, vote_payload, why_changed }) => {
+    const result = xpStoreOutcome({
+      sessionId: session_id,
+      participantId: participant_id,
+      reflectionText: reflection_text,
+      votePayload: vote_payload,
+      whyChanged: why_changed ?? null,
+    });
+    return { content: [{ type: 'text', text: JSON.stringify({ ok: true, ...result }, null, 2) }] };
   },
 );
 

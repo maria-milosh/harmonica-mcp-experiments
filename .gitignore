@@ -4,3 +4,8 @@ dist/
 .env.local
 *.log
 .DS_Store
+.crosspoll-data/
+data/crosspoll/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

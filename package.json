@@ -13,6 +13,8 @@
   ],
   "scripts": {
     "build": "tsc",
+    "postbuild": "mkdir -p dist/experiment/store && cp -R src/experiment/store/migrations dist/experiment/store/",
+    "xp:packet:smoke": "node scripts/xp_packet_smoke.mjs",
     "prepublishOnly": "npm run build",
     "start": "node dist/index.js",
     "dev": "tsc --watch"
@@ -35,6 +37,7 @@
     "zod": "^3.24.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20.11.0",
     "typescript": "^5.5.0"
   }

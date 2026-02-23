@@ -51,6 +51,37 @@ Share the join URL with participants. Once they've responded, use `get_responses
 | `get_summary` | Get AI-generated summary |
 | `search_sessions` | Search by topic or goal |
 
+## Cross-Pollination Experiment Tools
+
+These tools support an async cross-pollination experiment flow. Data is stored locally under `CROSSPOLL_DATA_DIR` and never committed.
+
+| Tool | Description |
+|------|-------------|
+| `xp_register_participant` | Register a Harmonica participant and return an experiment participant ID |
+| `xp_store_initial_answer` | Store the participant's initial vote + reasoning |
+| `xp_store_rephrase` | Store a shareable rephrase of a participant answer |
+| `xp_upsert_crosspoll_packet` | Upsert the latest session-level cross-pollination packet (server computes snapshot_id) |
+| `xp_get_cross_pollination_packet` | Retrieve the latest session-level packet (NEXT/REFRESH) |
+| `xp_log_crosspoll_display` | Log that a packet was displayed in the UI |
+| `xp_log_exposure` | Log exposure to rephrased answers (legacy) |
+| `xp_store_outcome` | Store reflection + second vote after exposure |
+
+NEXT/REFRESH flow:
+1. Codex collects new rephrased opinions and calls `xp_upsert_crosspoll_packet`.
+2. The UI moderator calls `xp_get_cross_pollination_packet` on NEXT/REFRESH.
+3. The UI moderator calls `xp_log_crosspoll_display` after showing a packet.
+4. The server also maintains the latest packet automatically on each `xp_store_rephrase`.
+
+Snapshot IDs:
+- `snapshot_id` is computed server-side from the packet contents.
+- It is a deterministic hash: sort all `rephrase_id` values, join with `|`, SHA-256 hash, and take the first 16 hex chars.
+
+Example tool-call script:
+
+```text
+# TODO: paste the example tool-call script here.
+```
+
 ## From Source
 
 ```bash
@@ -67,6 +98,7 @@ Then use `node /path/to/harmonica-mcp/dist/index.js` instead of `npx -y harmonic
 |----------|----------|---------|-------------|
 | `HARMONICA_API_KEY` | Yes | — | Your Harmonica API key |
 | `HARMONICA_API_URL` | No | `https://app.harmonica.chat` | API base URL |
+| `CROSSPOLL_DATA_DIR` | No | `./data/crosspoll` | Directory to store cross-pollination experiment data |
 
 ## See Also
 
