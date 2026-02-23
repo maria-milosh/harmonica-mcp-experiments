@@ -1,8 +1,6 @@
 import { registerParticipant } from './store/repos/participants.js';
-import { insertAnswer } from './store/repos/answers.js';
+import { insertAnswerP1 } from './store/repos/answers_p1.js';
 import { insertRephrase, listRephrasesForSession } from './store/repos/rephrases.js';
-import { insertExposure } from './store/repos/exposures.js';
-import { insertOutcome } from './store/repos/outcomes.js';
 import { getCrosspollPacket, upsertCrosspollPacket } from './store/repos/crosspoll_packets.js';
 import { insertCrosspollDisplay } from './store/repos/crosspoll_displays.js';
 import { snapshotIdFromRephraseIds } from './snapshot.js';
@@ -18,7 +16,7 @@ export function xpStoreInitialAnswer(params: {
   messageId: string;
   answerText: string;
 }) {
-  return insertAnswer({
+  return insertAnswerP1({
     sessionId: params.sessionId,
     participantId: params.participantId,
     messageId: params.messageId,
@@ -86,37 +84,6 @@ export function xpGetCrossPollinationPacket(params: {
   };
 }
 
-export function xpLogExposure(params: {
-  sessionId: string;
-  participantId: string;
-  snapshotId: string;
-  exposureType: 'initial' | 'refresh';
-  rephraseIds: string[];
-}) {
-  return insertExposure({
-    sessionId: params.sessionId,
-    participantId: params.participantId,
-    snapshotId: params.snapshotId,
-    exposureType: params.exposureType,
-    rephraseIds: params.rephraseIds,
-  });
-}
-
-export function xpStoreOutcome(params: {
-  sessionId: string;
-  participantId: string;
-  reflectionText: string;
-  votePayload: Record<string, unknown>;
-  whyChanged?: string | null;
-}) {
-  return insertOutcome({
-    sessionId: params.sessionId,
-    participantId: params.participantId,
-    reflectionText: params.reflectionText,
-    votePayload: params.votePayload,
-    whyChanged: params.whyChanged ?? null,
-  });
-}
 
 export function xpUpsertCrosspollPacket(params: {
   sessionId: string;

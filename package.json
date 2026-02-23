@@ -15,6 +15,8 @@
     "build": "tsc",
     "postbuild": "mkdir -p dist/experiment/store && cp -R src/experiment/store/migrations dist/experiment/store/",
     "xp:packet:smoke": "node scripts/xp_packet_smoke.mjs",
+    "session:monitor": "node scripts/session_monitor.mjs",
+    "phase2:create": "node scripts/phase2_create_session.mjs",
     "prepublishOnly": "npm run build",
     "start": "node dist/index.js",
     "dev": "tsc --watch"

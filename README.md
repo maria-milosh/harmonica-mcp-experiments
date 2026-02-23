@@ -63,8 +63,6 @@ These tools support an async cross-pollination experiment flow. Data is stored l
 | `xp_upsert_crosspoll_packet` | Upsert the latest session-level cross-pollination packet (server computes snapshot_id) |
 | `xp_get_cross_pollination_packet` | Retrieve the latest session-level packet (NEXT/REFRESH) |
 | `xp_log_crosspoll_display` | Log that a packet was displayed in the UI |
-| `xp_log_exposure` | Log exposure to rephrased answers (legacy) |
-| `xp_store_outcome` | Store reflection + second vote after exposure |
 
 NEXT/REFRESH flow:
 1. Codex collects new rephrased opinions and calls `xp_upsert_crosspoll_packet`.
@@ -75,6 +73,51 @@ NEXT/REFRESH flow:
 Snapshot IDs:
 - `snapshot_id` is computed server-side from the packet contents.
 - It is a deterministic hash: sort all `rephrase_id` values, join with `|`, SHA-256 hash, and take the first 16 hex chars.
+
+## Two-Phase Facilitation Workflow
+
+Phase 1 (collect ideas):
+1. Create a session whose topic starts with `P1`.
+2. Run the session monitor to poll messages and store answers in `answers_p1` and rephrases in `rephrases`.
+3. Rephrases are currently stored as the raw answer text (rephrase = answer).
+
+Phase 2 (reflect on others' ideas):
+1. Use the Phase 2 script to create a new session whose prompt injects the collected rephrases.
+2. The moderator presents ideas one-by-one and asks for reflection.
+3. Run the session monitor in phase 2 to store reflections in `answers_p2`.
+
+Session monitor (requires session id):
+```bash
+HARMONICA_API_KEY=... npm run build
+HARMONICA_API_KEY=... npm run session:monitor -- --session-id hst_... --phase 1 --interval 60 --stop-mode users --max-users 5
+```
+
+Phase 2 reflections monitor:
+```bash
+HARMONICA_API_KEY=... npm run session:monitor -- --session-id hst_... --phase 2 --interval 60 --stop-mode users --max-users 5
+```
+
+Legacy stop mode (answers/rephrases):
+```bash
+HARMONICA_API_KEY=... npm run session:monitor -- --session-id hst_... --phase 1 --interval 60 --stop-mode answers --max-rephrases 5
+HARMONICA_API_KEY=... npm run session:monitor -- --session-id hst_... --phase 2 --interval 60 --stop-mode answers --max-answers 5
+```
+
+Stop monitoring manually:
+```bash
+HARMONICA_API_KEY=... npm run session:monitor -- --stop --session-id hst_...
+```
+
+Create Phase 2 session:
+```bash
+HARMONICA_API_KEY=... npm run phase2:create -- --source-session hst_...
+```
+
+Tool usage summary:
+1. `create_session` for Phase 1, with topic prefixed by `P1`.
+2. `session:monitor` for Phase 1 to capture answers/rephrases outside the moderator.
+3. `phase2:create` to build a Phase 2 session with injected rephrases.
+4. `session:monitor` for Phase 2 to capture reflections in `answers_p2`.
 
 Example tool-call script:
 

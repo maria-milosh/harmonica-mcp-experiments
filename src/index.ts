@@ -6,11 +6,9 @@ import { z } from 'zod';
 import { HarmonicaClient } from './client.js';
 import {
   xpGetCrossPollinationPacket,
-  xpLogExposure,
   xpLogCrosspollDisplay,
   xpRegisterParticipant,
   xpStoreInitialAnswer,
-  xpStoreOutcome,
   xpStoreRephrase,
   xpUpsertCrosspollPacket,
 } from './experiment/service.js';
@@ -316,49 +314,6 @@ server.tool(
   },
 );
 
-server.tool(
-  'xp_log_exposure',
-  'Log which rephrased answers a participant has been exposed to',
-  {
-    session_id: z.string().describe('Session ID (UUID)'),
-    participant_id: z.string().describe('Experiment participant ID'),
-    snapshot_id: z.string().describe('Snapshot ID for the packet being shown'),
-    rephrase_ids: z.array(z.string()).describe('Rephrased answer IDs shown'),
-    exposure_type: z.enum(['initial', 'refresh']).optional().describe('Exposure type (default: initial)'),
-  },
-  async ({ session_id, participant_id, snapshot_id, rephrase_ids, exposure_type }) => {
-    const result = xpLogExposure({
-      sessionId: session_id,
-      participantId: participant_id,
-      snapshotId: snapshot_id,
-      exposureType: exposure_type ?? 'initial',
-      rephraseIds: rephrase_ids,
-    });
-    return { content: [{ type: 'text', text: JSON.stringify({ ok: true, ...result }, null, 2) }] };
-  },
-);
-
-server.tool(
-  'xp_store_outcome',
-  'Store post-exposure reflection and second vote',
-  {
-    session_id: z.string().describe('Session ID (UUID)'),
-    participant_id: z.string().describe('Experiment participant ID'),
-    reflection_text: z.string().describe('Reflection on the cross-pollination packet'),
-    vote_payload: z.object({}).passthrough().describe('Second vote payload object'),
-    why_changed: z.string().optional().describe('Optional reason why vote changed'),
-  },
-  async ({ session_id, participant_id, reflection_text, vote_payload, why_changed }) => {
-    const result = xpStoreOutcome({
-      sessionId: session_id,
-      participantId: participant_id,
-      reflectionText: reflection_text,
-      votePayload: vote_payload,
-      whyChanged: why_changed ?? null,
-    });
-    return { content: [{ type: 'text', text: JSON.stringify({ ok: true, ...result }, null, 2) }] };
-  },
-);
 
 // ─── Start ───────────────────────────────────────────────────────────
 
