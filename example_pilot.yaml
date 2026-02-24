@@ -1,0 +1,38 @@
+pilot_id: "pilot_001"
+pilot_name: "Participatory Budgeting Test"
+
+# Topic Definition
+topic:
+  description: |
+    Your city has a limited budget to invest in one public infrastructure improvement,
+    and your input will help shape that decision. In this conversation, you'll be asked
+    to share your thoughts on three options and explain what matters most to you.
+    Your responses will be used alongside those of other community members to inform
+    the final decision.
+  options:
+    - "bike_lane"
+    - "public_park_renovation"
+    - "water_fountains"
+  option_labels:
+    bike_lane: "Building a new bike lane"
+    public_park_renovation: "Renovating a local public park"
+    water_fountains: "Installing water fountains across the city"
+
+# Session Configuration
+expected_participants: 3  # Monitor stops and saves transcript when this many users have completed Phase 1
+
+# Extraction & Rephrasing
+extraction:
+  model: "gpt-4o"               # Model used to extract vote and reasoning from Phase 1 transcripts
+  rephrasing_model: "gpt-4o"    # Model used to rephrase raw answers during monitoring
+  vote_null_if_ambiguous: true  # If user never clearly picked an option, store null rather than guessing
+
+# Embedding Configuration
+embedding_model: "text-embedding-3-small"
+
+# API Settings
+api_sleep_seconds: 3
+model: "gpt-4o"  # Default model for general use
+
+# Random Seed (optional, for reproducibility)
+# random_seed: 42

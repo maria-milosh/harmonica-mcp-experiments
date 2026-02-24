@@ -1,0 +1,10 @@
+Pilot: pilot_001 — Participatory Budgeting Test
+───────────────────────────────────────────────
+Phase 1 session: completed
+Participants: 3 / 3 completed
+Extractions: run
+Phase 2 session: completed
+Participants: 3 / 3 completed
+Phase 2 extractions: run
+───────────────────────────────────────────────
+Next step: Run: npm run phase1:create -- --config example_pilot.yaml

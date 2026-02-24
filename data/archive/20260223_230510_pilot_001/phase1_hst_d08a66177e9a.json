@@ -1,0 +1,181 @@
+{
+  "data": [
+    {
+      "participant_id": "d3844eed1693",
+      "participant_name": "Gentle Seal",
+      "active": false,
+      "messages": [
+        {
+          "id": "msg_e47227a130c9",
+          "role": "user",
+          "content": "User shared the following context:\n",
+          "created_at": "2026-02-24T03:32:36.938Z"
+        },
+        {
+          "id": "msg_ed77121dfd26",
+          "role": "assistant",
+          "content": "Hello! Thank you for joining this conversation about participatory budgeting in our city.\n\nAs you know, we have a limited budget for one public infrastructure improvement, and we're gathering input from community members like you to help inform that decision.\n\nThere are three options being considered:\n\n1. **Upgrade public parks** - Renovate existing parks with new playground equipment, walking paths, and green spaces\n2. **Improve public transportation** - Expand bus routes and increase frequency of service\n3. **Enhance road infrastructure** - Repair potholes, repave streets, and improve traffic signals\n\nWhich of these three options would you choose, and what's important to you in making that decision?",
+          "created_at": "2026-02-24T03:32:41.915Z"
+        },
+        {
+          "id": "msg_6323a1a5a947",
+          "role": "user",
+          "content": "i prefer road infrastructure - roads are in a very poor condition",
+          "created_at": "2026-02-24T03:35:25.020Z"
+        },
+        {
+          "id": "msg_64c3545c13d6",
+          "role": "assistant",
+          "content": "Thank you for sharing that. It sounds like the current state of the roads is a real concern for you.\n\nCan you tell me a bit more about how the poor road conditions affect you or your community? What would improving the roads mean for you?",
+          "created_at": "2026-02-24T03:35:28.447Z"
+        },
+        {
+          "id": "msg_d78a7725c05d",
+          "role": "user",
+          "content": "it would make driving safer and the neighbourhood would look better. everyone will enjoy faster, safer driving and a better view",
+          "created_at": "2026-02-24T03:36:27.322Z"
+        },
+        {
+          "id": "msg_dc677f3ced45",
+          "role": "assistant",
+          "content": "That's helpful to understand - so you see road improvements benefiting everyone through safer driving conditions and also improving the overall appearance of the neighborhood.\n\nJust to make sure I've captured your position clearly: You're voting for **enhancing road infrastructure** because the roads are currently in very poor condition, and repairing them would make driving safer and faster for everyone while also making the neighborhood look better. Is that right?",
+          "created_at": "2026-02-24T03:36:30.689Z"
+        },
+        {
+          "id": "msg_e74ab8b6fdbf",
+          "role": "user",
+          "content": "yes",
+          "created_at": "2026-02-24T03:36:46.576Z"
+        },
+        {
+          "id": "msg_3205f7034fcb",
+          "role": "assistant",
+          "content": "Perfect, thank you for clarifying. I have a clear understanding of your position.\n\nTo summarize: You vote for **enhancing road infrastructure** - repairing potholes, repaving streets, and improving traffic signals - because the roads are in very poor condition right now, and improvements would make driving safer and faster for everyone while also improving how the neighborhood looks.\n\nThank you so much for taking the time to share your thoughts. Your input, along with that of other community members, will help inform the final decision on this infrastructure investment.",
+          "created_at": "2026-02-24T03:36:50.878Z"
+        }
+      ]
+    },
+    {
+      "participant_id": "d69734032676",
+      "participant_name": "Auburn Hare",
+      "active": false,
+      "messages": [
+        {
+          "id": "msg_e07cdafd3355",
+          "role": "user",
+          "content": "User shared the following context:\n",
+          "created_at": "2026-02-24T03:38:25.259Z"
+        },
+        {
+          "id": "msg_b781e8af7747",
+          "role": "assistant",
+          "content": "Hello! Thank you for joining this conversation about our city's budget priorities.\n\nAs you know, our city has a limited budget to invest in **one** public infrastructure improvement. We have three options to consider:\n\n1. **Upgrade public parks** - Renovate existing parks with new playgrounds, walking paths, and green spaces\n2. **Improve public transportation** - Expand bus routes and increase frequency of service\n3. **Repair roads and sidewalks** - Fix potholes, cracks, and damaged infrastructure throughout the city\n\nI'd like to hear your thoughts. **Which of these three options would you choose, and what's your reasoning behind that choice?**",
+          "created_at": "2026-02-24T03:38:30.577Z"
+        },
+        {
+          "id": "msg_7467b72d965b",
+          "role": "user",
+          "content": "i need new bus routes, definitely transportation",
+          "created_at": "2026-02-24T03:39:06.592Z"
+        },
+        {
+          "id": "msg_8c30100ff36c",
+          "role": "assistant",
+          "content": "Thank you for sharing that! It sounds like improving public transportation is clearly your priority.\n\n**Can you tell me a bit more about why expanding bus routes and increasing service frequency matters most to you?** What would that improvement mean for you or your community?",
+          "created_at": "2026-02-24T03:39:09.830Z"
+        },
+        {
+          "id": "msg_5bf65b066abf",
+          "role": "user",
+          "content": "i don't own a car but need to move around the city often. i would love to use buses more but currently the routes are very limited. so investing in that is a good idea in my view",
+          "created_at": "2026-02-24T03:39:59.092Z"
+        },
+        {
+          "id": "msg_660b0cd9fe87",
+          "role": "assistant",
+          "content": "That makes a lot of sense - having accessible and convenient public transportation would directly impact your daily life and mobility around the city.\n\nThank you so much for sharing your perspective. You've clearly stated that you would vote for **improving public transportation** because the current bus routes are too limited for your needs, and better service would help you get around the city more easily without owning a car.\n\nYour input, along with feedback from other community members, will help inform the city's decision on this investment. We appreciate you taking the time to participate in this process!",
+          "created_at": "2026-02-24T03:40:03.078Z"
+        },
+        {
+          "id": "msg_bf0de37daef0",
+          "role": "user",
+          "content": "yes, that's correct. thank you",
+          "created_at": "2026-02-24T03:40:24.500Z"
+        },
+        {
+          "id": "msg_41eee2a1119d",
+          "role": "assistant",
+          "content": "You're very welcome! Thank you for participating and sharing your thoughts. Have a great day!",
+          "created_at": "2026-02-24T03:40:27.950Z"
+        }
+      ]
+    },
+    {
+      "participant_id": "6bd25b05bca1",
+      "participant_name": "Lavender Honest Unicorn",
+      "active": false,
+      "messages": [
+        {
+          "id": "msg_0b219804aa93",
+          "role": "user",
+          "content": "User shared the following context:\n",
+          "created_at": "2026-02-24T03:41:08.576Z"
+        },
+        {
+          "id": "msg_2f78f32fea8b",
+          "role": "assistant",
+          "content": "Hello! Thank you for joining this conversation about your city's budget priorities.\n\nYour city has a limited budget to invest in **one** public infrastructure improvement. There are three options being considered:\n\n1. **Upgrade public parks** - Renovate existing parks with new playgrounds, walking paths, and green spaces\n2. **Improve public transportation** - Expand bus routes and increase frequency of service\n3. **Repair roads and sidewalks** - Fix potholes, cracks, and damaged infrastructure throughout the city\n\nWhich of these three options would you choose, and what's your reasoning behind that choice?",
+          "created_at": "2026-02-24T03:41:13.132Z"
+        },
+        {
+          "id": "msg_b6575240c69b",
+          "role": "user",
+          "content": "not sure... i haven't though about it before. they seem like good causes, all of them",
+          "created_at": "2026-02-24T03:41:37.321Z"
+        },
+        {
+          "id": "msg_99043b99f089",
+          "role": "assistant",
+          "content": "That's completely understandable - they are all important needs for a community! \n\nLet me ask you this: thinking about your own daily life and what you see in your neighborhood, is there one of these areas that stands out to you as particularly important or that you notice affecting you or others around you?\n\nFor example, do you use public transportation regularly? Do you walk or drive on roads that need repair? Or do you spend time in local parks?\n\nThere's no wrong answer here - I'm just curious what resonates most with your own experience.",
+          "created_at": "2026-02-24T03:41:42.076Z"
+        },
+        {
+          "id": "msg_111b670d5ac2",
+          "role": "user",
+          "content": "i like local parks but the one near my house is in a bad condition. maybe we should invest in parks",
+          "created_at": "2026-02-24T03:42:24.415Z"
+        },
+        {
+          "id": "msg_7f05c8d6e724",
+          "role": "assistant",
+          "content": "That makes sense - having a park nearby that's in poor condition would definitely give you a direct view of that need.\n\nCan you tell me a bit more about why upgrading the parks feels like the right priority to you? For instance, is it mainly about your own use of the park, or are there other reasons that make this feel important for the community?",
+          "created_at": "2026-02-24T03:42:28.239Z"
+        },
+        {
+          "id": "msg_5909187a18ef",
+          "role": "user",
+          "content": "it would give us a place to spend time at, walk and enjoy a bit of nature. it's helpful for the community and everyone will enjoy it, not only me",
+          "created_at": "2026-02-24T03:43:20.918Z"
+        },
+        {
+          "id": "msg_2acad2549296",
+          "role": "assistant",
+          "content": "Thank you for sharing that. It sounds like you value the parks not just for yourself, but for how they serve as a community space where everyone can benefit - a place for people to gather, be active, and connect with nature.\n\nSo just to confirm: you would vote to **upgrade public parks**, and your main reasoning is that it would provide a valuable community space for everyone to spend time, walk, and enjoy nature - especially since the park near you is currently in poor condition. Is that right?",
+          "created_at": "2026-02-24T03:43:28.675Z"
+        },
+        {
+          "id": "msg_2cd9b9825b3a",
+          "role": "user",
+          "content": "yes",
+          "created_at": "2026-02-24T03:43:42.875Z"
+        },
+        {
+          "id": "msg_201e0945c376",
+          "role": "assistant",
+          "content": "Perfect, thank you! You've clearly stated your choice and reasoning.\n\nTo summarize: You're voting to **upgrade public parks** because they provide an important community space where everyone can spend time, walk, and enjoy nature - and you've seen firsthand that your local park needs improvement.\n\nYour input will be combined with feedback from other community members to help inform the city's decision. Thank you for taking the time to share your thoughts on this important budget priority!",
+          "created_at": "2026-02-24T03:43:48.544Z"
+        }
+      ]
+    }
+  ]
+}

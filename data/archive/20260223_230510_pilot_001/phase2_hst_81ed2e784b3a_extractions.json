@@ -1,0 +1,23 @@
+[
+  {
+    "user_id": "0195ee2eae9a",
+    "session_id": "hst_81ed2e784b3a",
+    "vote": "\"public_park_renovation\"",
+    "reasoning": "The participant believes that parks need more investment as they are not adequately covered by the city budget, and improving parks would provide clean play areas for children and reduce crime with better lighting.",
+    "created_at": "2026-02-24T04:54:37.726Z"
+  },
+  {
+    "user_id": "fe0c0c7127aa",
+    "session_id": "hst_81ed2e784b3a",
+    "vote": "\"public_park_renovation\"",
+    "reasoning": "The participant chose public park renovation because they believe it will provide a communal space for relaxation and enjoyment, benefiting the entire community.",
+    "created_at": "2026-02-24T04:54:41.639Z"
+  },
+  {
+    "user_id": "979726bfe88b",
+    "session_id": "hst_81ed2e784b3a",
+    "vote": "- \"bike_lane\"",
+    "reasoning": "The participant chose bike lanes to have a safe and effective way to exercise, which could help with personal health and commuting.",
+    "created_at": "2026-02-24T04:54:45.837Z"
+  }
+]

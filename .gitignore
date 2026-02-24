@@ -6,6 +6,7 @@ dist/
 .DS_Store
 .crosspoll-data/
 data/crosspoll/
+data/responses/
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
