@@ -126,14 +126,14 @@ async function main() {
       }
       const session = await fetchSession(client, sessionId);
       const result = await processSession(client, session, maxUsers, debug);
+      const outDir = path.resolve('data', 'responses');
+      fs.mkdirSync(outDir, { recursive: true });
+      const outPath = path.join(outDir, `phase${phase}_${sessionId}.json`);
+      fs.writeFileSync(outPath, JSON.stringify(result.responses, null, 2));
       if (result.stopped) {
         console.log(`[${session.id}] stopped: ${result.reason}`);
         if (result.reason === 'threshold') {
           console.log(`[${session.id}] reached ${maxUsers} finished participants. Saving responses and exiting.`);
-          const outDir = path.resolve('data', 'responses');
-          fs.mkdirSync(outDir, { recursive: true });
-          const outPath = path.join(outDir, `phase${phase}_${sessionId}.json`);
-          fs.writeFileSync(outPath, JSON.stringify(result.responses, null, 2));
           process.exit(0);
         }
       } else {

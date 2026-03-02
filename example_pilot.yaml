@@ -4,10 +4,10 @@ pilot_name: "Participatory Budgeting Test"
 # Topic Definition
 topic:
   description: |
-    Your city has a limited budget to invest in one public infrastructure improvement,
-    and your input will help shape that decision. In this conversation, you'll be asked
-    to share your thoughts on three options and explain what matters most to you.
-    Your responses will be used alongside those of other community members to inform
+    The city has a limited budget to invest in one public infrastructure improvement,
+    and participant's input will help shape that decision. In this conversation, participants are asked
+    to share thoughts on three options and explain what matters most to them.
+    Their responses will be used alongside those of other community members to inform
     the final decision.
   options:
     - "bike_lane"
@@ -19,7 +19,7 @@ topic:
     water_fountains: "Installing water fountains across the city"
 
 # Session Configuration
-expected_participants: 3  # Monitor stops and saves transcript when this many users have completed Phase 1
+expected_participants: 1  # Monitor stops and saves transcript when this many users have completed Phase 1
 
 # Extraction & Rephrasing
 extraction:

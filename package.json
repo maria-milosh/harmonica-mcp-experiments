@@ -21,6 +21,7 @@
     "reasoning:extract": "node scripts/reasoning_extract.mjs",
     "pilot:status": "node scripts/pilot_status.mjs",
     "cycle:archive": "node scripts/archive_cycle.mjs",
+    "dev:server": "node scripts/dev_server.mjs",
     "prepublishOnly": "npm run build",
     "start": "node dist/index.js",
     "dev": "tsc --watch"

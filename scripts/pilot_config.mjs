@@ -14,8 +14,11 @@ function readList(text, key) {
   const re = new RegExp(`^${key}:\\s*\\n((?:\\s{2,4}-\\s*[^\\n]+\\n)+)`, 'm');
   const match = text.match(re);
   if (!match) return [];
-  return match[1].trim().split('\n')
-    .map((line) => line.replace(/^\s{2,4}-\s*/, '').trim())
+  return match[1].trimEnd().split('\n')
+    .map((line) => {
+      const value = line.replace(/^\s{2,4}-\s*/, '').trim();
+      return value.replace(/^['"](.+)['"]$/, '$1');
+    })
     .filter(Boolean);
 }
 
@@ -33,14 +36,14 @@ function readScalar(text, key) {
 }
 
 function readMap(text, key) {
-  const re = new RegExp(`^${key}:\\s*\\n((?:\\s{4}[^\\n]+\\n)+)`, 'm');
+  const re = new RegExp(`^${key}:\\s*\\n((?:\\s{2,4}[^\\n]+\\n)+)`, 'm');
   const match = text.match(re);
   if (!match) return {};
-  const lines = match[1].trim().split('\n');
+  const lines = match[1].trimEnd().split('\n');
   const out = {};
   for (const line of lines) {
-    const m = line.match(/^\s{4}([^:]+):\s*"?([^"]+)"?$/);
-    if (m) out[m[1].trim()] = m[2].trim();
+    const m = line.match(/^\s{2,4}([^:]+):\s*"?([^"]+)"?$/);
+    if (m) out[m[1].trim()] = m[2].trim().replace(/^['"](.+)['"]$/, '$1');
   }
   return out;
 }

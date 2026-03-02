@@ -11,6 +11,7 @@ function parseArgs() {
     goal: null,
     config: null,
     extractions: null,
+    printPrompt: false,
   };
   for (let i = 0; i < args.length; i += 1) {
     const arg = args[i];
@@ -24,6 +25,8 @@ function parseArgs() {
       out.config = args[++i];
     } else if (arg === '--extractions' && args[i + 1]) {
       out.extractions = args[++i];
+    } else if (arg === '--print-prompt') {
+      out.printPrompt = true;
     }
   }
   return out;
@@ -34,14 +37,12 @@ function buildPrompt(topic, description, optionLabels, ideas) {
   const optionLines = optionList.map((opt) => `- ${opt}`).join('\n');
   const ideasList = ideas.map((idea, idx) => `${idx + 1}. ${idea}`).join('\n');
   return [
-    `You are a neutral moderator helping understand a participant's position on the following topic: ${topic}. You are speaking with one participant at a time. Progress the conversation in two parts.`,
-    ``,
-    `PART 1 — Understand this participant's view
-    Start by understanding which option this participant would choose and why.
-
-    The options are:`,
+    `You are a neutral moderator helping understand a participant's position on the following topic: ${topic}. You are speaking with one participant at a time. Your job is to understand which option this participant choses initially and after exposure to others' opinions, and why. Progress the conversation in two parts.`,
+    `Discussion happens in this context:`,
     description,
     optionList.length ? `\nOptions to discuss:\n${optionLines}` : '',
+    `PART 1 — Understand this participant's initial vote.`,
+    `Start by understanding which option this participant would choose and why.`,
     `Guide the conversation naturally. Ask the participant which option they would choose and invite them to explain their reasoning. You may ask one or two follow-up questions to draw out their thinking, but don't over-probe.
 
     Move to Part 2 when the participant has:
@@ -50,7 +51,7 @@ function buildPrompt(topic, description, optionLabels, ideas) {
 
     ---
 
-    PART 2 — Cross-pollination
+    PART 2 — Cross-pollination.
 
     Now share what other participants in this session have said, and invite reflection.
 
@@ -63,18 +64,16 @@ function buildPrompt(topic, description, optionLabels, ideas) {
     - Then move on to the next idea.
 
     Once all ideas have been discussed, ask the participant to restate their vote and reasoning in 1-2 sentences — it may have changed. Then thank the participant and close the conversation.
+    IMPORTANT: Only conclude the session after the participant has responded with their final vote and reasoning.
     ---
     Do not express your own opinion. Do not suggest that any option is better or worse than another. Stay neutral throughout.`,
-    ``,
-    `Only conclude the session after the participant has responded with their final vote and reasoning.`,
-    ``,
-    `Rephrasings to present:`,
+    `Opinions to present in Part 2:`,
     ideasList,
   ].join('\n');
 }
 
 async function main() {
-  const { sourceSessionId, topic, goal, config, extractions } = parseArgs();
+  const { sourceSessionId, topic, goal, config, extractions, printPrompt } = parseArgs();
   if (!sourceSessionId) {
     console.error('Missing --source-session');
     process.exit(1);
@@ -109,18 +108,26 @@ async function main() {
   const sessionTopic = `P2 ${baseTopic}`;
   const sessionGoal = goal ?? pilot?.topicDescription ?? `Reflect on ideas from ${baseTopic}`;
 
-  const promptTopic = pilot?.topicDescription ?? baseTopic;
+  const promptTopic = pilot?.pilotName ?? baseTopic;
   const prompt = buildPrompt(
     promptTopic,
     pilot?.topicDescription ?? sessionGoal,
     pilot?.optionLabels ?? {},
     ideas,
   );
+  if (printPrompt) {
+    console.log(prompt);
+    process.exit(0);
+  }
   const session = await client.createSession({
     topic: sessionTopic,
     goal: sessionGoal,
     prompt,
   });
+
+  const outDir = path.resolve('data', 'responses');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, 'phase2_current.txt'), session.id);
 
   console.log('Session created:');
   console.log(`  Topic:    ${session.topic}`);

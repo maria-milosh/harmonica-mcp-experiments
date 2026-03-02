@@ -26,6 +26,12 @@ function findLatestFile(dir, prefix) {
   return files.length ? path.join(dir, files[0].name) : null;
 }
 
+function readCurrentSessionId(responsesDir, phase) {
+  const filePath = path.join(responsesDir, `phase${phase}_current.txt`);
+  if (!fs.existsSync(filePath)) return null;
+  return fs.readFileSync(filePath, 'utf8').trim() || null;
+}
+
 function extractSessionId(filePath) {
   if (!filePath) return null;
   const base = path.basename(filePath);
@@ -70,8 +76,8 @@ async function main() {
   const responsesDir = path.resolve('data', 'responses');
   const phase1Path = findLatestFile(responsesDir, 'phase1_');
   const phase2Path = findLatestFile(responsesDir, 'phase2_');
-  const phase1Id = extractSessionId(phase1Path);
-  const phase2Id = extractSessionId(phase2Path);
+  const phase1Id = extractSessionId(phase1Path) ?? readCurrentSessionId(responsesDir, 1);
+  const phase2Id = extractSessionId(phase2Path) ?? readCurrentSessionId(responsesDir, 2);
 
   const phase1Payload = readJson(phase1Path);
   const phase2Payload = readJson(phase2Path);

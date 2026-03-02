@@ -7,6 +7,7 @@ dist/
 .crosspoll-data/
 data/crosspoll/
 data/responses/
+data/archive/
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
