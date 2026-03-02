@@ -4,17 +4,12 @@
   "description": "MCP server for Harmonica deliberation sessions",
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.js",
-  "bin": {
-    "harmonica-mcp": "dist/index.js"
-  },
+  "main": "dist/client.js",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc",
-    "postbuild": "mkdir -p dist/experiment/store && cp -R src/experiment/store/migrations dist/experiment/store/",
-    "xp:packet:smoke": "node scripts/xp_packet_smoke.mjs",
     "phase1:create": "node scripts/phase1_create_session.mjs",
     "session:monitor": "node scripts/session_monitor.mjs",
     "phase2:create": "node scripts/phase2_create_session.mjs",
@@ -23,7 +18,6 @@
     "cycle:archive": "node scripts/archive_cycle.mjs",
     "dev:server": "node scripts/dev_server.mjs",
     "prepublishOnly": "npm run build",
-    "start": "node dist/index.js",
     "dev": "tsc --watch"
   },
   "keywords": [
@@ -38,13 +32,8 @@
     "url": "git+https://github.com/harmonicabot/harmonica-mcp.git"
   },
   "homepage": "https://github.com/harmonicabot/harmonica-mcp#readme",
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.0",
-    "better-sqlite3": "^11.10.0",
-    "zod": "^3.24.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20.11.0",
     "typescript": "^5.5.0"
   }

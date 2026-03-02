@@ -1,8 +1,6 @@
-# Harmonica MCP Server
+# Harmonica Two-Phase Pipeline
 
-[![npm version](https://img.shields.io/npm/v/harmonica-mcp)](https://www.npmjs.com/package/harmonica-mcp)
-
-MCP server enabling AI agents to create and query [Harmonica](https://harmonica.chat) deliberation sessions.
+Scripts for running a two‑phase [Harmonica](https://harmonica.chat) deliberation workflow.
 
 [Harmonica](https://harmonica.chat) is a structured deliberation platform where groups coordinate through AI-facilitated async conversations. Create a session with a topic and goal, share a link with participants, and each person has a private 1:1 conversation with an AI facilitator. Responses are synthesized into actionable insights. [Learn more](https://help.harmonica.chat).
 
@@ -13,43 +11,6 @@ MCP server enabling AI agents to create and query [Harmonica](https://harmonica.
 1. [Sign up for Harmonica](https://app.harmonica.chat) (free)
 2. Go to [Profile](https://app.harmonica.chat/profile) > **API Keys** > **Generate API Key**
 3. Copy your `hm_live_...` key — it's only shown once
-
-### 2. Configure your MCP client
-
-Add to your MCP client config (e.g. Claude Code, Cursor, Windsurf):
-
-```json
-{
-  "mcpServers": {
-    "harmonica": {
-      "command": "npx",
-      "args": ["-y", "harmonica-mcp"],
-      "env": {
-        "HARMONICA_API_KEY": "hm_live_your_key_here"
-      }
-    }
-  }
-}
-```
-
-### 3. Start a deliberation
-
-Ask your AI agent to create a session:
-
-> Create a Harmonica session about "Team Retrospective" with the goal "Review Q1 and identify improvements"
-
-Share the join URL with participants. Once they've responded, use `get_responses` and `get_summary` to see the results.
-
-## Tools
-
-| Tool | Description |
-|------|-------------|
-| `create_session` | Create a new deliberation session and get a shareable join URL |
-| `list_sessions` | List your deliberation sessions (filter by status, search) |
-| `get_session` | Get full session details |
-| `get_responses` | Get participant responses |
-| `get_summary` | Get AI-generated summary |
-| `search_sessions` | Search by topic or goal |
 
 ## Two-Phase Facilitation Workflow
 
@@ -97,7 +58,7 @@ HARMONICA_API_KEY=... npm run phase2:create -- --source-session hst_... --config
 Phase 2 creation reads from `data/responses/phase1_<session_id>_extractions.json` by default.
 
 Tool usage summary:
-1. `phase1:create` (or `create_session`) for Phase 1, with topic prefixed by `P1`.
+1. `phase1:create` for Phase 1, with topic prefixed by `P1`.
 2. `session:monitor` for Phase 1 to capture answers/rephrases outside the moderator.
 3. `reasoning:extract` to extract votes/reasoning from the Phase 1 transcript.
 4. `phase2:create` to build a Phase 2 session with injected rephrases.
@@ -154,46 +115,12 @@ OPENAI_API_KEY=... npm run reasoning:extract -- --session-id hst_... --phase 2 -
 ```
 This writes `data/responses/phase<1|2>_<session_id>_extractions.json`.
 
-## Cross-Pollination Experiment Tools (Optional)
-
-These tools are available but are not required for the main two-phase workflow above. Data is stored locally under `CROSSPOLL_DATA_DIR` and never committed.
-
-| Tool | Description |
-|------|-------------|
-| `xp_register_participant` | Register a Harmonica participant and return an experiment participant ID |
-| `xp_store_initial_answer` | Store the participant's initial vote + reasoning |
-| `xp_store_rephrase` | Store a shareable rephrase of a participant answer |
-| `xp_upsert_crosspoll_packet` | Upsert the latest session-level cross-pollination packet (server computes snapshot_id) |
-| `xp_get_cross_pollination_packet` | Retrieve the latest session-level packet (NEXT/REFRESH) |
-| `xp_log_crosspoll_display` | Log that a packet was displayed in the UI |
-
-NEXT/REFRESH flow (optional):
-1. Codex collects new rephrased opinions and calls `xp_upsert_crosspoll_packet`.
-2. The UI moderator calls `xp_get_cross_pollination_packet` on NEXT/REFRESH.
-3. The UI moderator calls `xp_log_crosspoll_display` after showing a packet.
-4. The server also maintains the latest packet automatically on each `xp_store_rephrase`.
-
-Snapshot IDs:
-- `snapshot_id` is computed server-side from the packet contents.
-- It is a deterministic hash: sort all `rephrase_id` values, join with `|`, SHA-256 hash, and take the first 16 hex chars.
-
-## From Source
-
-```bash
-git clone https://github.com/harmonicabot/harmonica-mcp.git
-cd harmonica-mcp
-npm install && npm run build
-```
-
-Then use `node /path/to/harmonica-mcp/dist/index.js` instead of `npx -y harmonica-mcp` in your config.
-
 ## Environment Variables
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `HARMONICA_API_KEY` | Yes | — | Your Harmonica API key |
 | `HARMONICA_API_URL` | No | `https://app.harmonica.chat` | API base URL |
-| `CROSSPOLL_DATA_DIR` | No | `./data/crosspoll` | Directory to store cross-pollination experiment data |
 | `EXTRACTION_API_URL` | No (defaults to OpenAI) | `https://api.openai.com/v1/chat/completions` | LLM endpoint for extraction (chat-completions compatible) |
 | `EXTRACTION_API_KEY` | No (fallback to `OPENAI_API_KEY`) | — | API key for extraction endpoint |
 | `OPENAI_API_KEY` | No (fallback for extraction) | — | OpenAI API key used if `EXTRACTION_API_KEY` is not set |
