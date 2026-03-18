@@ -76,7 +76,9 @@ export function loadPilotConfig(path) {
   const options = readNestedList(text, 'topic', 'options');
   const extractionModel = readNestedScalar(text, 'extraction', 'model');
   const rephrasingModel = readNestedScalar(text, 'extraction', 'rephrasing_model');
-  const voteNullIfAmbiguous = readNestedScalar(text, 'extraction', 'vote_null_if_ambiguous');
+  const rankingNullIfAmbiguous =
+    readNestedScalar(text, 'extraction', 'ranking_null_if_ambiguous')
+    ?? readNestedScalar(text, 'extraction', 'vote_null_if_ambiguous');
   const apiSleepSeconds = readScalar(text, 'api_sleep_seconds');
   const defaultModel = readScalar(text, 'model');
   const optionLabels = readNestedMap(text, 'topic', 'option_labels');
@@ -90,7 +92,7 @@ export function loadPilotConfig(path) {
     rephrasingModel: rephrasingModel ?? null,
     defaultModel: defaultModel ?? null,
     apiSleepSeconds: apiSleepSeconds ? Number(apiSleepSeconds) : null,
-    voteNullIfAmbiguous: voteNullIfAmbiguous === 'true',
+    rankingNullIfAmbiguous: rankingNullIfAmbiguous === 'true',
     optionLabels,
   };
 }

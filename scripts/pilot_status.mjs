@@ -47,14 +47,20 @@ function summarizeParticipants(payload) {
 }
 
 function summarizeExtractions(filePath) {
-  if (!filePath || !fs.existsSync(filePath)) return { status: 'not run', nullVotes: 0, total: 0 };
+  if (!filePath || !fs.existsSync(filePath)) return { status: 'not run', nullRankings: 0, total: 0 };
   const rows = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const total = rows.length;
-  const nullVotes = rows.filter((r) => r.vote == null).length;
-  if (nullVotes > 0) {
-    return { status: `complete (${nullVotes} null votes flagged)`, nullVotes, total };
+  const isPhase2 = path.basename(filePath).startsWith('phase2_');
+  const nullRankings = rows.filter((r) => {
+    if (isPhase2) {
+      return r.initial_vote_ranking == null || r.final_vote_ranking == null;
+    }
+    return r.vote_ranking == null;
+  }).length;
+  if (nullRankings > 0) {
+    return { status: `complete (${nullRankings} null rankings flagged)`, nullRankings, total };
   }
-  return { status: 'complete', nullVotes, total };
+  return { status: 'complete', nullRankings, total };
 }
 
 function printStatus(lines) {

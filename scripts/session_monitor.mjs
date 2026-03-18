@@ -63,6 +63,14 @@ async function processSession(client, session, maxUsers, debug) {
   return { stopped: false, total: finishedCount, responses };
 }
 
+function keepFinishedOnly(responses) {
+  const participants = responses?.data ?? [];
+  return {
+    ...responses,
+    data: participants.filter((participant) => participant?.active === false),
+  };
+}
+
 async function main() {
   let {
     intervalMs,
@@ -129,7 +137,8 @@ async function main() {
       const outDir = path.resolve('data', 'responses');
       fs.mkdirSync(outDir, { recursive: true });
       const outPath = path.join(outDir, `phase${phase}_${sessionId}.json`);
-      fs.writeFileSync(outPath, JSON.stringify(result.responses, null, 2));
+      const finishedOnly = keepFinishedOnly(result.responses);
+      fs.writeFileSync(outPath, JSON.stringify(finishedOnly, null, 2));
       if (result.stopped) {
         console.log(`[${session.id}] stopped: ${result.reason}`);
         if (result.reason === 'threshold') {

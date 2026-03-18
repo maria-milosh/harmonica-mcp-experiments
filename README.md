@@ -18,7 +18,7 @@ Phase 1 (collect ideas):
 1. Create a session whose topic starts with `P1`.
 2. Run the session monitor to poll for completion.
 3. When N participants finish, the monitor saves the full `get_responses` payload to `data/responses/phase<1|2>_<session_id>.json`.
-4. Run Phase 1 extraction to produce votes/reasoning JSON.
+4. Run Phase 1 extraction to produce vote-ranking/reasoning JSON.
 
 Phase 2 (reflect on others' ideas):
 1. Use the Phase 2 script to create a new session whose prompt injects the collected rephrases.
@@ -60,7 +60,7 @@ Phase 2 creation reads from `data/responses/phase1_<session_id>_extractions.json
 Tool usage summary:
 1. `phase1:create` for Phase 1, with topic prefixed by `P1`.
 2. `session:monitor` for Phase 1 to capture answers/rephrases outside the moderator.
-3. `reasoning:extract` to extract votes/reasoning from the Phase 1 transcript.
+3. `reasoning:extract` to extract vote rankings/reasoning from the Phase 1 transcript.
 4. `phase2:create` to build a Phase 2 session with injected rephrases.
 5. `session:monitor` for Phase 2 to capture the transcript JSON.
 
@@ -76,7 +76,7 @@ HARMONICA_API_KEY=... npm run phase1:create -- --config example_pilot.yaml
 HARMONICA_API_KEY=... npm run session:monitor -- --session-id hst_<PHASE1_ID> --phase 1 --interval 60 --max-users 3
 ```
 
-3. Extract votes + reasoning from Phase 1 transcript:
+3. Extract vote rankings + reasoning from Phase 1 transcript:
 ```bash
 OPENAI_API_KEY=... npm run reasoning:extract -- --session-id hst_<PHASE1_ID> --phase 1 --config example_pilot.yaml
 ```
@@ -114,6 +114,8 @@ OPENAI_API_KEY=... npm run reasoning:extract -- --session-id hst_... --phase 2 -
 # OPENAI_API_KEY=... npm run reasoning:extract -- --input data/responses/phase2_hst_...json --config example_pilot.yaml
 ```
 This writes `data/responses/phase<1|2>_<session_id>_extractions.json`.
+For Phase 1, each row stores `vote_ranking` as an ordered array from most preferred to least preferred.
+For Phase 2, each row stores `initial_vote_ranking`, `initial_reasoning`, `final_vote_ranking`, and `final_reasoning`.
 
 ## Environment Variables
 

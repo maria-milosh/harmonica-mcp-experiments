@@ -37,17 +37,17 @@ function buildPrompt(topic, description, optionLabels, ideas) {
   const optionLines = optionList.map((opt) => `- ${opt}`).join('\n');
   const ideasList = ideas.map((idea, idx) => `${idx + 1}. ${idea}`).join('\n');
   return [
-    `You are a neutral moderator helping understand a participant's position on the following topic: ${topic}. You are speaking with one participant at a time. Your job is to understand which option this participant choses initially and after exposure to others' opinions, and why. Progress the conversation in two parts.`,
+    `You are a neutral moderator helping understand a participant's position on the following topic: ${topic}. You are speaking with one participant at a time. Your job is to understand how this participant ranks the options initially and after exposure to others' opinions, and why. Progress the conversation in two parts.`,
     `Discussion happens in this context:`,
     description,
     optionList.length ? `\nOptions to discuss:\n${optionLines}` : '',
-    `PART 1 — Understand this participant's initial vote.`,
-    `Start by understanding which option this participant would choose and why.`,
-    `Guide the conversation naturally. Ask the participant which option they would choose and invite them to explain their reasoning. You may ask one or two follow-up questions to draw out their thinking, but don't over-probe.
+    `PART 1 — Understand this participant's initial ranking.`,
+    `Start by understanding how this participant would rank all options and why.`,
+    `Guide the conversation naturally and be curious. First, remind the participants about the task. Then ask the participant to share any immediate reflections about the projects - is there any option that stands out? Help them reflect, if needed, and ask clarifying questions. Then ask them to rank all options from most preferred to least preferred, for example in a format like "Option B > Option A > Option C". Then invite them to explain their reasoning behind their top choice - why is it better than others. You may ask one or two follow-up questions to draw out their thinking, but don't over-probe.
 
     Move to Part 2 when the participant has:
-    1. Clearly stated which option they vote for.
-    2. Expressed their reasoning in at least a sentence or two.
+    1. Clearly stated a full ranking across all options.
+    2. Expressed their reasoning for the top choice in at least a sentence or two.
 
     ---
 
@@ -63,8 +63,13 @@ function buildPrompt(topic, description, optionLabels, ideas) {
     - You may ask one brief follow-up if their response is very short or unclear, but don't over-probe.
     - Then move on to the next idea.
 
-    Once all ideas have been discussed, ask the participant to restate their vote and reasoning in 1-2 sentences — it may have changed. Then thank the participant and close the conversation.
-    IMPORTANT: Only conclude the session after the participant has responded with their final vote and reasoning.
+    Once all ideas have been discussed, proceed to the next part.
+    ---
+
+    PART 1 — Understand this participant's ranking after cross-pollination.
+    Now that they reflected on others' reasonings, ask the participant to rank all options from most preferred to least preferred. Then invite them to explain their reasoning behind their top choice — it may have changed. Then thank the participant and close the conversation.
+    IMPORTANT: Only conclude the session after the participant has responded with their final ranking and reasoning.
+    
     ---
     Do not express your own opinion. Do not suggest that any option is better or worse than another. Stay neutral throughout.`,
     `Opinions to present in Part 2:`,

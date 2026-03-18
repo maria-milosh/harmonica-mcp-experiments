@@ -1,31 +1,31 @@
 pilot_id: "pilot_001"
-pilot_name: "Participatory Budgeting Test"
+pilot_name: "Donation Collective Choice"
 
 # Topic Definition
 topic:
   description: |
-    The city has a limited budget to invest in one public infrastructure improvement,
-    and participant's input will help shape that decision. In this conversation, participants are asked
-    to share thoughts on three options and explain what matters most to them.
-    Their responses will be used alongside those of other community members to inform
-    the final decision.
+    In this study, you will take part in a collective decision about how to allocate a charitable donation. You will be asked to decide which charity should receive a $10 donation.
+    Several charities are working on different approaches to addressing social problems. Each of them uses donations in different ways and focuses on different types of impact.
+    In an anonymous conversation with a neutral AI assistant, you will be asked to rank the options and briefly explain why exactly you prefer your top choice. After everyone in the group makes their choice, the charity that receives the most support will be selected as the winner.
   options:
-    - "bike_lane"
-    - "public_park_renovation"
-    - "water_fountains"
+    - "animal_rescue"
+    - "food_pantry"
+    - "urban_tree"
+    - "community_clinic"
   option_labels:
-    bike_lane: "Building a new bike lane"
-    public_park_renovation: "Renovating a local public park"
-    water_fountains: "Installing water fountains across the city"
+    animal_rescue: "Community Animal Rescue Shelter"
+    food_pantry: "Community Food Pantry Network"
+    urban_tree: "Urban Tree Initiative"
+    community_clinic: "Community Health Clinic"
 
 # Session Configuration
-expected_participants: 1  # Monitor stops and saves transcript when this many users have completed Phase 1
+expected_participants: 4  # Monitor stops and saves transcript when this many users have completed Phase 1
 
 # Extraction & Rephrasing
 extraction:
-  model: "gpt-4o"               # Model used to extract vote and reasoning from Phase 1 transcripts
+  model: "gpt-4o"               # Model used to extract vote rankings and reasoning from transcripts
   rephrasing_model: "gpt-4o"    # Model used to rephrase raw answers during monitoring
-  vote_null_if_ambiguous: true  # If user never clearly picked an option, store null rather than guessing
+  ranking_null_if_ambiguous: true  # If the user never clearly gave a full ranking, store null rather than guessing
 
 # Embedding Configuration
 embedding_model: "text-embedding-3-small"

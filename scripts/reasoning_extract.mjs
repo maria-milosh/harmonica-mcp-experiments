@@ -32,25 +32,27 @@ function parseArgs() {
   return out;
 }
 
-function buildTranscript(messages) {
+function buildTranscript(messages, includeAssistant = false) {
   return messages
-    .filter((m) => m.role === 'user')
-    .map((m) => m.content)
-    .map((text) => text.replace(/\s+/g, ' ').trim())
-    .filter((text) => text.length > 0 && text !== 'User shared the following context:')
-    .map((text) => `USER: ${text}`)
+    .filter((m) => includeAssistant || m.role === 'user')
+    .map((m) => ({
+      role: m.role,
+      content: String(m.content ?? '').replace(/\s+/g, ' ').trim(),
+    }))
+    .filter((m) => m.content.length > 0 && m.content !== 'User shared the following context:')
+    .map((m) => `${String(m.role).toUpperCase()}: ${m.content}`)
     .join('\n');
 }
 
-function buildPrompt(options, optionLabels, voteNullIfAmbiguous, transcript) {
+function buildPhase1Prompt(options, optionLabels, transcript) {
   const optionList = options.map((opt) => `- ${opt}`).join('\n');
   const labelList = options.map((opt) => {
     const label = optionLabels?.[opt];
     return label ? `${opt}: ${label}` : `${opt}`;
   }).join('\n');
   return [
-    `You are extracting a participant's vote and reasoning from a conversation transcript.`,
-    `Return strictly a JSON object with keys "vote" and "reasoning" and no other text.`,
+    `You are extracting a participant's vote ranking and reasoning behind their most preferred option from a conversation transcript.`,
+    `Return strictly a JSON object with keys "vote_ranking" and "reasoning" and no other text.`,
     ``,
     `Allowed vote options (return the exact key):`,
     optionList,
@@ -58,11 +60,39 @@ function buildPrompt(options, optionLabels, voteNullIfAmbiguous, transcript) {
     `Option labels for reference:`,
     labelList,
     ``,
-    // voteNullIfAmbiguous
-    //   ? `If the participant never clearly chose one option, set "vote" to null and "reasoning" to null.`
-    //   : `If the participant never clearly chose one option, set "vote" to null and "reasoning" to null.`,
-    // `If the participant expresses a preference (e.g., "prefer", "most beneficial", "priority", "I choose X"), treat that as a clear vote.`,
-    `Reasoning must be a neutral 1-2 sentence written by you to rephrase why they chose that option, without personal attribution.`,
+    `If the participant does not clearly provide a complete ranking across all options, set "vote_ranking" to null.`,
+    `When the ranking is clear, "vote_ranking" must be an array containing every allowed option exactly once, ordered from most preferred to least preferred.`,
+    `Reasoning behind their top choice must be a neutral 1-2 sentence written by you to rephrase why they chose their most preferred option, without personal attribution.`,
+    ``,
+    `Transcript:`,
+    transcript,
+  ].join('\n');
+}
+
+function buildPhase2Prompt(options, optionLabels, transcript) {
+  const optionList = options.map((opt) => `- ${opt}`).join('\n');
+  const labelList = options.map((opt) => {
+    const label = optionLabels?.[opt];
+    return label ? `${opt}: ${label}` : `${opt}`;
+  }).join('\n');
+  return [
+    `You are extracting a participant's initial and final vote rankings and reasoning from a Phase 2 cross-pollination conversation transcript.`,
+    `Return strictly a JSON object with keys "initial_vote_ranking", "initial_reasoning", "final_vote_ranking", and "final_reasoning" and no other text.`,
+    ``,
+    `Allowed vote options (return the exact key):`,
+    optionList,
+    ``,
+    `Option labels for reference:`,
+    labelList,
+    ``,
+    `The transcript includes assistant and user messages. Use the assistant turns to identify the two stages:`,
+    `- "initial" means the participant's ranking and reasoning before cross-pollination begins.`,
+    `- "final" means the participant's ranking and reasoning after cross-pollination, when they restate their view at the end.`,
+    `For each ranking, return an array containing every allowed option exactly once, ordered from most preferred to least preferred.`,
+    `If the participant does not clearly provide a complete initial ranking, set "initial_vote_ranking" to null and "initial_reasoning" to null.`,
+    `If the participant does not clearly provide a complete final ranking, set "final_vote_ranking" to null and "final_reasoning" to null.`,
+    `If the participant explicitly says their final view is unchanged, copy the initial ranking into "final_vote_ranking" and write a neutral 1-2 sentence "final_reasoning" that reflects that the reasoning remained the same or was reinforced.`,
+    `Each reasoning field must be a neutral 1-2 sentence written by you without personal attribution.`,
     ``,
     `Transcript:`,
     transcript,
@@ -93,11 +123,7 @@ function normalizeKey(value) {
   return String(value).toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
-function normalizeVote(vote, options, optionLabels, voteNullIfAmbiguous) {
-  if (vote == null) return null;
-  const normalized = String(vote).trim();
-  if (options.includes(normalized)) return normalized;
-
+function buildOptionMap(options, optionLabels) {
   const map = new Map();
   for (const opt of options) {
     map.set(normalizeKey(opt), opt);
@@ -109,11 +135,94 @@ function normalizeVote(vote, options, optionLabels, voteNullIfAmbiguous) {
       }
     }
   }
+  return map;
+}
 
-  const mapped = map.get(normalizeKey(normalized));
-  if (mapped) return mapped;
-  if (!voteNullIfAmbiguous) return null;
+function normalizeRankingValue(value, optionMap) {
+  if (typeof value !== 'string') return null;
+  return optionMap.get(normalizeKey(value.trim())) ?? null;
+}
+
+function parseRankingInput(ranking) {
+  if (ranking == null) return null;
+  if (Array.isArray(ranking)) return ranking;
+  if (typeof ranking === 'string') {
+    return ranking
+      .split(/\s*(?:>|,|;|\n)\s*/g)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
   return null;
+}
+
+function normalizeVoteRanking(ranking, options, optionLabels, rankingNullIfAmbiguous) {
+  const parts = parseRankingInput(ranking);
+  if (!parts || parts.length === 0) return null;
+
+  const optionMap = buildOptionMap(options, optionLabels);
+  const normalized = parts.map((part) => normalizeRankingValue(part, optionMap));
+  if (normalized.some((value) => value == null)) return null;
+
+  const unique = Array.from(new Set(normalized));
+  const complete = unique.length === options.length && options.every((opt) => unique.includes(opt));
+  if (!complete) return null;
+
+  if (!rankingNullIfAmbiguous) return unique;
+  return unique;
+}
+
+function coerceParsedRanking(parsed) {
+  if (parsed?.vote_ranking != null) return parsed.vote_ranking;
+  if (parsed?.ranking != null) return parsed.ranking;
+  if (parsed?.vote != null) return parsed.vote;
+  return null;
+}
+
+function coercePhase2Ranking(parsed, keyPrefix) {
+  if (parsed?.[`${keyPrefix}_vote_ranking`] != null) return parsed[`${keyPrefix}_vote_ranking`];
+  if (parsed?.[`${keyPrefix}_ranking`] != null) return parsed[`${keyPrefix}_ranking`];
+  if (parsed?.[`${keyPrefix}_vote`] != null) return parsed[`${keyPrefix}_vote`];
+  return null;
+}
+
+function buildExtractionResult(parsed, resolvedPhase, pilot, resolvedSessionId, participantId) {
+  if (resolvedPhase === 2) {
+    const initialVoteRanking = normalizeVoteRanking(
+      coercePhase2Ranking(parsed, 'initial'),
+      pilot.options,
+      pilot.optionLabels,
+      pilot.rankingNullIfAmbiguous,
+    );
+    const finalVoteRanking = normalizeVoteRanking(
+      coercePhase2Ranking(parsed, 'final'),
+      pilot.options,
+      pilot.optionLabels,
+      pilot.rankingNullIfAmbiguous,
+    );
+    return {
+      user_id: participantId,
+      session_id: resolvedSessionId,
+      initial_vote_ranking: initialVoteRanking,
+      initial_reasoning: initialVoteRanking ? parsed.initial_reasoning ?? null : null,
+      final_vote_ranking: finalVoteRanking,
+      final_reasoning: finalVoteRanking ? parsed.final_reasoning ?? null : null,
+      created_at: new Date().toISOString(),
+    };
+  }
+
+  const voteRanking = normalizeVoteRanking(
+    coerceParsedRanking(parsed),
+    pilot.options,
+    pilot.optionLabels,
+    pilot.rankingNullIfAmbiguous,
+  );
+  return {
+    user_id: participantId,
+    session_id: resolvedSessionId,
+    vote_ranking: voteRanking,
+    reasoning: voteRanking ? parsed.reasoning ?? null : null,
+    created_at: new Date().toISOString(),
+  };
 }
 
 async function callExtractor(apiUrl, apiKey, model, prompt) {
@@ -193,21 +302,26 @@ async function main() {
   }
 
   const payload = JSON.parse(fs.readFileSync(inPath, 'utf8'));
-  const participants = payload.participants ?? payload.data ?? [];
+  const allParticipants = payload.participants ?? payload.data ?? [];
+  const hasActiveField = allParticipants.some((participant) =>
+    Object.prototype.hasOwnProperty.call(participant, 'active'));
+  const participants = hasActiveField
+    ? allParticipants.filter((participant) => participant?.active === false)
+    : allParticipants;
   const results = [];
   const raw = [];
 
   for (const participant of participants) {
-    const transcript = buildTranscript(participant.messages ?? []);
-    const prompt = buildPrompt(pilot.options, pilot.optionLabels, pilot.voteNullIfAmbiguous, transcript);
+    const transcript = buildTranscript(participant.messages ?? [], resolvedPhase === 2);
+    const prompt = resolvedPhase === 2
+      ? buildPhase2Prompt(pilot.options, pilot.optionLabels, transcript)
+      : buildPhase1Prompt(pilot.options, pilot.optionLabels, transcript);
     const response = await callExtractor(apiUrl, apiKey, model, prompt);
     const text = extractTextFromResponse(response);
     if (!text) {
       throw new Error('No content returned by extractor.');
     }
     const parsed = parseJsonStrict(text);
-    const vote = normalizeVote(parsed.vote, pilot.options, pilot.optionLabels, pilot.voteNullIfAmbiguous);
-    const reasoning = vote ? parsed.reasoning ?? null : null;
     if (debug) {
       raw.push({
         user_id: participant.participant_id,
@@ -216,13 +330,13 @@ async function main() {
         parsed,
       });
     }
-    results.push({
-      user_id: participant.participant_id,
-      session_id: sessionId,
-      vote,
-      reasoning,
-      created_at: new Date().toISOString(),
-    });
+    results.push(buildExtractionResult(
+      parsed,
+      resolvedPhase,
+      pilot,
+      resolvedSessionId,
+      participant.participant_id,
+    ));
     if (pilot.apiSleepSeconds) {
       await sleep(pilot.apiSleepSeconds * 1000);
     }
@@ -234,7 +348,10 @@ async function main() {
     const rawPath = outPath.replace(/_extractions\.json$/, '_extractions_raw.json');
     fs.writeFileSync(rawPath, JSON.stringify(raw, null, 2));
   }
-  console.log(`Wrote ${results.length} rows to ${outPath}`);
+  console.log(
+    `Wrote ${results.length} rows to ${outPath} `
+    + `(processed ${participants.length}/${allParticipants.length} participants: finished only).`,
+  );
 }
 
 main().catch((err) => {
