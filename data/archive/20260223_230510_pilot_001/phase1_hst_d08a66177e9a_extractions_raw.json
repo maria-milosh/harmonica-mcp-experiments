@@ -1,0 +1,29 @@
+[
+  {
+    "user_id": "d3844eed1693",
+    "session_id": "hst_d08a66177e9a",
+    "raw_text": "```json\n{\n  \"vote\": \"bike_lane\",\n  \"reasoning\": \"The participant believes that improving road infrastructure will enhance safety and aesthetics, benefiting everyone with faster and safer driving conditions.\"\n}\n```",
+    "parsed": {
+      "vote": "bike_lane",
+      "reasoning": "The participant believes that improving road infrastructure will enhance safety and aesthetics, benefiting everyone with faster and safer driving conditions."
+    }
+  },
+  {
+    "user_id": "d69734032676",
+    "session_id": "hst_d08a66177e9a",
+    "raw_text": "```json\n{\n    \"vote\": \"bike_lane\",\n    \"reasoning\": \"The participant prioritizes transportation improvements and believes that enhancing transportation options, like bike lanes, would benefit those who do not own cars and need to move around the city frequently.\"\n}\n```",
+    "parsed": {
+      "vote": "bike_lane",
+      "reasoning": "The participant prioritizes transportation improvements and believes that enhancing transportation options, like bike lanes, would benefit those who do not own cars and need to move around the city frequently."
+    }
+  },
+  {
+    "user_id": "6bd25b05bca1",
+    "session_id": "hst_d08a66177e9a",
+    "raw_text": "```json\n{\n  \"vote\": \"public_park_renovation\",\n  \"reasoning\": \"The participant believes that investing in parks will provide a communal space for relaxation and enjoyment, benefiting the entire community.\"\n}\n```",
+    "parsed": {
+      "vote": "public_park_renovation",
+      "reasoning": "The participant believes that investing in parks will provide a communal space for relaxation and enjoyment, benefiting the entire community."
+    }
+  }
+]

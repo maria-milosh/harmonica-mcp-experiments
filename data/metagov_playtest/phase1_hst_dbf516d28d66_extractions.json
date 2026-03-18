@@ -1,0 +1,74 @@
+[
+  {
+    "user_id": "b026ba9960d8",
+    "session_id": "hst_dbf516d28d66",
+    "vote_ranking": [
+      "urban_tree",
+      "animal_rescue",
+      "community_clinic",
+      "food_pantry"
+    ],
+    "reasoning": "The participant prefers the Urban Tree Initiative because it helps keep cities cool during summer and enhances the aesthetic appeal of urban areas.",
+    "created_at": "2026-03-16T14:47:30.196Z"
+  },
+  {
+    "user_id": "1e126bb5b77b",
+    "session_id": "hst_dbf516d28d66",
+    "vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "reasoning": "The participant chose the Community Health Clinic because they believe health issues are very expensive and inadequately addressed by the government in the US. Food, on the other hand, is relatively easy to get, and animal shelter and urban trees are not the top priority.",
+    "created_at": "2026-03-16T14:47:36.040Z"
+  },
+  {
+    "user_id": "855d390cfc05",
+    "session_id": "hst_dbf516d28d66",
+    "vote_ranking": [
+      "food_pantry",
+      "animal_rescue",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "reasoning": "The participant chose the Community Food Pantry Network because they believe it effectively addresses hunger and inequality by redistributing food to those in need. They've previously worked with homeless and low-income families with kids and relate strongly to their struggles.",
+    "created_at": "2026-03-16T14:47:41.523Z"
+  },
+  {
+    "user_id": "200b564596b2",
+    "session_id": "hst_dbf516d28d66",
+    "vote_ranking": [
+      "urban_tree",
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue"
+    ],
+    "reasoning": "The participant prefers the Urban Tree Initiative because it offers the widest range of benefits, including environmental improvements, mental health benefits, and community engagement, which collectively impact a large number of people. Their approach is to donate to the charity that provides the most benefit to the most number of people.",
+    "created_at": "2026-03-16T14:47:47.569Z"
+  },
+  {
+    "user_id": "a3ffe8f27d1d",
+    "session_id": "hst_dbf516d28d66",
+    "vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "reasoning": "The participant prefers the Community Health Clinic because it addresses both physical and psychological needs, which is crucial for marginalized and precariously living individuals during the current economic and immigration crisis. Other initiatives, such as Animal Rescue, are already supported well in the city.",
+    "created_at": "2026-03-16T14:47:52.590Z"
+  },
+  {
+    "user_id": "2f999d554903",
+    "session_id": "hst_dbf516d28d66",
+    "vote_ranking": [
+      "urban_tree",
+      "food_pantry",
+      "animal_rescue",
+      "community_clinic"
+    ],
+    "reasoning": "The participant prefers the Urban Tree Initiative because they believe environmental issues are important and feel that a $10 donation can be effectively utilized for tree maintenance, while it amounts to almost nothing for other charity options.",
+    "created_at": "2026-03-16T14:47:58.264Z"
+  }
+]
