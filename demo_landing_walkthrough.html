@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pipeline Walk‑Through — Harmonica MCP Experiments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,300;0,500;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f2efe6;
+      --ink: #1a1a16;
+      --muted: #68675f;
+      --accent: #0f7f6b;
+      --accent-2: #c34f2b;
+      --panel: #fff8e8;
+      --border: #d7cfbf;
+      --shadow: 0 12px 40px rgba(26,26,22,0.08);
+    }
+
+    body {
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(15,127,107,0.08), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(195,79,43,0.08), transparent 60%),
+        var(--bg);
+      color: var(--ink);
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.55;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 56px 28px 100px;
+    }
+
+    header {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 22px;
+    }
+
+    .title {
+      font-family: 'Literata', serif;
+      font-size: clamp(30px, 5vw, 46px);
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 15px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      background: var(--panel);
+    }
+
+    .section {
+      margin-top: 36px;
+      padding: 22px 24px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      font-family: 'Literata', serif;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .section p {
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .list {
+      margin-top: 12px;
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+      margin-top: 12px;
+      color: var(--ink);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      padding: 16px;
+      background: #fffdf6;
+      border: 1px dashed var(--border);
+    }
+
+    .step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 20px;
+      color: var(--accent-2);
+    }
+
+    .step h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .code {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      margin-top: 8px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .shot {
+      margin-top: 14px;
+      border: 2px dashed var(--border);
+      background:
+        repeating-linear-gradient(
+          135deg,
+          rgba(15,127,107,0.05),
+          rgba(15,127,107,0.05) 12px,
+          rgba(255,255,255,0.6) 12px,
+          rgba(255,255,255,0.6) 24px
+        );
+      height: 220px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(15,127,107,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(15,127,107,0.3);
+      padding: 2px 8px;
+      font-size: 11px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0 4px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .step { grid-template-columns: 1fr; }
+      .step-num { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="meta">
+        <span class="pill">Pipeline Walk‑Through</span>
+        <span class="pill">Phase 1 → Phase 2</span>
+        <span class="pill">Last updated: March 2, 2026</span>
+      </div>
+      <div>
+        <div class="title">Harmonica Two‑Phase Pipeline — From Session Creation to Phase‑2 Extractions</div>
+        <div class="subtitle">
+          This walkthrough explains the full pipeline used in this repo, starting at session creation and ending
+          with extraction output for Phase 2 JSON transcripts. Replace the placeholders with screenshots from
+          your own run so the team can see each stage.
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="kicker">High‑level map</div>
+      <h2>What We’re Doing End‑to‑End</h2>
+      <p>
+        The pipeline has two conversational phases. Phase 1 collects initial opinions and produces a structured
+        extraction file. Phase 2 injects those rephrased ideas back into a new session, collects reflections, and
+        then runs extraction again on the Phase 2 transcript JSON.
+      </p>
+      <div class="list">
+        <div><strong>Phase 1</strong> — Create session → monitor → save transcript JSON → extract rankings/reasons.</div>
+        <div><strong>Phase 2</strong> — Create session with injected rephrases → monitor → save transcript JSON → extract again.</div>
+      </div>
+      <!-- <div class="callout">Suggested first screenshot: terminal run showing phase1:create and returned join URL.</div> -->
+      <!-- <img src="Screenshot 2026-03-01 at 10.47.24 PM.png" style="width: 70%; height: auto;"> -->
+      <!-- <div class="shot">Screenshot placeholder — Phase 1 session creation output</div> -->
+    </section>
+
+    <section class="section">
+      <div class="kicker">Inputs</div>
+      <h2>Prerequisites & Config</h2>
+      <p>
+        The scripts read optional defaults from <span class="tag">example_pilot.yaml</span>. If present, it provides
+        the topic description, expected participants, and extraction model. You’ll need API keys available in your
+        environment when running the session and extraction steps.
+      </p>
+      <div class="list">
+        <div><strong>HARMONICA_API_KEY</strong> — required for session create + monitor.</div>
+        <div><strong>OPENAI_API_KEY</strong> (or EXTRACTION_API_KEY) — required for extraction.</div>
+      </div>
+      <!-- <div class="shot">Screenshot placeholder — example_pilot.yaml in your editor</div> -->
+       <img src="Screenshot 2026-03-01 at 10.50.50 PM.png" style="width: 70%; height: auto;">
+    </section>
+
+    <section class="section">
+      <div class="kicker">Phase 1</div>
+      <h2>Create Session & Capture Responses</h2>
+      <div class="timeline">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Create a Phase‑1 session</h3>
+            <p>
+              Creates a Harmonica session with a topic prefixed by <span class="tag">P1</span> and writes the
+              session ID into <span class="tag">data/responses/phase1_current.txt</span>.
+            </p>
+            <div class="code">npm run phase1:create -- --config example_pilot.yaml</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Monitor Phase‑1 until N participants finish</h3>
+            <p>
+              Polls the session, tracks completion, and saves the transcript to
+              <span class="tag">data/responses/phase1_&lt;session_id&gt;.json</span> once the max is reached.
+            </p>
+            <div class="code">npm run session:monitor -- --session-id hst_&lt;PHASE1_ID&gt; --phase 1 --interval 60 --max-users 3</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="shot">Screenshot placeholder — Phase 1 monitor running / completion</div> -->
+       <img src="Screenshot 2026-03-01 at 10.52.42 PM.png" style="width: 70%; height: auto;">
+       <img src="Screenshot 2026-03-01 at 10.59.20 PM.png" style="width: 70%; height: auto;">
+    </section>
+
+    <section class="section">
+      <div class="kicker">Phase 1</div>
+      <h2>Extract Rankings + Reasoning</h2>
+      <p>
+        Extraction reads the Phase‑1 transcript JSON and produces a structured file with vote rankings and reasoning.
+        Output lands at <span class="tag">data/responses/phase1_&lt;session_id&gt;_extractions.json</span>.
+      </p>
+      <div class="code">npm run reasoning:extract -- --session-id hst_&lt;PHASE1_ID&gt; --phase 1 --config example_pilot.yaml</div>
+      <!-- <div class="shot">Screenshot placeholder — Phase 1 extraction output JSON</div> -->
+      <img src="Screenshot 2026-03-01 at 10.55.00 PM.png" style="width: 50%; height: auto;">
+      <img src="Screenshot 2026-03-01 at 10.55.37 PM.png" style="width: 50%; height: auto;">
+    </section>
+
+    <section class="section">
+      <div class="kicker">Phase 2</div>
+      <h2>Create Session with Injected Rephrases</h2>
+      <p>
+        The Phase‑2 creation script reads the Phase‑1 extraction file and builds a prompt that injects
+        rephrased participant ideas. It creates a new session whose topic is prefixed by <span class="tag">P2</span>.
+      </p>
+      <div class="code">npm run phase2:create -- --source-session hst_&lt;PHASE1_ID&gt; --config example_pilot.yaml</div>
+      <!-- <div class="shot">Screenshot placeholder — Phase 2 session creation output</div> -->
+       <!-- <img src="Screenshot 2026-03-01 at 10.55.37 PM.png" style="width: 70%; height: auto;"> -->
+       <img src="Screenshot 2026-03-01 at 11.00.27 PM.png" style="width: 70%; height: auto;">
+    </section>
+
+    <section class="section">
+      <div class="kicker">Phase 2</div>
+      <h2>Monitor Phase‑2 and Save Transcript</h2>
+      <p>
+        Monitor Phase 2 just like Phase 1. When completed, it saves
+        <span class="tag">data/responses/phase2_&lt;session_id&gt;.json</span>.
+      </p>
+      <div class="code">npm run session:monitor -- --session-id hst_&lt;PHASE2_ID&gt; --phase 2 --interval 60 --max-users 3</div>
+      <!-- <div class="shot">Screenshot placeholder — Phase 2 monitor completion</div> -->
+       <!-- <img src="Screenshot 2026-03-01 at 11.03.10 PM.png" style="width: 70%; height: auto;"> -->
+    </section>
+
+    <section class="section">
+      <div class="kicker">Phase 2</div>
+      <h2>Apply Extraction to Phase‑2 JSON</h2>
+      <p>
+        This is the final step: run extraction again on the Phase‑2 transcript JSON to produce
+        <span class="tag">data/responses/phase2_&lt;session_id&gt;_extractions.json</span>.
+      </p>
+      <div class="code">npm run reasoning:extract -- --session-id hst_&lt;PHASE2_ID&gt; --phase 2 --config example_pilot.yaml</div>
+      <!-- <div class="shot">Screenshot placeholder — Phase 2 extractions JSON</div>
+       <img src="Screenshot 2026-03-01 at 11.03.10 PM.png" style="width: 70%; height: auto;"> -->
+    </section>
+
+    <section class="section">
+      <div class="kicker">Checkpoints</div>
+      <h2>Files You Should See Along the Way</h2>
+      <div class="list">
+        <div><strong>Phase‑1 transcript</strong> — data/responses/phase1_&lt;session_id&gt;.json</div>
+        <div><strong>Phase‑1 extractions</strong> — data/responses/phase1_&lt;session_id&gt;_extractions.json</div>
+        <div><strong>Phase‑2 transcript</strong> — data/responses/phase2_&lt;session_id&gt;.json</div>
+        <div><strong>Phase‑2 extractions</strong> — data/responses/phase2_&lt;session_id&gt;_extractions.json</div>
+      </div>
+      <div class="callout">Optional: run status helper anytime: <span class="tag">npm run pilot:status -- --config example_pilot.yaml</span></div>
+      <!-- <div class="shot">Screenshot 2026-03-01 at 11.18.40 PM.png</div> -->
+      <img src="Screenshot 2026-03-01 at 11.18.40 PM.png" style="width: 70%; height: auto;">
+       
+    </section>
+
+    <div class="divider"></div>
+    </div>
+  </div>
+</body>
+</html>

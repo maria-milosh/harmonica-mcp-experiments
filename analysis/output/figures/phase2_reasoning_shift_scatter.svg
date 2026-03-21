@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="460" viewBox="0 0 860 460">
+<style>text{font-family:Helvetica,Arial,sans-serif;fill:#1f2937}.title{font-size:22px;font-weight:700}.label{font-size:12px}.axis{stroke:#9ca3af;stroke-width:1}.dot{opacity:0.85}</style>
+<text class="title" x="90" y="34">Reasoning Shift: Embedding vs Lexical Similarity</text>
+<line class="axis" x1="90" y1="390" x2="840" y2="390" />
+<line class="axis" x1="90" y1="70" x2="90" y2="390" />
+<text class="label" x="430.0" y="440" text-anchor="middle">Embedding cosine similarity</text>
+<text class="label" x="24" y="230.0" transform="rotate(-90 24 230.0)" text-anchor="middle">Lexical Jaccard similarity</text>
+<circle cx="620" cy="26" r="6" fill="#2563eb" />
+<text class="label" x="632" y="30">Stable top choice</text>
+<circle cx="770" cy="26" r="6" fill="#dc2626" />
+<text class="label" x="782" y="30">Changed top choice</text>
+<circle class="dot" cx="90.0" cy="325.5" r="7" fill="#2563eb" />
+<circle class="dot" cx="820.0" cy="82.9" r="7" fill="#2563eb" />
+<circle class="dot" cx="425.4" cy="106.1" r="7" fill="#2563eb" />
+<circle class="dot" cx="100.5" cy="390.0" r="7" fill="#2563eb" />
+<circle class="dot" cx="790.9" cy="70.0" r="7" fill="#2563eb" />
+<circle class="dot" cx="356.2" cy="268.9" r="7" fill="#dc2626" />
+<circle class="dot" cx="395.9" cy="276.7" r="7" fill="#2563eb" />
+<circle class="dot" cx="233.6" cy="315.5" r="7" fill="#dc2626" />
+<circle class="dot" cx="593.3" cy="214.7" r="7" fill="#2563eb" />
+<circle class="dot" cx="396.5" cy="146.8" r="7" fill="#2563eb" />
+<circle class="dot" cx="552.5" cy="160.3" r="7" fill="#2563eb" />
+<circle class="dot" cx="630.0" cy="111.5" r="7" fill="#dc2626" />
+<circle class="dot" cx="449.9" cy="183.9" r="7" fill="#2563eb" />
+<circle class="dot" cx="226.6" cy="276.7" r="7" fill="#2563eb" />
+<circle class="dot" cx="471.5" cy="255.7" r="7" fill="#2563eb" />
+<circle class="dot" cx="584.4" cy="194.8" r="7" fill="#2563eb" />
+<circle class="dot" cx="262.1" cy="160.3" r="7" fill="#2563eb" />
+</svg>

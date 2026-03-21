@@ -1,0 +1,5 @@
+from_option,animal_rescue,food_pantry,urban_tree,community_clinic
+animal_rescue,3,0,0,1
+food_pantry,0,4,1,1
+urban_tree,0,0,2,0
+community_clinic,0,0,0,5

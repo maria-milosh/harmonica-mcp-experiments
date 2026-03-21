@@ -1,0 +1,18 @@
+user_id,initial_top_choice,final_top_choice,changed_top_choice,footrule_distance,initial_ranking,final_ranking
+3c5387b0da49,community_clinic,community_clinic,False,0,community_clinic > food_pantry > urban_tree > animal_rescue,community_clinic > food_pantry > urban_tree > animal_rescue
+9d9c3d6a7d9c,food_pantry,food_pantry,False,2,food_pantry > community_clinic > animal_rescue > urban_tree,food_pantry > community_clinic > urban_tree > animal_rescue
+e384b04afce3,community_clinic,community_clinic,False,0,community_clinic > food_pantry > animal_rescue > urban_tree,community_clinic > food_pantry > animal_rescue > urban_tree
+f80d4f54b108,community_clinic,community_clinic,False,0,community_clinic > food_pantry > animal_rescue > urban_tree,community_clinic > food_pantry > animal_rescue > urban_tree
+61fecb490ab2,animal_rescue,animal_rescue,False,0,animal_rescue > urban_tree > community_clinic > food_pantry,animal_rescue > urban_tree > community_clinic > food_pantry
+ad571f253120,food_pantry,community_clinic,True,2,food_pantry > community_clinic > animal_rescue > urban_tree,community_clinic > food_pantry > animal_rescue > urban_tree
+15f012a0dc2c,urban_tree,urban_tree,False,2,urban_tree > food_pantry > animal_rescue > community_clinic,urban_tree > food_pantry > community_clinic > animal_rescue
+b7252e46e281,food_pantry,urban_tree,True,4,food_pantry > community_clinic > urban_tree > animal_rescue,urban_tree > food_pantry > community_clinic > animal_rescue
+679457c68ee8,urban_tree,urban_tree,False,0,urban_tree > food_pantry > animal_rescue > community_clinic,urban_tree > food_pantry > animal_rescue > community_clinic
+116a3ebe9814,community_clinic,community_clinic,False,0,community_clinic > food_pantry > animal_rescue > urban_tree,community_clinic > food_pantry > animal_rescue > urban_tree
+ec338cde8cdc,animal_rescue,animal_rescue,False,2,animal_rescue > food_pantry > community_clinic > urban_tree,animal_rescue > community_clinic > food_pantry > urban_tree
+8d4b92f5ba5d,animal_rescue,community_clinic,True,4,animal_rescue > food_pantry > community_clinic > urban_tree,community_clinic > animal_rescue > food_pantry > urban_tree
+60d929ceffa5,food_pantry,food_pantry,False,0,food_pantry > community_clinic > animal_rescue > urban_tree,food_pantry > community_clinic > animal_rescue > urban_tree
+84b4783bae78,food_pantry,food_pantry,False,0,food_pantry > community_clinic > urban_tree > animal_rescue,food_pantry > community_clinic > urban_tree > animal_rescue
+455dbb067ce7,food_pantry,food_pantry,False,0,food_pantry > urban_tree > community_clinic > animal_rescue,food_pantry > urban_tree > community_clinic > animal_rescue
+8948e22761d2,community_clinic,community_clinic,False,2,community_clinic > food_pantry > animal_rescue > urban_tree,community_clinic > food_pantry > urban_tree > animal_rescue
+f302a80daf1f,animal_rescue,animal_rescue,False,0,animal_rescue > food_pantry > urban_tree > community_clinic,animal_rescue > food_pantry > urban_tree > community_clinic

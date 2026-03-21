@@ -1,0 +1,11 @@
+{
+  "participant_count": 17,
+  "complete_initial_rankings": 17,
+  "complete_final_rankings": 17,
+  "changed_top_choice_count": 3,
+  "changed_top_choice_share": 0.176,
+  "initial_top_choice_entropy": 1.904,
+  "final_top_choice_entropy": 1.902,
+  "avg_message_count": 27.76,
+  "avg_reasoning_word_count": 55.65
+}

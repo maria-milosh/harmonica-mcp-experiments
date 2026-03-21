@@ -1,0 +1,9 @@
+phase,condorcet_winner,n_groups,share
+after,community_clinic,3101,0.5280095351609059
+after,food_pantry,2404,0.40933083602928655
+after,urban_tree,241,0.041035246041205516
+after,animal_rescue,127,0.02162438276860208
+before,food_pantry,4544,0.750330250990753
+before,community_clinic,1141,0.18840819022457067
+before,animal_rescue,325,0.053665785997357995
+before,urban_tree,46,0.007595772787318362

@@ -1,0 +1,3 @@
+phase,n_groups,p_condorcet_exists,p_outcome_equals_condorcet,p_outcome_equals_condorcet_given_exists
+after,6188,0.9490950226244343,0.5418552036199095,0.5709177592371871
+before,6188,0.9786683904330963,0.49046541693600515,0.5011558784676354

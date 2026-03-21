@@ -1,0 +1,2 @@
+participant_n,theme_n,mean_l1_distance,median_l1_distance,wilcoxon_l1_vs_zero_statistic,wilcoxon_l1_vs_zero_p
+17,14,1.343137254901961,1.3333333333333335,136,2.1152341578700292e-4

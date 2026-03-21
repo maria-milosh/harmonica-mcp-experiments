@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="500" viewBox="0 0 540 500">
+<style>text{font-family:Helvetica,Arial,sans-serif;fill:#1f2937}.title{font-size:22px;font-weight:700}.label{font-size:12px}.value{font-size:12px;font-weight:700}</style>
+<text class="title" x="30" y="36">Phase 2 Top-Choice Transitions</text>
+<text class="label" x="220.0" y="72" text-anchor="middle">animal_rescue</text>
+<text class="label" x="158" y="130.0" text-anchor="end">animal_rescue</text>
+<text class="label" x="300.0" y="72" text-anchor="middle">food_pantry</text>
+<text class="label" x="158" y="210.0" text-anchor="end">food_pantry</text>
+<text class="label" x="380.0" y="72" text-anchor="middle">urban_tree</text>
+<text class="label" x="158" y="290.0" text-anchor="end">urban_tree</text>
+<text class="label" x="460.0" y="72" text-anchor="middle">community_clinic</text>
+<text class="label" x="158" y="370.0" text-anchor="end">community_clinic</text>
+<rect x="180" y="90" width="76" height="76" fill="rgb(167,168,153)" rx="4" />
+<text class="value" x="218.0" y="134.0" text-anchor="middle">3</text>
+<rect x="260" y="90" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="298.0" y="134.0" text-anchor="middle">0</text>
+<rect x="340" y="90" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="378.0" y="134.0" text-anchor="middle">0</text>
+<rect x="420" y="90" width="76" height="76" fill="rgb(215,220,221)" rx="4" />
+<text class="value" x="458.0" y="134.0" text-anchor="middle">1</text>
+<rect x="180" y="170" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="218.0" y="214.0" text-anchor="middle">0</text>
+<rect x="260" y="170" width="76" height="76" fill="rgb(143,142,119)" rx="4" />
+<text class="value" x="298.0" y="214.0" text-anchor="middle">4</text>
+<rect x="340" y="170" width="76" height="76" fill="rgb(215,220,221)" rx="4" />
+<text class="value" x="378.0" y="214.0" text-anchor="middle">1</text>
+<rect x="420" y="170" width="76" height="76" fill="rgb(215,220,221)" rx="4" />
+<text class="value" x="458.0" y="214.0" text-anchor="middle">1</text>
+<rect x="180" y="250" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="218.0" y="294.0" text-anchor="middle">0</text>
+<rect x="260" y="250" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="298.0" y="294.0" text-anchor="middle">0</text>
+<rect x="340" y="250" width="76" height="76" fill="rgb(191,194,187)" rx="4" />
+<text class="value" x="378.0" y="294.0" text-anchor="middle">2</text>
+<rect x="420" y="250" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="458.0" y="294.0" text-anchor="middle">0</text>
+<rect x="180" y="330" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="218.0" y="374.0" text-anchor="middle">0</text>
+<rect x="260" y="330" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="298.0" y="374.0" text-anchor="middle">0</text>
+<rect x="340" y="330" width="76" height="76" fill="rgb(239,246,255)" rx="4" />
+<text class="value" x="378.0" y="374.0" text-anchor="middle">0</text>
+<rect x="420" y="330" width="76" height="76" fill="rgb(119,116,85)" rx="4" />
+<text class="value" x="458.0" y="374.0" text-anchor="middle">5</text>
+</svg>

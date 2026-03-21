@@ -1,0 +1,4 @@
+metric,delta_after_minus_before
+P(outcome = Condorcet winner | Condorcet exists),0.0697618807695517
+P(outcome = Condorcet winner),0.051389786683904315
+P(Condorcet winner exists),-0.029573367808661932

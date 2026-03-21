@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+<style>text{font-family:Helvetica,Arial,sans-serif;fill:#1f2937}.title{font-size:22px;font-weight:700}.label{font-size:13px}.value{font-size:12px;font-weight:700}.axis{stroke:#9ca3af;stroke-width:1}.bar{fill:#2563eb}</style>
+<text class="title" x="170" y="32">Phase 1 Top-Choice Votes</text>
+<line class="axis" x1="170" y1="350" x2="780" y2="350" />
+<text class="label" x="18" y="101">Community Animal Rescue Shelter</text>
+<rect class="bar" x="170" y="60" width="0.0" height="43" rx="4" />
+<text class="value" x="178.0" y="101">0</text>
+<text class="label" x="18" y="169">Community Food Pantry Network</text>
+<rect class="bar" x="170" y="128" width="196.7" height="43" rx="4" />
+<text class="value" x="374.7" y="169">1</text>
+<text class="label" x="18" y="237">Urban Tree Initiative</text>
+<rect class="bar" x="170" y="196" width="590.0" height="43" rx="4" />
+<text class="value" x="768.0" y="237">3</text>
+<text class="label" x="18" y="305">Community Health Clinic</text>
+<rect class="bar" x="170" y="264" width="393.3" height="43" rx="4" />
+<text class="value" x="571.3" y="305">2</text>
+</svg>
