@@ -272,3 +272,52 @@ def analyze_reasoning_shift(
         write_json(os.path.join(output_dir, "phase2_reasoning_embedding_vectors.json"), embedding_vectors)
 
     return output
+
+
+def analyze_phase1_reasoning_embeddings(
+    rows: list[dict[str, Any]],
+    config: AnalysisConfig,
+    output_dir: str,
+    with_embeddings: bool = False,
+) -> dict[str, Any]:
+    output = {
+        "summary": {
+            "embedding_analysis_enabled": with_embeddings,
+            "participant_count": len(rows),
+        }
+    }
+    if not with_embeddings:
+        return output
+
+    texts = []
+    user_ids = []
+    for row in rows:
+        texts.append(row.get("reasoning") or "")
+        user_ids.append(row["user_id"])
+
+    embeddings = embedding_request(texts, config.embedding_model)
+    embedding_vectors = []
+    for idx, user_id in enumerate(user_ids):
+        embedding_vectors.append(
+            {
+                "user_id": user_id,
+                "embedding": embeddings[idx],
+            }
+        )
+
+    random_pair_distances = []
+    for left_vec, right_vec in combinations(embeddings, 2):
+        similarity = cosine_similarity(left_vec, right_vec)
+        if similarity is not None:
+            random_pair_distances.append(1 - similarity)
+
+    output["summary"] = {
+        "embedding_analysis_enabled": True,
+        "participant_count": len(rows),
+        "avg_random_distance": safe_mean(random_pair_distances),
+    }
+    output["embedding_vectors"] = embedding_vectors
+
+    write_json(os.path.join(output_dir, "phase1_reasoning_embeddings.json"), output["summary"])
+    write_json(os.path.join(output_dir, "phase1_reasoning_embedding_vectors.json"), embedding_vectors)
+    return output

@@ -1,7 +1,9 @@
 theme,count
-local_community_focus,6
+local_community_focus,7
 moral_duty_compassion,5
+urgency_basic_needs,4
 deservingness_targeting,3
-cost_effectiveness_impact,3
-urgency_basic_needs,3
+cost_effectiveness_impact,2
+effectiveness_skepticism,1
 personal_connection_identity,1
+skepticism_uncertainty,1

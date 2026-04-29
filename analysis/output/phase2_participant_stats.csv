@@ -16,3 +16,4 @@ ec338cde8cdc,Serene Badger,animal_rescue,animal_rescue,False,animal_rescue > foo
 455dbb067ce7,Proud Panda,food_pantry,food_pantry,False,food_pantry > urban_tree > community_clinic > animal_rescue,food_pantry > urban_tree > community_clinic > animal_rescue,28,14,14,267,1265,23,0,16.1141
 8948e22761d2,Cobalt Eager Wombat,community_clinic,community_clinic,False,community_clinic > food_pantry > animal_rescue > urban_tree,community_clinic > food_pantry > urban_tree > animal_rescue,28,14,14,747,1275,20,0,11.1558
 f302a80daf1f,Jade Gazelle,animal_rescue,animal_rescue,False,animal_rescue > food_pantry > urban_tree > community_clinic,animal_rescue > food_pantry > urban_tree > community_clinic,26,13,13,270,1175,20,0,17.700733333333336
+ec4dc8138490,Byzantium Hedgehog,community_clinic,food_pantry,True,community_clinic > food_pantry > urban_tree > animal_rescue,food_pantry > community_clinic > urban_tree > animal_rescue,38,19,19,188,1665,30,0,27.065583333333333

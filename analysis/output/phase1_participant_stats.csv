@@ -1,7 +1,13 @@
 user_id,participant_name,top_choice,ranking,reasoning_word_count,message_count,user_message_count,assistant_message_count,user_word_count,assistant_word_count,assistant_question_count,assistant_redirect_count,duration_minutes
 b026ba9960d8,Alabaster Phoenix,urban_tree,urban_tree > animal_rescue > community_clinic > food_pantry,23,18,9,9,79,1018,16,3,19.532466666666668
-1e126bb5b77b,Amethyst Panda,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,45,12,6,6,91,439,10,0,3.6405499999999997
-855d390cfc05,Pearl Radiant Otter,food_pantry,food_pantry > animal_rescue > community_clinic > urban_tree,40,10,5,5,144,491,8,0,8.0219
-200b564596b2,Sepia Elegant Bear,urban_tree,urban_tree > food_pantry > community_clinic > animal_rescue,51,8,4,4,204,434,6,0,9.156666666666666
-a3ffe8f27d1d,Cosmic Dolphin,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,44,12,6,6,225,431,8,0,8.096116666666667
-2f999d554903,Indigo Wolf,urban_tree,urban_tree > food_pantry > animal_rescue > community_clinic,37,10,5,5,181,491,8,0,10.6567
+1e126bb5b77b,Amethyst Panda,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,29,12,6,6,91,439,10,0,3.6405499999999997
+855d390cfc05,Pearl Radiant Otter,food_pantry,food_pantry > animal_rescue > community_clinic > urban_tree,28,10,5,5,144,491,8,0,8.0219
+200b564596b2,Sepia Elegant Bear,urban_tree,urban_tree > food_pantry > community_clinic > animal_rescue,32,8,4,4,204,434,6,0,9.156666666666666
+a3ffe8f27d1d,Cosmic Dolphin,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,31,12,6,6,225,431,8,0,8.096116666666667
+2f999d554903,Indigo Wolf,urban_tree,urban_tree > food_pantry > animal_rescue > community_clinic,29,10,5,5,181,491,8,0,10.6567
+00aff71e1a2b,Sapphire Noble Koala,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,29,8,4,4,238,398,5,0,6.586383333333333
+35c62798-fac1-4e09-be5b-b04542b71023,Beryl Deer,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,32,12,6,6,195,639,9,0,8.12205
+c57e8228-c7ad-476b-9c7f-a5b27f1c65ef,Scarlet Raccoon,animal_rescue,animal_rescue > community_clinic > food_pantry > urban_tree,20,12,6,6,84,549,10,0,5.802083333333333
+db072103-e4e3-495d-8859-b9cf41564b96,Proud Cheetah,urban_tree,urban_tree > food_pantry > community_clinic > animal_rescue,33,10,5,5,134,435,7,0,2.8003
+42aef4ae-92cf-4cc6-a972-a93bd9ad6bb8,Serene Cheetah,community_clinic,community_clinic > animal_rescue > food_pantry > urban_tree,29,10,5,5,315,449,8,0,16.35875
+73160cb4-a6a2-4105-a87a-5855184661af,Turquoise Eager Leopard,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,36,12,6,6,113,503,7,0,5.138283333333334

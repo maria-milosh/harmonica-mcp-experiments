@@ -13,16 +13,16 @@
 <text class="label" x="176.0" y="428" text-anchor="middle">Community Animal Rescue Shelter</text>
 <rect x="320.0" y="112.9" width="42.0" height="257.1" fill="#0f766e" rx="4" />
 <text class="value" x="341.0" y="106.9" text-anchor="middle">6</text>
-<rect x="370.0" y="198.6" width="42.0" height="171.4" fill="#dc2626" rx="4" />
-<text class="value" x="391.0" y="192.6" text-anchor="middle">4</text>
+<rect x="370.0" y="155.7" width="42.0" height="214.3" fill="#dc2626" rx="4" />
+<text class="value" x="391.0" y="149.7" text-anchor="middle">5</text>
 <text class="label" x="366.0" y="428" text-anchor="middle">Community Food Pantry Network</text>
 <rect x="510.0" y="284.3" width="42.0" height="85.7" fill="#0f766e" rx="4" />
 <text class="value" x="531.0" y="278.3" text-anchor="middle">2</text>
 <rect x="560.0" y="241.4" width="42.0" height="128.6" fill="#dc2626" rx="4" />
 <text class="value" x="581.0" y="235.4" text-anchor="middle">3</text>
 <text class="label" x="556.0" y="428" text-anchor="middle">Urban Tree Initiative</text>
-<rect x="700.0" y="155.7" width="42.0" height="214.3" fill="#0f766e" rx="4" />
-<text class="value" x="721.0" y="149.7" text-anchor="middle">5</text>
+<rect x="700.0" y="112.9" width="42.0" height="257.1" fill="#0f766e" rx="4" />
+<text class="value" x="721.0" y="106.9" text-anchor="middle">6</text>
 <rect x="750.0" y="70.0" width="42.0" height="300.0" fill="#dc2626" rx="4" />
 <text class="value" x="771.0" y="64.0" text-anchor="middle">7</text>
 <text class="label" x="746.0" y="428" text-anchor="middle">Community Health Clinic</text>

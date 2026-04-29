@@ -1,0 +1,2 @@
+n_participants,n_treated,n_control,group_size,options_count,control_input_path,treatment_input_path,control_ranking_col,treated_ranking_col,theta_treated,theta_control,tau_observed,cw_groups_treated,cw_groups_control,n_groups_treated,n_groups_control,p_value_two_sided,inference_method,n_reassignments,seed
+23,17,6,5,4,analysis/output/phase1_participant_stats.csv,analysis/output/phase2_participant_changes.csv,ranking,final_ranking,0.9490950226244343,0.8333333333333334,0.11576168929110098,5873,5,6188,6,0.2989402119576085,mc,5000,123
