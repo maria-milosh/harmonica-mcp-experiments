@@ -22,13 +22,21 @@ treated_ranking_col <- "final_ranking"
 group_size <- 5L
 
 # Power simulation configuration
-n_grid <- seq(12L, 16L, by = 2L)  # treated and control sample sizes per arm
-sims_per_n <- 40L #1000
+n_grid <- seq(60L, 300, by = 30L)  # treated and control sample sizes per arm
+sims_per_n <- 1000
 alpha <- 0.05
 
 # RI inside each simulation (keep smaller for speed)
-ri_b <- 99L #999
+ri_b <- 999
 ri_two_sided <- TRUE
+
+# Group-set construction for Condorcet-share
+# exhaustive: all C(n, group_size) groups (exact but expensive)
+# mc: random groups (approximate but scalable)
+# auto: exhaustive when small enough, mc otherwise
+group_mode <- "auto"               # one of: "exhaustive", "mc", "auto"
+max_exhaustive_groups <- 2000000L  # threshold used when group_mode = "auto"
+mc_groups_per_arm <- 50000L        # used when group_mode resolves to "mc"
 
 seed <- 20260406L
 
@@ -88,6 +96,41 @@ condorcet_share <- function(rankings_list, groups_matrix, option_set) {
   }
 
   cw_count / n_groups
+}
+
+build_groups_matrix <- function(n,
+                                group_size,
+                                group_mode,
+                                max_exhaustive_groups,
+                                mc_groups_per_arm) {
+  total_groups <- choose(n, group_size)
+
+  use_exhaustive <- switch(
+    group_mode,
+    exhaustive = TRUE,
+    mc = FALSE,
+    auto = is.finite(total_groups) && total_groups <= max_exhaustive_groups,
+    stop("group_mode must be one of: exhaustive, mc, auto")
+  )
+
+  if (use_exhaustive) {
+    groups_matrix <- combn(n, group_size)
+    mode_used <- "exhaustive"
+  } else {
+    groups_matrix <- replicate(
+      mc_groups_per_arm,
+      sort(sample.int(n, size = group_size, replace = FALSE)),
+      simplify = "matrix"
+    )
+    mode_used <- "mc"
+  }
+
+  list(
+    groups_matrix = groups_matrix,
+    mode_used = mode_used,
+    n_groups_used = ncol(groups_matrix),
+    total_groups = total_groups
+  )
 }
 
 ri_test_between <- function(control_rankings,
@@ -212,8 +255,13 @@ names(prep_by_n) <- as.character(n_grid)
 for (n in n_grid) {
   n <- as.integer(n)
 
-  groups_n <- combn(n, group_size)
-  n_groups <- ncol(groups_n)
+  groups_info <- build_groups_matrix(
+    n = n,
+    group_size = group_size,
+    group_mode = group_mode,
+    max_exhaustive_groups = max_exhaustive_groups,
+    mc_groups_per_arm = mc_groups_per_arm
+  )
 
   # Fixed-size complete-randomization label draws for RI in each simulated dataset
   perm_treated_idx <- replicate(
@@ -223,13 +271,20 @@ for (n in n_grid) {
   )
 
   prep_by_n[[as.character(n)]] <- list(
-    groups_control = groups_n,
-    groups_treated = groups_n,
-    n_groups = n_groups,
+    groups_control = groups_info$groups_matrix,
+    groups_treated = groups_info$groups_matrix,
+    n_groups = groups_info$n_groups_used,
+    group_mode_used = groups_info$mode_used,
+    total_groups = groups_info$total_groups,
     perm_treated_idx = perm_treated_idx
   )
 
-  message("Prepared n=", n, " (", n_groups, " groups/arm)")
+  message(
+    "Prepared n=", n,
+    " (mode=", groups_info$mode_used,
+    ", groups_used=", groups_info$n_groups_used,
+    ", total_C(n,k)=", format(groups_info$total_groups, scientific = FALSE), ")"
+  )
 }
 
 # -----------------------------------------------------------------------------
@@ -312,6 +367,9 @@ summary_row <- tibble(
   group_size = group_size,
   sims_per_n = sims_per_n,
   ri_b = ri_b,
+  group_mode = group_mode,
+  max_exhaustive_groups = max_exhaustive_groups,
+  mc_groups_per_arm = mc_groups_per_arm,
   alpha = alpha,
   two_sided = ri_two_sided,
   power_target = power_target,
