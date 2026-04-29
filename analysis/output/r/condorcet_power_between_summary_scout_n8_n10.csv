@@ -1,0 +1,2 @@
+control_input_path,treatment_input_path,control_ranking_col,treated_ranking_col,n_control_pilot,n_treated_pilot,options_count,group_size,sims_per_n,ri_b,alpha,two_sided,power_target,n_grid_min,n_grid_max,n_grid_step,n_per_arm_for_power_target,n_total_for_power_target,seed
+analysis/output/phase1_participant_stats.csv,analysis/output/phase2_participant_changes.csv,ranking,final_ranking,6,17,4,5,20,49,0.05,TRUE,0.8,8,10,2,NA,NA,20260406

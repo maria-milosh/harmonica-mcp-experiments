@@ -1,7 +1,7 @@
 {
-  "avg_embedding_similarity": 0.6338708988401915,
-  "avg_embedding_distance": 0.3661291011598083,
-  "avg_embedding_similarity_changed_top": 0.6212635098462161,
-  "avg_embedding_similarity_stable_top": 0.6365724821960436,
-  "avg_random_initial_distance": 0.41891191235371683
+  "avg_embedding_similarity": 0.6300593075275276,
+  "avg_embedding_distance": 0.36994069247247235,
+  "avg_embedding_similarity_changed_top": 0.619508333191547,
+  "avg_embedding_similarity_stable_top": 0.6330738716235221,
+  "avg_random_initial_distance": 0.41686777290643134
 }

@@ -1,5 +1,5 @@
 option,label,plurality_votes,borda_score,copeland_score,anti_plurality_score
-animal_rescue,Community Animal Rescue Shelter,3,17,1.0,10
-food_pantry,Community Food Pantry Network,4,34,2.0,16
-urban_tree,Urban Tree Initiative,3,18,0.0,10
-community_clinic,Community Health Clinic,7,33,3.0,15
+animal_rescue,Community Animal Rescue Shelter,3,17,0.5,10
+food_pantry,Community Food Pantry Network,5,37,2.5,17
+urban_tree,Urban Tree Initiative,3,19,0.5,11
+community_clinic,Community Health Clinic,7,35,2.5,16

@@ -1,0 +1,2 @@
+n_per_arm,n_total,sims,ri_b,alpha,power,rejection_count,mean_p_value,mean_tau_observed,sd_tau_observed
+14,28,10,29,0.05,0,0,0.5533333333333333,-0.003246753246753242,0.11737169399109959

@@ -1,0 +1,2 @@
+n_participants,group_size,options_count,control_ranking_col,treated_ranking_col,theta_treated,theta_control,tau_observed,cw_groups_treated,cw_groups_control,n_groups,p_value_two_sided,inference_method,n_reassignments,seed
+17,5,4,initial_ranking,final_ranking,0.9490950226244343,0.9786683904330963,-0.029573367808661932,5873,6056,6188,0.20595880823835233,mc,5000,123

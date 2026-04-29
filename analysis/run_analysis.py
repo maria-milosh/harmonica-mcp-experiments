@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from phase2_change_analysis import analyze_changes
-from reasoning_analysis import analyze_reasoning_shift
+from reasoning_analysis import analyze_phase1_reasoning_embeddings, analyze_reasoning_shift
 from session_descriptives import describe_phase1, describe_phase2
 from utils import (
     cosine_similarity,
@@ -1002,6 +1002,12 @@ def main() -> None:
     phase2_changes = analyze_changes(phase2_extractions, config.options)
     reasoning_shift = analyze_reasoning_shift(
         phase2_extractions,
+        config,
+        str(output_dir),
+        with_embeddings=args.with_embeddings,
+    )
+    analyze_phase1_reasoning_embeddings(
+        phase1_extractions,
         config,
         str(output_dir),
         with_embeddings=args.with_embeddings,

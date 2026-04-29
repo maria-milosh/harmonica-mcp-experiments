@@ -1,7 +1,7 @@
 rule,winner,data_required,valid_with_available_data,note
 plurality,urban_tree,top choice only,True,
 borda,food_pantry,full ranking,True,
-instant_runoff,urban_tree,full ranking,True,
+instant_runoff,community_clinic,full ranking,True,
 condorcet,,full ranking,True,
 copeland,food_pantry,full ranking,True,
 anti_plurality,food_pantry,full ranking,True,
