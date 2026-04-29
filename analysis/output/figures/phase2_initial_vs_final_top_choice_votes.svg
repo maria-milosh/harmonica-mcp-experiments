@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="460" viewBox="0 0 920 460">
+<style>text{font-family:Helvetica,Arial,sans-serif;fill:#1f2937}.title{font-size:22px;font-weight:700}.label{font-size:12px}.value{font-size:11px;font-weight:700}.axis{stroke:#9ca3af;stroke-width:1}</style>
+<text class="title" x="110" y="34">Phase 2 Initial vs Final Top-Choice Votes</text>
+<line class="axis" x1="110" y1="370" x2="900" y2="370" />
+<rect x="680" y="18" width="16" height="16" rx="3" fill="#0f766e" />
+<text class="label" x="702" y="31">Initial</text>
+<rect x="790" y="18" width="16" height="16" rx="3" fill="#dc2626" />
+<text class="label" x="812" y="31">Final</text>
+<rect x="130.0" y="198.6" width="42.0" height="171.4" fill="#0f766e" rx="4" />
+<text class="value" x="151.0" y="192.6" text-anchor="middle">4</text>
+<rect x="180.0" y="241.4" width="42.0" height="128.6" fill="#dc2626" rx="4" />
+<text class="value" x="201.0" y="235.4" text-anchor="middle">3</text>
+<text class="label" x="176.0" y="428" text-anchor="middle">Community Animal Rescue Shelter</text>
+<rect x="320.0" y="112.9" width="42.0" height="257.1" fill="#0f766e" rx="4" />
+<text class="value" x="341.0" y="106.9" text-anchor="middle">6</text>
+<rect x="370.0" y="198.6" width="42.0" height="171.4" fill="#dc2626" rx="4" />
+<text class="value" x="391.0" y="192.6" text-anchor="middle">4</text>
+<text class="label" x="366.0" y="428" text-anchor="middle">Community Food Pantry Network</text>
+<rect x="510.0" y="284.3" width="42.0" height="85.7" fill="#0f766e" rx="4" />
+<text class="value" x="531.0" y="278.3" text-anchor="middle">2</text>
+<rect x="560.0" y="241.4" width="42.0" height="128.6" fill="#dc2626" rx="4" />
+<text class="value" x="581.0" y="235.4" text-anchor="middle">3</text>
+<text class="label" x="556.0" y="428" text-anchor="middle">Urban Tree Initiative</text>
+<rect x="700.0" y="155.7" width="42.0" height="214.3" fill="#0f766e" rx="4" />
+<text class="value" x="721.0" y="149.7" text-anchor="middle">5</text>
+<rect x="750.0" y="70.0" width="42.0" height="300.0" fill="#dc2626" rx="4" />
+<text class="value" x="771.0" y="64.0" text-anchor="middle">7</text>
+<text class="label" x="746.0" y="428" text-anchor="middle">Community Health Clinic</text>
+</svg>

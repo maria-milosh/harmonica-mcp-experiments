@@ -1,0 +1,68 @@
+===== Top-choice change (LPM) =====
+
+Call:
+lm(formula = spec$formula, data = data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.39508 -0.19388 -0.08623 -0.03638  0.80901 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(>|t|)
+(Intercept)            0.17647    0.10300   1.713    0.112
+z_embedding_shift     -0.05284    0.18100  -0.292    0.775
+z_lexical_similarity  -0.14815    0.18929  -0.783    0.449
+z_log_user_word_count -0.05247    0.10986  -0.478    0.642
+z_duration_minutes    -0.12961    0.11427  -1.134    0.279
+
+Residual standard error: 0.4247 on 12 degrees of freedom
+Multiple R-squared:  0.1241,	Adjusted R-squared:  -0.1679 
+F-statistic: 0.4249 on 4 and 12 DF,  p-value: 0.7879
+
+
+===== Ranking distance (OLS) =====
+
+Call:
+lm(formula = spec$formula, data = data)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-1.339 -0.721 -0.330  0.193  3.020 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(>|t|)   
+(Intercept)             1.0588     0.3296   3.213  0.00746 **
+z_embedding_shift      -0.6987     0.5792  -1.206  0.25094   
+z_lexical_similarity   -0.6963     0.6057  -1.149  0.27275   
+z_log_user_word_count   0.2671     0.3515   0.760  0.46205   
+z_duration_minutes     -0.6540     0.3657  -1.789  0.09895 . 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.359 on 12 degrees of freedom
+Multiple R-squared:  0.3273,	Adjusted R-squared:  0.103 
+F-statistic: 1.459 on 4 and 12 DF,  p-value: 0.2747
+
+
+===== Clinic rank gain (OLS) =====
+
+Call:
+lm(formula = spec$formula, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0178 -0.3410 -0.1797  0.1924  1.5317 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(>|t|)
+(Intercept)            0.01869    0.33230   0.056    0.956
+z_embedding_shift     -0.01705    0.31973  -0.053    0.958
+z_lexical_similarity   0.15168    0.30830   0.492    0.632
+z_log_user_word_count  0.21013    0.17983   1.168    0.265
+initial_not_clinic     0.30685    0.40639   0.755    0.465
+
+Residual standard error: 0.6916 on 12 degrees of freedom
+Multiple R-squared:  0.1869,	Adjusted R-squared:  -0.08407 
+F-statistic: 0.6898 on 4 and 12 DF,  p-value: 0.6129
+
+

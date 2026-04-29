@@ -1,0 +1,7 @@
+user_id,participant_name,top_choice,ranking,reasoning_word_count,message_count,user_message_count,assistant_message_count,user_word_count,assistant_word_count,assistant_question_count,assistant_redirect_count,duration_minutes
+b026ba9960d8,Alabaster Phoenix,urban_tree,urban_tree > animal_rescue > community_clinic > food_pantry,23,18,9,9,79,1018,16,3,19.532466666666668
+1e126bb5b77b,Amethyst Panda,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,45,12,6,6,91,439,10,0,3.6405499999999997
+855d390cfc05,Pearl Radiant Otter,food_pantry,food_pantry > animal_rescue > community_clinic > urban_tree,40,10,5,5,144,491,8,0,8.0219
+200b564596b2,Sepia Elegant Bear,urban_tree,urban_tree > food_pantry > community_clinic > animal_rescue,51,8,4,4,204,434,6,0,9.156666666666666
+a3ffe8f27d1d,Cosmic Dolphin,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,44,12,6,6,225,431,8,0,8.096116666666667
+2f999d554903,Indigo Wolf,urban_tree,urban_tree > food_pantry > animal_rescue > community_clinic,37,10,5,5,181,491,8,0,10.6567

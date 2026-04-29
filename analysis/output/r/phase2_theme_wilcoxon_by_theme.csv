@@ -1,0 +1,15 @@
+theme,n,median_delta,statistic,p_value,p_value_fdr
+deservingness_targeting,17,-0.25,21,0.16335373596757619,1
+cost_effectiveness_impact,17,0,7.5,1,1
+effectiveness_skepticism,17,0,0,0.34577858615116025,1
+local_community_focus,17,0,51,0.9496713940360918,1
+long_term_structural,17,0,0,1,1
+moral_duty_compassion,17,0,27,0.23222840692823465,1
+personal_connection_identity,17,0,3,1,1
+urgency_basic_needs,17,0,12,0.7924600886080352,1
+visibility_salience,17,0,0,1,1
+fairness_equity,17,0,0,NA,NA
+global_scale_impact,17,0,0,NA,NA
+short_term_relief,17,0,0,NA,NA
+skepticism_uncertainty,17,0,0,NA,NA
+tradeoffs_balancing,17,0,0,NA,NA
