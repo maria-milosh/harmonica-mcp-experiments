@@ -39,6 +39,7 @@ max_exhaustive_groups <- 2000000L  # threshold used when group_mode = "auto"
 mc_groups_per_arm <- 50000L        # used when group_mode resolves to "mc"
 
 seed <- 20260406L
+progress_every <- 10L
 
 # Optional outputs
 write_output <- TRUE
@@ -296,6 +297,7 @@ curve_rows <- vector("list", length(n_grid))
 for (n_i in seq_along(n_grid)) {
   n <- as.integer(n_grid[n_i])
   prep <- prep_by_n[[as.character(n)]]
+  t0_n <- Sys.time()
 
   rejected <- logical(sims_per_n)
   p_values <- numeric(sims_per_n)
@@ -320,8 +322,16 @@ for (n_i in seq_along(n_grid)) {
     p_values[sim_i] <- ri_result$p_value
     tau_values[sim_i] <- ri_result$tau_observed
 
-    if (sim_i %% 100 == 0) {
-      message("n=", n, " sim ", sim_i, " / ", sims_per_n)
+    if (sim_i %% progress_every == 0 || sim_i == 1L) {
+      elapsed_sec <- as.numeric(difftime(Sys.time(), t0_n, units = "secs"))
+      sec_per_sim <- elapsed_sec / sim_i
+      remaining_sec <- sec_per_sim * (sims_per_n - sim_i)
+      message(
+        "n=", n,
+        " sim ", sim_i, " / ", sims_per_n,
+        " | elapsed=", sprintf("%.1f", elapsed_sec), "s",
+        " | ETA=", sprintf("%.1f", remaining_sec), "s"
+      )
     }
   }
 
@@ -337,7 +347,12 @@ for (n_i in seq_along(n_grid)) {
     mean_tau_observed = mean(tau_values),
     sd_tau_observed = sd(tau_values))
 
-  message("Finished n=", n, " -> power=", sprintf("%.3f", curve_rows[[n_i]]$power))
+  n_elapsed_min <- as.numeric(difftime(Sys.time(), t0_n, units = "mins"))
+  message(
+    "Finished n=", n,
+    " -> power=", sprintf("%.3f", curve_rows[[n_i]]$power),
+    " | runtime=", sprintf("%.2f", n_elapsed_min), " min"
+  )
 }
 
 power_curve <- bind_rows(curve_rows) %>%
