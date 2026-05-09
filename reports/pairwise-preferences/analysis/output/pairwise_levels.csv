@@ -1,0 +1,7 @@
+pair_id,first_option,second_option,p_T,p_C
+animal_rescue > community_clinic,animal_rescue,community_clinic,0.2222222222222222,0.3333333333333333
+animal_rescue > food_pantry,animal_rescue,food_pantry,0.2222222222222222,0.25
+animal_rescue > urban_tree,animal_rescue,urban_tree,0.5,0.6666666666666666
+community_clinic > food_pantry,community_clinic,food_pantry,0.5,0.5
+community_clinic > urban_tree,community_clinic,urban_tree,0.6666666666666666,0.6666666666666666
+food_pantry > urban_tree,food_pantry,urban_tree,0.7777777777777778,0.6666666666666666
