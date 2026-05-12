@@ -45,28 +45,7 @@ function buildTranscript(messages, includeAssistant = false) {
 }
 
 function buildPhase1Prompt(options, optionLabels, transcript) {
-  const optionList = options.map((opt) => `- ${opt}`).join('\n');
-  const labelList = options.map((opt) => {
-    const label = optionLabels?.[opt];
-    return label ? `${opt}: ${label}` : `${opt}`;
-  }).join('\n');
-  return [
-    `You are extracting a participant's vote ranking and reasoning behind their most preferred option from a conversation transcript.`,
-    `Return strictly a JSON object with keys "vote_ranking" and "reasoning" and no other text.`,
-    ``,
-    `Allowed vote options (return the exact key):`,
-    optionList,
-    ``,
-    `Option labels for reference:`,
-    labelList,
-    ``,
-    `If the participant does not clearly provide a complete ranking across all options, set "vote_ranking" to null.`,
-    `When the ranking is clear, "vote_ranking" must be an array containing every allowed option exactly once, ordered from most preferred to least preferred.`,
-    `Reasoning behind their top choice must be a neutral 1-2 sentence written by you to rephrase why they chose their most preferred option, without personal attribution.`,
-    ``,
-    `Transcript:`,
-    transcript,
-  ].join('\n');
+  return buildPhase2Prompt(options, optionLabels, transcript);
 }
 
 function buildPhase2Prompt(options, optionLabels, transcript) {
@@ -125,8 +104,12 @@ function normalizeKey(value) {
 
 function buildOptionMap(options, optionLabels) {
   const map = new Map();
-  for (const opt of options) {
+  for (let i = 0; i < options.length; i += 1) {
+    const opt = options[i];
     map.set(normalizeKey(opt), opt);
+    const letter = String.fromCharCode(65 + i); // A, B, C...
+    map.set(normalizeKey(`option ${letter}`), opt);
+    map.set(normalizeKey(letter), opt);
   }
   if (optionLabels) {
     for (const [key, label] of Object.entries(optionLabels)) {
@@ -175,6 +158,8 @@ function coerceParsedRanking(parsed) {
   if (parsed?.vote_ranking != null) return parsed.vote_ranking;
   if (parsed?.ranking != null) return parsed.ranking;
   if (parsed?.vote != null) return parsed.vote;
+  if (parsed?.final_vote_ranking != null) return parsed.final_vote_ranking;
+  if (parsed?.initial_vote_ranking != null) return parsed.initial_vote_ranking;
   return null;
 }
 
@@ -185,8 +170,15 @@ function coercePhase2Ranking(parsed, keyPrefix) {
   return null;
 }
 
+function coerceParsedReasoning(parsed) {
+  if (parsed?.reasoning != null) return parsed.reasoning;
+  if (parsed?.final_reasoning != null) return parsed.final_reasoning;
+  if (parsed?.initial_reasoning != null) return parsed.initial_reasoning;
+  return null;
+}
+
 function buildExtractionResult(parsed, resolvedPhase, pilot, resolvedSessionId, participantId) {
-  if (resolvedPhase === 2) {
+  if (resolvedPhase === 2 || resolvedPhase === 1) {
     const initialVoteRanking = normalizeVoteRanking(
       coercePhase2Ranking(parsed, 'initial'),
       pilot.options,
@@ -220,7 +212,7 @@ function buildExtractionResult(parsed, resolvedPhase, pilot, resolvedSessionId, 
     user_id: participantId,
     session_id: resolvedSessionId,
     vote_ranking: voteRanking,
-    reasoning: voteRanking ? parsed.reasoning ?? null : null,
+    reasoning: voteRanking ? coerceParsedReasoning(parsed) : null,
     created_at: new Date().toISOString(),
   };
 }

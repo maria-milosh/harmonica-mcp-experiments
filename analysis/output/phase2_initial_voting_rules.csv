@@ -1,5 +1,5 @@
 rule,winner,data_required,valid_with_available_data,note
-plurality,food_pantry,top choice only,True,
+plurality,community_clinic,top choice only,True,
 borda,food_pantry,full ranking,True,
 instant_runoff,food_pantry,full ranking,True,
 condorcet,food_pantry,full ranking,True,

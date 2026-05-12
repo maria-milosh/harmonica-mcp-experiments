@@ -1,8 +1,8 @@
 rule,winner,data_required,valid_with_available_data,note
 plurality,community_clinic,top choice only,True,
-borda,food_pantry,full ranking,True,
-instant_runoff,food_pantry,full ranking,True,
-condorcet,,full ranking,True,
-copeland,food_pantry,full ranking,True,
+borda,community_clinic,full ranking,True,
+instant_runoff,community_clinic,full ranking,True,
+condorcet,community_clinic,full ranking,True,
+copeland,community_clinic,full ranking,True,
 anti_plurality,food_pantry,full ranking,True,
 approval_proxy_top2,,approval ballots,False,Skipped because only rankings are available; a top-2 proxy would be derived rather than observed.

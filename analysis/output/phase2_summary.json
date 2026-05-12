@@ -1,11 +1,11 @@
 {
-  "participant_count": 18,
-  "complete_initial_rankings": 18,
-  "complete_final_rankings": 18,
-  "changed_top_choice_count": 4,
-  "changed_top_choice_share": 0.222,
-  "initial_top_choice_entropy": 1.891,
-  "final_top_choice_entropy": 1.905,
-  "avg_message_count": 28.33,
-  "avg_reasoning_word_count": 58.72
+  "participant_count": 32,
+  "complete_initial_rankings": 32,
+  "complete_final_rankings": 32,
+  "changed_top_choice_count": 6,
+  "changed_top_choice_share": 0.188,
+  "initial_top_choice_entropy": 1.855,
+  "final_top_choice_entropy": 1.777,
+  "avg_message_count": 28.19,
+  "avg_reasoning_word_count": 57.09
 }

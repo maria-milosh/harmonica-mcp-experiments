@@ -1,5 +1,5 @@
-control_dgp,tau_shape,rms_target,rms_check,n_per_arm_80_wald,n_total_80_wald,n_per_arm_80_tmax,n_total_80_tmax,crit_tmax
-phase1_empirical,diffuse_PL,0.03,0.0299999553334692,2000,4000,1700,3400,2.4658720570432053
-phase1_empirical,pilot_proportional,0.03,0.029999999999999995,3800,7600,1100,2200,2.4649610491199354
-uniform_K4,diffuse_PL,0.03,0.0299999553334692,2150,4300,2000,4000,2.6124597283030906
-uniform_K4,pilot_proportional,0.03,0.029999999999999995,850,1700,1550,3100,2.6058221701998887
+control_dgp,tau_shape,rms_target,rms_check,n_per_arm_80_wald,n_total_80_wald,n_per_arm_80_tmax,n_total_80_tmax,n_per_arm_80_rw_any,n_total_80_rw_any,crit_tmax
+phase1_empirical,diffuse_PL,0.03,0.0299999553334692,600,1200,950,1900,900,1800,2.584776622879401
+phase1_empirical,pilot_proportional,0.03,0.029999999999999995,900,1800,950,1900,950,1900,2.5761263827670615
+uniform_K4,diffuse_PL,0.03,0.0299999553334692,2150,4300,2000,4000,2050,4100,2.608359135436855
+uniform_K4,pilot_proportional,0.03,0.029999999999999995,1500,3000,1750,3500,1750,3500,2.58737039484497

@@ -1,5 +1,5 @@
 option,initial_top_votes,final_top_votes,net_top_vote_change,initial_mean_rank,final_mean_rank
-animal_rescue,4,3,-1,2.833,3.056
-food_pantry,6,5,-1,1.778,1.944
-urban_tree,2,3,1,3.167,2.944
-community_clinic,6,7,1,2.222,2.056
+animal_rescue,7,4,-3,2.844,3.0
+food_pantry,10,9,-1,1.812,1.938
+urban_tree,3,4,1,3.312,3.156
+community_clinic,12,15,3,2.031,1.906
