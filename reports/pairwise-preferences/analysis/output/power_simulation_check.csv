@@ -1,4 +1,4 @@
-n_per_arm,empirical_power,S
-1950,0.76,200
-2150,0.79,200
-2350,0.89,200
+n_per_arm,empirical_rw_any_power,S
+1850,0.815,200
+2050,0.855,200
+2250,0.895,200

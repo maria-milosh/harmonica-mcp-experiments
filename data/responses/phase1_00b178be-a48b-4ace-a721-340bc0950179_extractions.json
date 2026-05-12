@@ -1,0 +1,581 @@
+[
+  {
+    "user_id": "4f1ee936-2e1e-4377-979b-a03a9c775a12",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant believes the food pantry is crucial due to the current food shortages and rising costs, which impact families and children significantly.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing the importance of addressing food shortages and supporting families during times of rising costs.",
+    "created_at": "2026-05-11T17:25:21.528Z"
+  },
+  {
+    "user_id": "02d84204-30a4-4d72-813c-7974cd36c462",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "animal_rescue",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant believes that addressing food waste by redistributing surplus food to those in need is the most beneficial action.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "animal_rescue",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's view remained unchanged, reinforcing the belief that food waste is a critical issue that should be prioritized.",
+    "created_at": "2026-05-11T17:25:26.316Z"
+  },
+  {
+    "user_id": "e5ed61aa-b473-4c22-9225-8eb7a3f7104c",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized human needs over animals and trees, with a focus on the lack of affordable healthcare compared to food options.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing the importance of addressing the need for free healthcare over other options.",
+    "created_at": "2026-05-11T17:25:31.950Z"
+  },
+  {
+    "user_id": "9f4727bf-06ee-46af-81c5-b58b3bfa9e5d",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant initially prioritized the Community Food Pantry Network due to the pressing issue of food insecurity faced by many families.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief in the importance of addressing food insecurity.",
+    "created_at": "2026-05-11T17:25:36.250Z"
+  },
+  {
+    "user_id": "c30194e8-956e-47ae-ad5d-8c68594f3f13",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the animal shelter due to a personal connection and the vulnerability of animals. They ranked the food pantry and health clinic next based on immediate human needs, with the tree initiative last as it was not seen as critical for daily survival.",
+    "final_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their initial reasoning that prioritized immediate needs and personal connection to animals.",
+    "created_at": "2026-05-11T17:25:41.265Z"
+  },
+  {
+    "user_id": "068b4e8c-8747-4543-ae44-79e13a20584b",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "urban_tree",
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue"
+    ],
+    "initial_reasoning": "The participant prioritized the Urban Tree Initiative due to its ecological benefits and potential to improve urban environments. They valued the food pantry over the community clinic because of the immediate necessity of food for daily survival.",
+    "final_vote_ranking": [
+      "urban_tree",
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief in the ecological benefits of the Urban Tree Initiative and the importance of addressing food insecurity.",
+    "created_at": "2026-05-11T17:25:45.904Z"
+  },
+  {
+    "user_id": "ed9cdd17-8e2c-4f79-877c-14558136c780",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the Community Health Clinic due to high demand and lack of access to healthcare, followed by the food pantry for its essential role in survival. The animal shelter was appreciated but ranked lower, and the Urban Tree Initiative was least preferred due to concerns about allergies.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their initial reasoning about the importance of healthcare access and food security.",
+    "created_at": "2026-05-11T17:25:50.996Z"
+  },
+  {
+    "user_id": "461bc6fd-3f01-486f-84d5-366f9fcf803f",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant was drawn to the Community Health Clinic for its focus on helping uninsured patients and providing diverse medical care. They also appreciated the Community Food Pantry Network for its dual impact of reducing food waste and addressing hunger.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final decision was influenced by the potential impact of reducing food waste and hunger, leading them to prioritize the Community Food Pantry Network.",
+    "created_at": "2026-05-11T17:25:56.010Z"
+  },
+  {
+    "user_id": "f131ff44-cd22-4ff1-8349-a59be60d1bac",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized feeding citizens as it is seen as a top priority that can improve morale and reduce poverty and death rates. The health clinic was placed second due to its health benefits.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing the belief that feeding citizens is a top priority that benefits society.",
+    "created_at": "2026-05-11T17:26:00.375Z"
+  },
+  {
+    "user_id": "72db18c1-7eca-44df-a7a6-de036041946d",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "animal_rescue",
+      "food_pantry",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the community health clinic and animal rescue shelter due to concerns about healthcare access and the impact of stray animals.",
+    "final_vote_ranking": [
+      "animal_rescue",
+      "community_clinic",
+      "food_pantry",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final ranking prioritized the animal rescue shelter, emphasizing the vulnerability of animals and the benefits of reducing stray populations.",
+    "created_at": "2026-05-11T17:26:04.612Z"
+  },
+  {
+    "user_id": "548c3856-09bf-4214-8be4-804317e0998e",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "urban_tree",
+      "community_clinic"
+    ],
+    "initial_reasoning": "The participant prioritized the Community Animal Rescue Shelter, expressing a strong interest in animal welfare.",
+    "final_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "urban_tree",
+      "community_clinic"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their initial preference for the Community Animal Rescue Shelter.",
+    "created_at": "2026-05-11T17:26:09.193Z"
+  },
+  {
+    "user_id": "34e3147f-7b58-42cc-a7d6-cc74fbf55386",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "urban_tree",
+      "animal_rescue"
+    ],
+    "initial_reasoning": "The participant prioritized the community health clinic due to its focus on providing free health coverage and OBGYN services to uninsured individuals, particularly benefiting low-income communities.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "urban_tree",
+      "animal_rescue"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their support for the community health clinic's services for uninsured individuals.",
+    "created_at": "2026-05-11T17:26:13.621Z"
+  },
+  {
+    "user_id": "69ffa661-bec4-4ec8-b27b-fb88bf5b6b8f",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant believes that providing free health care is crucial as it addresses the high costs of health insurance and offers essential services to those who might otherwise avoid medical care due to financial constraints.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, as they continue to prioritize free health care due to its significant benefits for the community.",
+    "created_at": "2026-05-11T17:26:19.458Z"
+  },
+  {
+    "user_id": "828e8186-60fa-4d92-8a39-fb0fc477c70b",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant believes the Community Food Pantry Network is the most impactful option due to personal experiences with homelessness and the importance of addressing hunger. They acknowledge the value of other options but prioritize the food pantry for its potential impact.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remains unchanged, reinforcing their belief that the Community Food Pantry Network is the most impactful option due to its potential to address hunger effectively.",
+    "created_at": "2026-05-11T17:26:24.181Z"
+  },
+  {
+    "user_id": "33092887-a4c4-4224-9e50-5cfb5b083201",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the Community Health Clinic due to personal experiences with healthcare access, followed by the Food Pantry for its good cause. They valued the Animal Rescue but preferred charities that help people, and placed the Urban Tree Initiative last.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final ranking remained unchanged, reinforcing their belief in the importance of healthcare access for all.",
+    "created_at": "2026-05-11T17:26:29.290Z"
+  },
+  {
+    "user_id": "13539b65-a9c1-49d0-af9c-83b259d0bdd3",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the community health clinic due to the critical need for accessible healthcare, which they believe is more urgent than other issues. They expressed that without healthcare, other concerns become secondary.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief that healthcare access is the most pressing issue compared to other options.",
+    "created_at": "2026-05-11T17:26:34.230Z"
+  },
+  {
+    "user_id": "d7969373-911a-4eb5-9686-781e9e8f3c85",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the Animal Rescue and Food Pantry due to their focus on tangible help for the vulnerable, while expressing concerns about the qualifications of the Community Clinic and questioning the necessity of the Urban Tree Initiative.",
+    "final_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief that animal charities are often overlooked and should be prioritized.",
+    "created_at": "2026-05-11T17:26:39.938Z"
+  },
+  {
+    "user_id": "e2f54ca0-4b6e-4343-8a0f-151b9db8b3bb",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "animal_rescue",
+      "urban_tree",
+      "food_pantry",
+      "community_clinic"
+    ],
+    "initial_reasoning": "The participant prioritizes animal rescue due to a strong belief in providing homes for animals, followed by the urban tree initiative for its environmental benefits. Food pantry and community clinic are ranked lower, with the clinic perceived as having other funding sources.",
+    "final_vote_ranking": [
+      "animal_rescue",
+      "urban_tree",
+      "food_pantry",
+      "community_clinic"
+    ],
+    "final_reasoning": "The participant's final ranking remains unchanged, reinforcing their initial reasoning about the importance of animal rescue and environmental sustainability.",
+    "created_at": "2026-05-11T17:26:44.855Z"
+  },
+  {
+    "user_id": "c08ac897-860e-4c49-9b5d-a59aaf966830",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized food and healthcare as basic needs, emphasizing the importance of addressing food insecurity and healthcare access.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing the importance of food and healthcare as essential needs.",
+    "created_at": "2026-05-11T17:26:50.075Z"
+  },
+  {
+    "user_id": "7ec869c0-be06-49c8-86bb-0ba57480dd59",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "urban_tree",
+      "animal_rescue"
+    ],
+    "initial_reasoning": "The participant prioritized human rights issues, particularly food security, as they believe food is essential and should be a right for everyone.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "urban_tree",
+      "animal_rescue"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief that food security is a fundamental human right.",
+    "created_at": "2026-05-11T17:26:55.093Z"
+  },
+  {
+    "user_id": "2e8c70be-3516-4143-994a-cc593a38b5b7",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the Community Health Clinic due to its student-led nature and personal relevance to their future career in the medical field. They valued the immediacy and cost-effectiveness of the Food Pantry Network over the Urban Tree Initiative, which they felt required more extensive planning and funds.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant changed their ranking to prioritize the Food Pantry Network due to its cost-effectiveness and immediate results. They placed the Community Health Clinic second, acknowledging the importance of healthcare but noting the high cost of medical supplies.",
+    "created_at": "2026-05-11T17:27:00.007Z"
+  },
+  {
+    "user_id": "df84ec6f-afc1-468e-91d4-4704cbe8c5bf",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prefers the Community Food Pantry Network due to its constructive and promising nature, and its potential to motivate people to join and help stop world hunger.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief in the Community Food Pantry Network's potential to address world hunger.",
+    "created_at": "2026-05-11T17:27:04.924Z"
+  },
+  {
+    "user_id": "8e1ca47a-32f2-4c4d-81ba-9dff34dfcdd6",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritizes health, believing it should be at the forefront of community support.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief in prioritizing health in community support.",
+    "created_at": "2026-05-11T17:27:09.120Z"
+  },
+  {
+    "user_id": "8323d879-9baa-4b7a-aca8-afce67332b42",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": null,
+    "initial_reasoning": null,
+    "final_vote_ranking": null,
+    "final_reasoning": null,
+    "created_at": "2026-05-11T17:27:12.909Z"
+  },
+  {
+    "user_id": "16b0b62e-811e-4b62-9be3-5180d1fd2892",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant believes that addressing basic human needs like food and healthcare is most important, followed by animal welfare and environmental concerns.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing the importance of addressing basic human needs first.",
+    "created_at": "2026-05-11T17:27:17.210Z"
+  },
+  {
+    "user_id": "50bbd6c0-c2c3-4fe5-ae05-c40df1c0b973",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "urban_tree",
+      "animal_rescue"
+    ],
+    "initial_reasoning": "The participant prioritizes healthcare as it alleviates financial burdens and improves quality of life, followed by food support, environmental renewal, and animal rescue.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "urban_tree",
+      "animal_rescue"
+    ],
+    "final_reasoning": "The participant's final view remains unchanged, reinforcing the belief that healthcare support is crucial for reducing financial strain and enhancing life quality.",
+    "created_at": "2026-05-11T17:27:22.537Z"
+  },
+  {
+    "user_id": "8fa858d9-a438-4f94-938b-f768d3409aac",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "urban_tree",
+      "community_clinic"
+    ],
+    "initial_reasoning": "The participant feels a strong emotional connection to animals, believing they are more vulnerable and in need of help compared to humans.",
+    "final_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "urban_tree",
+      "community_clinic"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, as their initial reasoning about the vulnerability of animals was reinforced.",
+    "created_at": "2026-05-11T17:27:26.938Z"
+  },
+  {
+    "user_id": "f2495565-5e7c-4708-b547-4154b82f970f",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the community health clinic due to the importance of accessible healthcare, followed by food security as a secondary concern.",
+    "final_vote_ranking": [
+      "community_clinic",
+      "food_pantry",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing the importance of healthcare and food security.",
+    "created_at": "2026-05-11T17:27:31.342Z"
+  },
+  {
+    "user_id": "9790f877-d7f6-4d7c-8504-f032a57cadc4",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "animal_rescue",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant believes that food is a basic necessity and prioritizes ensuring people have access to nutritious meals to improve societal health.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "animal_rescue",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing their belief in the importance of food security as a foundational support for vulnerable people.",
+    "created_at": "2026-05-11T17:27:35.949Z"
+  },
+  {
+    "user_id": "43277c99-61e8-4013-9180-c09d592ee3de",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized the Community Food Pantry Network due to personal experiences with food insecurity and the importance of addressing hunger. They also valued the Community Health Clinic for its role in providing essential healthcare.",
+    "final_vote_ranking": [
+      "food_pantry",
+      "community_clinic",
+      "animal_rescue",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final view remained unchanged, reinforcing the importance of addressing food insecurity and healthcare needs.",
+    "created_at": "2026-05-11T17:27:40.559Z"
+  },
+  {
+    "user_id": "96d107a3-b59f-4cde-a251-b86bc5a16dae",
+    "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
+    "initial_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "initial_reasoning": "The participant prioritized animal rescue due to a belief in the need for more shelters to reduce euthanasia rates.",
+    "final_vote_ranking": [
+      "animal_rescue",
+      "food_pantry",
+      "community_clinic",
+      "urban_tree"
+    ],
+    "final_reasoning": "The participant's final ranking remained unchanged, reinforcing their initial reasoning about the importance of animal shelters.",
+    "created_at": "2026-05-11T17:27:52.639Z"
+  }
+]

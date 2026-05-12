@@ -1,0 +1,25 @@
+control_dgp,tau_shape,pair_id,is_signal,n_per_arm_80_rw,n_total_80_rw
+phase1_empirical,diffuse_PL,animal_rescue > community_clinic,TRUE,NA,NA
+phase1_empirical,diffuse_PL,animal_rescue > food_pantry,TRUE,3500,7000
+phase1_empirical,diffuse_PL,animal_rescue > urban_tree,TRUE,1150,2300
+phase1_empirical,diffuse_PL,community_clinic > food_pantry,TRUE,NA,NA
+phase1_empirical,diffuse_PL,community_clinic > urban_tree,TRUE,2400,4800
+phase1_empirical,diffuse_PL,food_pantry > urban_tree,TRUE,NA,NA
+phase1_empirical,pilot_proportional,animal_rescue > community_clinic,TRUE,NA,NA
+phase1_empirical,pilot_proportional,animal_rescue > food_pantry,TRUE,NA,NA
+phase1_empirical,pilot_proportional,animal_rescue > urban_tree,TRUE,1100,2200
+phase1_empirical,pilot_proportional,community_clinic > food_pantry,TRUE,3400,6800
+phase1_empirical,pilot_proportional,community_clinic > urban_tree,TRUE,NA,NA
+phase1_empirical,pilot_proportional,food_pantry > urban_tree,TRUE,2700,5400
+uniform_K4,diffuse_PL,animal_rescue > community_clinic,TRUE,NA,NA
+uniform_K4,diffuse_PL,animal_rescue > food_pantry,TRUE,NA,NA
+uniform_K4,diffuse_PL,animal_rescue > urban_tree,TRUE,2400,4800
+uniform_K4,diffuse_PL,community_clinic > food_pantry,TRUE,NA,NA
+uniform_K4,diffuse_PL,community_clinic > urban_tree,TRUE,NA,NA
+uniform_K4,diffuse_PL,food_pantry > urban_tree,TRUE,NA,NA
+uniform_K4,pilot_proportional,animal_rescue > community_clinic,TRUE,NA,NA
+uniform_K4,pilot_proportional,animal_rescue > food_pantry,TRUE,NA,NA
+uniform_K4,pilot_proportional,animal_rescue > urban_tree,TRUE,2300,4600
+uniform_K4,pilot_proportional,community_clinic > food_pantry,TRUE,NA,NA
+uniform_K4,pilot_proportional,community_clinic > urban_tree,TRUE,NA,NA
+uniform_K4,pilot_proportional,food_pantry > urban_tree,TRUE,NA,NA

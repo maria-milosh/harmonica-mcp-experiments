@@ -9,9 +9,11 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-# Power for Outcome 2 (Kendall dispersion ATE Δ = d̄_T - d̄_C).
-# Headline: how large does n have to be to detect Δ at 80% power, given
-# specified (p^C, p^T) levels? Uses Hájek-projection asymptotic variance
+# Power for Outcome 2 (Kendall dispersion), with DiD-first interpretation in
+# the main analysis/report and cross-sectional Δ-calibration for pilot sizing.
+# Headline question: how large does n have to be to detect dispersion changes
+# at 80% power under specified control/treated ranking distributions?
+# Uses Hájek-projection asymptotic variance
 # σ²_d = 4 * Var(h_d(R)) / n_d  with  h_d(R) = (1/P) Σ_jk [(1-Y_{jk}) p^d_jk + Y_{jk}(1 - p^d_jk)].
 # Run from repo root: Rscript reports/kendall-dispersion/analysis/run_kendall_dispersion_power.R
 
@@ -19,11 +21,11 @@ suppressPackageStartupMessages({
 # Config
 # -----------------------------------------------------------------------------
 
-control_input_path   <- "analysis/output/phase1_participant_stats.csv"
+control_input_path   <- "analysis/output/phase1_participant_changes.csv"
 treatment_input_path <- "analysis/output/phase2_participant_changes.csv"
 control_id_col       <- "user_id"
 treatment_id_col     <- "user_id"
-control_ranking_col  <- "ranking"
+control_ranking_col  <- "final_ranking"
 treated_ranking_col  <- "final_ranking"
 
 option_codes <- c("animal_rescue", "community_clinic", "food_pantry", "urban_tree")
@@ -35,7 +37,7 @@ power_target     <- 0.80
 alpha            <- 0.05
 n_grid           <- seq(50, 6000, by = 50)
 sim_S            <- 200
-seed             <- 20260504L
+seed             <- 20260510L
 M_sim            <- 50000L                     # for PL/empirical zeta_1 estimation
 
 output_dir  <- "reports/kendall-dispersion/analysis/output"
@@ -140,6 +142,18 @@ treatment_df <- treatment_raw %>%
 control_rankings <- lapply(control_df$ranking_string, parse_ranking)
 treated_rankings <- lapply(treatment_df$ranking_string, parse_ranking)
 
+option_set <- sort(unique(unlist(c(control_rankings, treated_rankings))))
+if (!setequal(option_set, option_codes)) {
+  stop("Option set mismatch: got ", paste(option_set, collapse = ", "),
+       " but expected ", paste(option_codes, collapse = ", "))
+}
+bad_rankings <- vapply(c(control_rankings, treated_rankings),
+                       function(r) length(r) != K || anyDuplicated(r) > 0 || !setequal(r, option_codes),
+                       logical(1))
+if (any(bad_rankings)) {
+  stop("Malformed ranking(s) found in pilot data.")
+}
+
 pairs <- build_pair_table(option_codes)
 P     <- nrow(pairs)
 
@@ -177,7 +191,7 @@ set.seed(seed)
 # Control DGP samples
 M <- M_sim
 
-# Uniform K=4: enumerate all 24 rankings, repeat to size M for stability
+# Uniform K=4: enumerate all rankings, repeat to size M for stability
 unif_perms <- permn(option_codes)
 unif_pop_idx <- rep(seq_along(unif_perms), length.out = M)
 unif_pop <- unif_perms[unif_pop_idx]
@@ -441,14 +455,12 @@ if (nrow(emp_5pp_row) > 0 && !is.na(emp_5pp_row$n_per_arm_80)) {
 }
 
 # -----------------------------------------------------------------------------
-# DiD variant
+# DiD note
 # -----------------------------------------------------------------------------
-# For Outcome 2 the natural within-design analog is harder to specify cleanly:
-# dispersion is intrinsically a between-respondents quantity, so the DiD
-# reduction-factor argument from Outcome 1 (variance scales by 2(1 - rho))
-# does not directly apply. We do not include a DiD power section; the
-# within-phase-2 paired d̄_post - d̄_pre quantity is reported in the main
-# analysis script as a triangulation rather than a power-design choice.
+# The main Outcome 2 analysis is DiD-first (see run_kendall_dispersion.R and
+# REPORT.md). This power script keeps a distribution-level calibration frame
+# for pilot sizing; results should be interpreted as conservative companions
+# to the primary DiD analysis rather than a replacement for it.
 
 # -----------------------------------------------------------------------------
 # Outputs

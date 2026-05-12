@@ -1,5 +1,5 @@
 option,avg_rank_gain,moved_up_count,moved_down_count,unchanged_count
-animal_rescue,-0.222,0,4,14
-food_pantry,-0.167,1,4,13
-urban_tree,0.222,3,0,15
-community_clinic,0.167,4,2,12
+animal_rescue,-0.156,1,6,25
+food_pantry,-0.125,2,6,24
+urban_tree,0.156,4,1,27
+community_clinic,0.125,6,4,22

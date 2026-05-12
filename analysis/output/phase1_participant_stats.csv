@@ -1,13 +1,32 @@
 user_id,participant_name,top_choice,ranking,reasoning_word_count,message_count,user_message_count,assistant_message_count,user_word_count,assistant_word_count,assistant_question_count,assistant_redirect_count,duration_minutes
-b026ba9960d8,Alabaster Phoenix,urban_tree,urban_tree > animal_rescue > community_clinic > food_pantry,23,18,9,9,79,1018,16,3,19.532466666666668
-1e126bb5b77b,Amethyst Panda,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,29,12,6,6,91,439,10,0,3.6405499999999997
-855d390cfc05,Pearl Radiant Otter,food_pantry,food_pantry > animal_rescue > community_clinic > urban_tree,28,10,5,5,144,491,8,0,8.0219
-200b564596b2,Sepia Elegant Bear,urban_tree,urban_tree > food_pantry > community_clinic > animal_rescue,32,8,4,4,204,434,6,0,9.156666666666666
-a3ffe8f27d1d,Cosmic Dolphin,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,31,12,6,6,225,431,8,0,8.096116666666667
-2f999d554903,Indigo Wolf,urban_tree,urban_tree > food_pantry > animal_rescue > community_clinic,29,10,5,5,181,491,8,0,10.6567
-00aff71e1a2b,Sapphire Noble Koala,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,29,8,4,4,238,398,5,0,6.586383333333333
-35c62798-fac1-4e09-be5b-b04542b71023,Beryl Deer,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,32,12,6,6,195,639,9,0,8.12205
-c57e8228-c7ad-476b-9c7f-a5b27f1c65ef,Scarlet Raccoon,animal_rescue,animal_rescue > community_clinic > food_pantry > urban_tree,20,12,6,6,84,549,10,0,5.802083333333333
-db072103-e4e3-495d-8859-b9cf41564b96,Proud Cheetah,urban_tree,urban_tree > food_pantry > community_clinic > animal_rescue,33,10,5,5,134,435,7,0,2.8003
-42aef4ae-92cf-4cc6-a972-a93bd9ad6bb8,Serene Cheetah,community_clinic,community_clinic > animal_rescue > food_pantry > urban_tree,29,10,5,5,315,449,8,0,16.35875
-73160cb4-a6a2-4105-a87a-5855184661af,Turquoise Eager Leopard,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,36,12,6,6,113,503,7,0,5.138283333333334
+4f1ee936-2e1e-4377-979b-a03a9c775a12,Scarlet Owl,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,21,22,11,11,179,814,7,1,9.885933333333332
+02d84204-30a4-4d72-813c-7974cd36c462,Lazuli Vibrant Dragon,food_pantry,food_pantry > animal_rescue > community_clinic > urban_tree,19,22,11,11,180,823,8,1,12.781
+e5ed61aa-b473-4c22-9225-8eb7a3f7104c,Stellar Crane,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,19,20,10,10,248,716,6,0,10.093766666666665
+9f4727bf-06ee-46af-81c5-b58b3bfa9e5d,Brave Phoenix,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,16,22,11,11,186,877,7,0,24.137216666666667
+c30194e8-956e-47ae-ad5d-8c68594f3f13,Eager Lemur,animal_rescue,animal_rescue > food_pantry > community_clinic > urban_tree,19,28,14,14,353,1017,10,0,18.39855
+068b4e8c-8747-4543-ae44-79e13a20584b,Indigo Antelope,urban_tree,urban_tree > food_pantry > community_clinic > animal_rescue,25,24,12,12,440,979,7,0,19.24365
+ed9cdd17-8e2c-4f79-877c-14558136c780,Coral Leopard,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,19,24,12,12,280,839,8,0,28.65325
+461bc6fd-3f01-486f-84d5-366f9fcf803f,Tranquil Llama,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,25,24,12,12,356,866,6,0,12.691966666666668
+f131ff44-cd22-4ff1-8349-a59be60d1bac,Azure Leopard,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,19,20,10,10,137,790,7,0,9.9214
+72db18c1-7eca-44df-a7a6-de036041946d,Bold Falcon,animal_rescue,animal_rescue > community_clinic > food_pantry > urban_tree,21,28,14,14,188,872,10,0,13.537733333333334
+548c3856-09bf-4214-8be4-804317e0998e,Citrine Fierce Swan,animal_rescue,animal_rescue > food_pantry > urban_tree > community_clinic,16,26,13,13,84,968,10,0,7.463633333333333
+34e3147f-7b58-42cc-a7d6-cc74fbf55386,Amber Clever Phoenix,community_clinic,community_clinic > food_pantry > urban_tree > animal_rescue,18,20,10,10,199,745,6,0,11.807766666666668
+69ffa661-bec4-4ec8-b27b-fb88bf5b6b8f,Lazuli Jaguar,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,22,20,10,10,234,697,6,0,14.682266666666667
+828e8186-60fa-4d92-8a39-fb0fc477c70b,Peridot Warm Lynx,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,28,28,14,14,216,844,10,0,10.344883333333334
+33092887-a4c4-4224-9e50-5cfb5b083201,Jasper Caracal,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,17,20,10,10,215,929,7,0,19.50815
+13539b65-a9c1-49d0-af9c-83b259d0bdd3,Maroon Lion,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,21,38,19,19,167,1274,15,0,14.717516666666667
+d7969373-911a-4eb5-9686-781e9e8f3c85,Amber Seal,animal_rescue,animal_rescue > food_pantry > community_clinic > urban_tree,19,24,12,12,300,1021,9,1,28.8404
+e2f54ca0-4b6e-4343-8a0f-151b9db8b3bb,Sepia Lively Wolf,animal_rescue,animal_rescue > urban_tree > food_pantry > community_clinic,19,26,13,13,102,1013,9,0,15.148966666666666
+c08ac897-860e-4c49-9b5d-a59aaf966830,Amethyst Owl,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,16,24,12,12,244,733,7,1,13.42825
+7ec869c0-be06-49c8-86bb-0ba57480dd59,Wise Crane,food_pantry,food_pantry > community_clinic > urban_tree > animal_rescue,17,24,12,12,227,834,9,0,56.20551666666667
+2e8c70be-3516-4143-994a-cc593a38b5b7,Scarlet Phoenix,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,38,28,14,14,588,1296,8,0,23.9881
+df84ec6f-afc1-468e-91d4-4704cbe8c5bf,Cosmic Antelope,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,20,26,13,13,132,860,8,0,14.551883333333334
+8e1ca47a-32f2-4c4d-81ba-9dff34dfcdd6,Lively Leopard,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,15,27,14,13,167,752,8,0,19.6067
+8323d879-9baa-4b7a-aca8-afce67332b42,Sepia Hare,,,0,28,14,14,104,900,10,0,9.952433333333333
+16b0b62e-811e-4b62-9be3-5180d1fd2892,Serene Wombat,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,15,20,10,10,201,808,7,0,10.330549999999999
+50bbd6c0-c2c3-4fe5-ae05-c40df1c0b973,Topaz Fair Tiger,community_clinic,community_clinic > food_pantry > urban_tree > animal_rescue,22,20,10,10,223,864,6,0,21.5776
+8fa858d9-a438-4f94-938b-f768d3409aac,Jasper Brilliant Raccoon,animal_rescue,animal_rescue > food_pantry > urban_tree > community_clinic,17,28,14,14,231,1086,10,0,7.977233333333333
+f2495565-5e7c-4708-b547-4154b82f970f,Grand Kestrel,community_clinic,community_clinic > food_pantry > animal_rescue > urban_tree,14,26,13,13,141,899,8,1,14.55495
+9790f877-d7f6-4d7c-8504-f032a57cadc4,Lucid Squirrel,food_pantry,food_pantry > animal_rescue > community_clinic > urban_tree,22,20,10,10,152,625,7,0,6.77025
+43277c99-61e8-4013-9180-c09d592ee3de,Mighty Jaguar,food_pantry,food_pantry > community_clinic > animal_rescue > urban_tree,16,22,11,11,187,790,8,0,14.32575
+96d107a3-b59f-4cde-a251-b86bc5a16dae,Zaffre Vibrant Griffin,animal_rescue,animal_rescue > food_pantry > community_clinic > urban_tree,16,22,11,11,163,764,7,0,7.1512166666666666

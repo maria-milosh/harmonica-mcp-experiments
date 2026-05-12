@@ -1,5 +1,10 @@
 {
   "embedding_analysis_enabled": true,
-  "participant_count": 12,
-  "avg_random_distance": 0.44013025501854214
+  "participant_count": 31,
+  "avg_embedding_similarity": 0.6606732680132203,
+  "avg_embedding_distance": 0.3393267319867796,
+  "avg_embedding_similarity_changed_top": 0.7589028896627333,
+  "avg_embedding_similarity_stable_top": 0.6501486656936298,
+  "avg_random_initial_distance": 0.41120165154502564,
+  "avg_random_distance": 0.41120165154502564
 }

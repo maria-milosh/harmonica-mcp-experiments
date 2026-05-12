@@ -38,8 +38,8 @@ from voting_rules import compare_rules
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Analyze Harmonica phase outputs.")
-    parser.add_argument("--phase1-json", default="data/responses/phase1_hst_dbf516d28d66.json")
-    parser.add_argument("--phase1-extractions", default="data/responses/phase1_hst_dbf516d28d66_extractions.json")
+    parser.add_argument("--phase1-json", default="data/responses/phase1_00b178be-a48b-4ace-a721-340bc0950179.json")
+    parser.add_argument("--phase1-extractions", default="data/responses/phase1_00b178be-a48b-4ace-a721-340bc0950179_extractions.json")
     parser.add_argument("--phase2-json", default="data/responses/phase2_hst_f3f99c5cc524.json")
     parser.add_argument("--phase2-extractions", default="data/responses/phase2_hst_f3f99c5cc524_extractions.json")
     parser.add_argument("--config", default="example_pilot.yaml")
@@ -63,6 +63,35 @@ def load_csv_rows(path: Path) -> list[dict[str, Any]]:
         return []
     with path.open("r", encoding="utf-8", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def build_phase1_changes_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    participant_rows = []
+    for row in rows:
+        initial_ranking = row.get("initial_vote_ranking")
+        final_ranking = row.get("final_vote_ranking")
+        if not initial_ranking or not final_ranking:
+            continue
+        initial_ranking_string = " > ".join(initial_ranking)
+        final_ranking_string = " > ".join(final_ranking)
+        changed_top_choice = initial_ranking[0] != final_ranking[0]
+        footrule_distance = sum(
+            abs(initial_ranking.index(option) - final_ranking.index(option))
+            for option in initial_ranking
+            if option in final_ranking
+        )
+        participant_rows.append(
+            {
+                "user_id": row.get("user_id"),
+                "initial_top_choice": initial_ranking[0],
+                "final_top_choice": final_ranking[0],
+                "changed_top_choice": changed_top_choice,
+                "footrule_distance": footrule_distance,
+                "initial_ranking": initial_ranking_string,
+                "final_ranking": final_ranking_string,
+            }
+        )
+    return participant_rows
 
 
 def avg_random_initial_distance_from_vectors(vector_rows: list[dict[str, Any]]) -> float | None:
@@ -992,7 +1021,11 @@ def main() -> None:
         config.options,
     )
 
-    phase1_rankings = [row["vote_ranking"] for row in phase1_extractions if row.get("vote_ranking")]
+    phase1_rankings = [
+        (row.get("final_vote_ranking") or row.get("vote_ranking") or row.get("initial_vote_ranking"))
+        for row in phase1_extractions
+        if (row.get("final_vote_ranking") or row.get("vote_ranking") or row.get("initial_vote_ranking"))
+    ]
     phase2_initial_rankings = [row["initial_vote_ranking"] for row in phase2_extractions if row.get("initial_vote_ranking")]
     phase2_final_rankings = [row["final_vote_ranking"] for row in phase2_extractions if row.get("final_vote_ranking")]
 
@@ -1000,13 +1033,14 @@ def main() -> None:
     phase2_initial_rules = compare_rules(phase2_initial_rankings, config.options, config.option_labels)
     phase2_final_rules = compare_rules(phase2_final_rankings, config.options, config.option_labels)
     phase2_changes = analyze_changes(phase2_extractions, config.options)
+    phase1_changes_rows = build_phase1_changes_rows(phase1_extractions)
     reasoning_shift = analyze_reasoning_shift(
         phase2_extractions,
         config,
         str(output_dir),
         with_embeddings=args.with_embeddings,
     )
-    analyze_phase1_reasoning_embeddings(
+    phase1_reasoning_shift = analyze_phase1_reasoning_embeddings(
         phase1_extractions,
         config,
         str(output_dir),
@@ -1070,11 +1104,14 @@ def main() -> None:
     write_csv(output_dir / "phase2_final_voting_score_table.csv", phase2_final_rules["score_table"])
     write_csv(output_dir / "phase2_transition_matrix.csv", phase2_changes["transition_rows"])
     write_csv(output_dir / "phase2_option_movement.csv", phase2_changes["option_movement_rows"])
+    write_csv(output_dir / "phase1_participant_changes.csv", phase1_changes_rows)
     write_csv(output_dir / "phase2_participant_changes.csv", phase2_changes["participant_rows"])
     write_csv(output_dir / "phase2_reasoning_shift.csv", reasoning_shift["participant_rows"])
     write_csv(output_dir / "phase2_initial_theme_counts.csv", reasoning_shift["initial_theme_counts"])
     write_csv(output_dir / "phase2_final_theme_counts.csv", reasoning_shift["final_theme_counts"])
 
+    if "embedding_rows" in phase1_reasoning_shift:
+        write_csv(output_dir / "phase1_reasoning_embedding_shift.csv", phase1_reasoning_shift["embedding_rows"])
     if "embedding_rows" in reasoning_shift:
         write_csv(output_dir / "phase2_reasoning_embedding_shift.csv", reasoning_shift["embedding_rows"])
 

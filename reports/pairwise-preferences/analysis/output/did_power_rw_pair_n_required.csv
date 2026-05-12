@@ -1,0 +1,25 @@
+design,tau_shape,pair_id,is_signal,n_per_arm_80_rw,n_total_80_rw
+DiD_parametric,diffuse_PL,animal_rescue > community_clinic,TRUE,NA,NA
+DiD_parametric,diffuse_PL,animal_rescue > food_pantry,TRUE,1750,3500
+DiD_parametric,diffuse_PL,animal_rescue > urban_tree,TRUE,600,1200
+DiD_parametric,diffuse_PL,community_clinic > food_pantry,TRUE,NA,NA
+DiD_parametric,diffuse_PL,community_clinic > urban_tree,TRUE,1200,2400
+DiD_parametric,diffuse_PL,food_pantry > urban_tree,TRUE,2450,4900
+DiD_parametric,pilot_proportional,animal_rescue > community_clinic,TRUE,NA,NA
+DiD_parametric,pilot_proportional,animal_rescue > food_pantry,TRUE,NA,NA
+DiD_parametric,pilot_proportional,animal_rescue > urban_tree,TRUE,550,1100
+DiD_parametric,pilot_proportional,community_clinic > food_pantry,TRUE,1750,3500
+DiD_parametric,pilot_proportional,community_clinic > urban_tree,TRUE,2450,4900
+DiD_parametric,pilot_proportional,food_pantry > urban_tree,TRUE,1350,2700
+DiD_regularized_empirical,diffuse_PL,animal_rescue > community_clinic,TRUE,NA,NA
+DiD_regularized_empirical,diffuse_PL,animal_rescue > food_pantry,TRUE,1350,2700
+DiD_regularized_empirical,diffuse_PL,animal_rescue > urban_tree,TRUE,600,1200
+DiD_regularized_empirical,diffuse_PL,community_clinic > food_pantry,TRUE,NA,NA
+DiD_regularized_empirical,diffuse_PL,community_clinic > urban_tree,TRUE,1250,2500
+DiD_regularized_empirical,diffuse_PL,food_pantry > urban_tree,TRUE,NA,NA
+DiD_regularized_empirical,pilot_proportional,animal_rescue > community_clinic,TRUE,NA,NA
+DiD_regularized_empirical,pilot_proportional,animal_rescue > food_pantry,TRUE,NA,NA
+DiD_regularized_empirical,pilot_proportional,animal_rescue > urban_tree,TRUE,550,1100
+DiD_regularized_empirical,pilot_proportional,community_clinic > food_pantry,TRUE,2400,4800
+DiD_regularized_empirical,pilot_proportional,community_clinic > urban_tree,TRUE,2700,5400
+DiD_regularized_empirical,pilot_proportional,food_pantry > urban_tree,TRUE,3750,7500
