@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harmonica Pilot Study Dashboard</title>
+  <link href="./Harmonica Analysis Dashboard_files/css2" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0f0c;
+      --surface: #161712;
+      --surface-soft: rgba(255,255,255,0.018);
+      --border: #2a2b26;
+      --accent: #c8f060;
+      --accent2: #f0d060;
+      --warning: #ffaf6b;
+      --muted: #5a5c52;
+      --text: #e8e9e2;
+      --text-dim: #a3a49c;
+      --text-faint: #77796e;
+      --text-measure: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', Inter, system-ui, sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 56px 28px 96px;
+    }
+
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .session-tag {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(200,240,96,0.08);
+      border: 1px solid rgba(200,240,96,0.2);
+      padding: 4px 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 34px;
+      position: sticky;
+      top: 12px;
+      z-index: 3;
+      padding: 10px;
+      background: rgba(14,15,12,0.92);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(4px);
+    }
+
+    .quick-nav a {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.01);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .quick-nav a:hover {
+      color: var(--accent);
+      border-color: rgba(200,240,96,0.45);
+    }
+
+    section { margin-bottom: 58px; scroll-margin-top: 110px; }
+
+    .eyebrow,
+    .section-label,
+    .label {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow,
+    .section-label { margin-bottom: 16px; }
+
+    h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.04;
+      margin-bottom: 14px;
+      letter-spacing: 0;
+      max-width: var(--text-measure);
+    }
+
+    h1 em {
+      color: var(--accent2);
+      font-style: italic;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 32px;
+      line-height: 1.16;
+      margin-bottom: 14px;
+      letter-spacing: 0;
+      max-width: var(--text-measure);
+    }
+
+    h3 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 23px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: var(--text-dim);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .lede {
+      max-width: var(--text-measure);
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 22px;
+      margin-top: 14px;
+    }
+
+    .panel.compact { padding: 18px; }
+
+    .note-box {
+      border-left: 3px solid var(--accent);
+      background: rgba(200,240,96,0.05);
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+
+    .warning-box {
+      border-left: 3px solid var(--warning);
+      background: rgba(255,175,107,0.06);
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .card {
+      background: rgba(200,240,96,0.04);
+      border: 1px solid rgba(200,240,96,0.2);
+      padding: 16px;
+      min-height: 132px;
+    }
+
+    .card.neutral {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .label {
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .value {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 31px;
+      line-height: 1.12;
+      color: var(--text);
+      letter-spacing: 0;
+    }
+
+    .value.small { font-size: 25px; }
+
+    .micro {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--text-faint);
+      margin-top: 8px;
+    }
+
+    .story-grid,
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .story-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 18px;
+    }
+
+    .story-card strong,
+    .note-box strong,
+    .warning-box strong { color: var(--text); font-weight: 500; }
+
+    .narrative {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent2);
+      background: rgba(240,208,96,0.06);
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2px;
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 22px;
+      position: relative;
+      min-height: 194px;
+      overflow: hidden;
+    }
+
+    .step::after {
+      content: attr(data-n);
+      position: absolute;
+      bottom: -10px;
+      right: 10px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 72px;
+      color: var(--border);
+      line-height: 1;
+    }
+
+    .step-phase {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .step p { font-size: 14px; }
+
+    .step.highlight {
+      border-color: rgba(200,240,96,0.3);
+      background: rgba(200,240,96,0.04);
+    }
+
+    .figure {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .figure.compact {
+      max-width: 680px;
+      margin: 12px auto 0;
+    }
+
+    .caption {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.01);
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 11px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    td.num,
+    th.num {
+      text-align: right;
+      font-family: 'DM Mono', ui-monospace, monospace;
+      white-space: nowrap;
+    }
+
+    .tiny { font-size: 13px; }
+
+    .option-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .option-pill {
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      padding: 12px;
+      min-height: 88px;
+    }
+
+    .option-pill .value {
+      font-size: 18px;
+      line-height: 1.2;
+      margin-top: 6px;
+    }
+
+    .source-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .source-row a {
+      font-family: 'DM Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--accent2);
+      text-decoration: none;
+      border: 1px solid rgba(240,208,96,0.24);
+      padding: 6px 9px;
+      background: rgba(240,208,96,0.04);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .source-row a:hover {
+      color: var(--accent);
+      border-color: rgba(200,240,96,0.45);
+    }
+
+    @media (max-width: 900px) {
+      .steps,
+      .story-grid,
+      .grid3,
+      .option-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { padding: 36px 18px 80px; }
+      header { align-items: flex-start; flex-direction: column; }
+      .steps,
+      .story-grid,
+      .grid3,
+      .grid2,
+      .option-list { grid-template-columns: 1fr; }
+      .quick-nav { position: static; }
+      h1 { font-size: 38px; max-width: none; }
+      .value { font-size: 28px; }
+      table { font-size: 13px; }
+      th, td { padding: 9px 8px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="logo">Harmonica Collective Choice Pilot</span>
+    <span class="session-tag">External Summary Dashboard</span>
+  </header>
+
+  <nav class="quick-nav" aria-label="Dashboard navigation">
+    <a href="#about">About</a>
+    <a href="#design">Study design</a>
+    <a href="#summary">Pilot summary</a>
+    <a href="#analysis">Analysis plan</a>
+    <a href="#results">Deep dive</a>
+    <a href="#power">Power</a>
+    <a href="#caveats">Read this first</a>
+  </nav>
+
+  <section id="about">
+    <p class="eyebrow">About this study</p>
+    <h1>How AI-facilitated exposure to others' reasoning changed <em>collective decision-making</em></h1>
+    <p class="lede">Many deliberative tools are emerging around online democratic participation, collective intelligence, and AI-mediated decision-making. This study focuses on an empirical question inside this broader moment: when a collective decision-making tool helps people encounter one another's reasoning, do preferences and collective outcomes actually move? Does this move represent a meaningful shift in how people think about and prioritize their collective goals? Does it reflect on the voting and vote aggregation?</p>
+
+    <div class="panel">
+      <h3>Why this question</h3>
+      <p>AI-mediated deliberation is often motivated by the hope that large groups can make better decisions when ideas are surfaced, summarized, and reflected back without the usual meeting-room bottlenecks. But those claims need empirical grounding. We aim to expand current empirical knowledge by testing an instance of online deliberation with Harmonica, an AI-mediated deliberation tool, around a realistic participatory budgeting task.</p>
+    </div>
+
+    <div class="panel">
+      <h3>About this study</h3>
+      <p>Participants were split into a control and a treatment group. Both were asked to rank four possible recipients of a real donation: a food pantry, a health clinic, an urban tree initiative, and an animal rescue shelter. In the no-cross-pollination control group, participants made and revised their choices independently. In the exposure group, participants first submitted an initial ranking, then reviewed short anonymized summaries of how other participants were reasoning about the same trade-offs, and finally submitted a final ranking.</p>
+      <p style="margin-top: 12px;">This dashboard shows what changed after that exposure: which options gained or lost support, whether participants reordered their rankings, whether interpersonal ranking dispersion changed, and whether simulated small-group voting outcomes changed under common ranked-ballot rules.</p>
+      <div class="note-box">
+        <p class="tiny"><strong>How to read the pilot:</strong> the goal of this pilot is not to declare a final causal effect. The goal is to learn whether the design produces measurable movement and what sample sizes a stronger follow-up would need.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="design">
+    <p class="section-label">What participants did</p>
+    <div class="panel">
+      <h2>The task was to choose which charity should receive the donation</h2>
+      <p>Participants had a private conversation with a neutral AI facilitator. They ranked all four charities and briefly explained why they preferred their top choice. In the treatment condition, participants first gave an initial ranking, reviewed anonymized summaries of other participants' reasoning, and then submitted a final ranking.</p>
+
+      <div class="option-list">
+        <div class="option-pill">
+          <div class="label">Option A</div>
+          <div class="value">Community Animal Rescue Shelter</div>
+        </div>
+        <div class="option-pill">
+          <div class="label">Option B</div>
+          <div class="value">Community Food Pantry Network</div>
+        </div>
+        <div class="option-pill">
+          <div class="label">Option C</div>
+          <div class="value">Urban Tree Initiative</div>
+        </div>
+        <div class="option-pill">
+          <div class="label">Option D</div>
+          <div class="value">Community Health Clinic</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step" data-n="1">
+        <p class="step-phase">Baseline</p>
+        <h3>Rank privately</h3>
+        <p>Participants submit a complete ordered list of the four charities.</p>
+      </div>
+      <div class="step" data-n="2">
+        <p class="step-phase">Reasoning</p>
+        <h3>Explain the choice</h3>
+        <p>The AI-facilitator asks for a short rationale behind the ranking.</p>
+      </div>
+      <div class="step highlight" data-n="3">
+        <p class="step-phase">Only in the exposure arm</p>
+        <h3>Read peer reasoning</h3>
+        <p>Participants review anonymized rephrasings of other participants' reasons.</p>
+      </div>
+      <div class="step" data-n="4">
+        <p class="step-phase">Final</p>
+        <h3>Rank again</h3>
+        <p>AI-facilitator asks for the final ranking and rationale.</p>
+      </div>
+    </div>
+
+    <div class="figure compact">
+      <img src="./Harmonica Analysis Dashboard_files/structure.png" alt="Study flow diagram for the Harmonica two-phase ranking pilot">
+      <p class="caption">What happens behind the scenes.</p>
+    </div>
+  </section>
+
+  <section id="summary">
+    <!-- <p class="section-label">Summary of the pilot</p> -->
+    <h2>Summary</h2>
+    <p class="lede">After manual correction of two Phase 1 extraction rows, the reports still show directional movement: pairwise preferences shift by 7.50 pp RMS, rule-output winner distributions move toward Community Health Clinic and away from Community Food Pantry, and no omnibus or RW-adjusted outcome clears conventional thresholds.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="label">Analysis sample</div>
+        <div class="value">30 + 32</div>
+        <p class="micro">Complete control and exposure-arm rankings used in the DiD reports.</p>
+      </div>
+      <!-- <div class="card">
+        <div class="label">Options ranked</div>
+        <div class="value">4</div>
+        <p class="micro">Animal rescue, food pantry, urban trees, and community clinic.</p>
+      </div> -->
+      <div class="card">
+        <div class="label">Exposure-arm top-choice changers</div>
+        <div class="value">6/32</div>
+        <p class="micro">18.8% changed their first-place charity after seeing peer reasoning.</p>
+      </div>
+      <div class="card">
+        <div class="label">Primary observed movement</div>
+        <div class="value">7.50 pp</div>
+        <p class="micro">RMS pairwise DiD shift across the six option pairs.</p>
+      </div>
+      <div class="card">
+        <div class="label">Most actionable power range</div>
+        <div class="value">350-500</div>
+        <p class="micro">Approximate participants per arm for paired DiD or k=5 rule-output targets.</p>
+      </div>
+      <div class="card">
+        <div class="label">Rule-output omnibus</div>
+        <div class="value">0/3</div>
+        <p class="micro">No k = 3, 5, or 7 omnibus RI test rejects after correction.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Plain-language read</h3>
+      <p>The pairwise preference matrix still moves, especially Community Health Clinic versus Community Food Pantry, but the corrected RI diagnostics are comfortably above 0.05. We do not see evidence that treatment made participants' rankings much more or less mutually similar overall. Ranked-ballot group outcomes also move under plurality, IRV, Borda, and Copeland simulations, but the corrected randomization-inference tests are not conventionally significant.</p>
+      <div class="warning-box">
+        <p class="tiny"><strong>Important:</strong> this is pilot-grade evidence. The current reports use a difference-in-differences framing, comparing before-to-after movement in the exposure arm against before-to-after movement in a no-cross-pollination comparison arm. Treat the results as evidence for design and sample-size planning, not as a final causal claim.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="analysis">
+    <p class="section-label">Analysis plan</p>
+    <h2>Three outcomes tell three different parts of the story</h2>
+    <p class="lede">The analysis plan separates preference movement, interpersonal convergence of views, and collective-choice (voting) consequences.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Outcome</th>
+          <th>Question it answers</th>
+          <th>Primary readout</th>
+          <th>Inference</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pairwise preference matrix</td>
+          <td>Which option-vs-option preferences moved, and by how much?</td>
+          <td>Six pairwise DiD estimates plus RMS shift (compact magnitude summary across all charity-pair comparisons).</td>
+          <td>Randomization inference and Romano-Wolf correction for multiple comparisons.</td>
+        </tr>
+        <tr>
+          <td>Kendall dispersion</td>
+          <td>Did rankings become more or less similar across people? Convergence?</td>
+          <td>DiD in interpersonal ranking dispersion.</td>
+          <td>Randomization inference by shuffling arm labels on respondent pre/post tuples, with bootstrap companion.</td>
+        </tr>
+        <tr>
+          <td>Social choice panel</td>
+          <td>Do preference changes alter what small committee-groups would select?</td>
+          <td>Winner distribution changed under popular voting rules: plurality, Borda, IRV, and Copeland. Condorcet winner existence as a diagnostic.</td>
+          <td>Randomization inference over individual assignment labels (treatment/control labels across individuals).</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="results">
+    <p class="section-label">Deep dive: pilot metrics and results</p>
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="label">Outcome 1</div>
+        <div class="value">Preference movement</div>
+        <p>Pairwise preferences moved by <strong>7.50 percentage points RMS</strong>. The largest observed pair is Community Health Clinic over Food Pantry at <strong>+12.7 pp</strong>, but no individual pair rejects after Romano-Wolf correction.</p>
+      </div>
+      <div class="story-card">
+        <div class="label">Outcome 2</div>
+        <div class="value">No clear convergence</div>
+        <p>Kendall dispersion changed by only <strong>+1.18 pp</strong> with RI p = <strong>0.718</strong>. The pilot does not show a detectable change in overall ranking coherence.</p>
+      </div>
+      <div class="story-card">
+        <div class="label">Outcome 3</div>
+        <div class="value">Group outputs moved</div>
+        <p>Rule-output DiD remains directionally meaningful, but the corrected omnibus tests do not reject for k = 3, 5, or 7. At k = 5, rule TVDs range from <strong>0.252</strong> to <strong>0.289</strong>; no rule clears RW correction.</p>
+      </div>
+    </div>
+
+    <div class="narrative">Exposure to others' reasoning appears to move the aggregated voting outcome more clearly than it changes overall interpersonal dispersion, but the corrected pilot should be read as directional evidence rather than a significant result.</div>
+
+    <div class="panel">
+      <h3>Surface-level movement inside the control group</h3>
+      <p>The no-cross-pollination control group shows some before-to-after drift. Community Health Clinic lost first-place support while Food Pantry gained support, which is why the DiD reports compare exposure-arm movement against this baseline rather than treating any pre/post change as treatment-driven.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Charity</th>
+            <th class="num">Initial top votes</th>
+            <th class="num">Final top votes</th>
+            <th class="num">Net change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Community Animal Rescue Shelter</td>
+            <td class="num">7</td>
+            <td class="num">7</td>
+            <td class="num">0</td>
+          </tr>
+          <tr>
+            <td>Community Food Pantry Network</td>
+            <td class="num">12</td>
+            <td class="num">13</td>
+            <td class="num">+1</td>
+          </tr>
+          <tr>
+            <td>Urban Tree Initiative</td>
+            <td class="num">1</td>
+            <td class="num">1</td>
+            <td class="num">0</td>
+          </tr>
+          <tr>
+            <td>Community Health Clinic</td>
+            <td class="num">10</td>
+            <td class="num">9</td>
+            <td class="num">-1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h3>Surface-level movement inside the treatment group</h3>
+      <p>Only a minority changed their first-place charity, but Community Health Clinic gained first-place support while Animal Rescue lost it. The rule-output results below amplify this because ranked ballots affect group outcomes through every position, not only the top choice.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Charity</th>
+            <th class="num">Initial top votes</th>
+            <th class="num">Final top votes</th>
+            <th class="num">Net change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Community Animal Rescue Shelter</td>
+            <td class="num">7</td>
+            <td class="num">4</td>
+            <td class="num">-3</td>
+          </tr>
+          <tr>
+            <td>Community Food Pantry Network</td>
+            <td class="num">10</td>
+            <td class="num">9</td>
+            <td class="num">-1</td>
+          </tr>
+          <tr>
+            <td>Urban Tree Initiative</td>
+            <td class="num">3</td>
+            <td class="num">4</td>
+            <td class="num">+1</td>
+          </tr>
+          <tr>
+            <td>Community Health Clinic</td>
+            <td class="num">12</td>
+            <td class="num">15</td>
+            <td class="num">+3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top: 36px;">Outcome 1: pairwise preferences moved, but pair-level discoveries remain tentative</h2>
+    <div class="panel">
+      <p>The pairwise analysis compares how the probability of ranking one charity above another changes in the exposure arm versus the comparison arm. The overall RMS movement is meaningful for a pilot, but the report is deliberately cautious: Wald rejects jointly, while RI-based joint diagnostics are comfortably above 0.05.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Headline quantity</th>
+            <th class="num">Value</th>
+            <th>Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>RMS pairwise DiD shift</td>
+            <td class="num">7.50 pp</td>
+            <td>Average magnitude of directional movement across six unordered option pairs.</td>
+          </tr>
+          <tr>
+            <td>Joint Wald p-value</td>
+            <td class="num">0.0434</td>
+            <td>Rank-aware diagnostic rejects at alpha = 0.05.</td>
+          </tr>
+          <tr>
+            <td>Permutation T_max p-value</td>
+            <td class="num">0.3890</td>
+            <td>RI joint max statistic does not reject at alpha = 0.05.</td>
+          </tr>
+          <tr>
+            <td>Permutation T_ss p-value</td>
+            <td class="num">0.1951</td>
+            <td>RI sum-of-squares statistic is suggestive, not conventionally significant.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Per-pair DiD estimate</th>
+            <th class="num">DiD</th>
+            <th class="num">RW p</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Community Health Clinic &gt; Food Pantry</td>
+            <td class="num">+12.7 pp</td>
+            <td class="num">0.389</td>
+          </tr>
+          <tr>
+            <td>Animal Rescue &gt; Community Health Clinic</td>
+            <td class="num">-9.4 pp</td>
+            <td class="num">0.757</td>
+          </tr>
+          <tr>
+            <td>Animal Rescue &gt; Urban Tree</td>
+            <td class="num">-6.3 pp</td>
+            <td class="num">0.757</td>
+          </tr>
+          <tr>
+            <td>Community Health Clinic &gt; Urban Tree</td>
+            <td class="num">-6.3 pp</td>
+            <td class="num">0.757</td>
+          </tr>
+          <tr>
+            <td>Food Pantry &gt; Urban Tree</td>
+            <td class="num">-3.1 pp</td>
+            <td class="num">0.824</td>
+          </tr>
+          <tr>
+            <td>Animal Rescue &gt; Food Pantry</td>
+            <td class="num">0.0 pp</td>
+            <td class="num">1.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid2">
+      <div class="figure">
+        <img src="./reports/pairwise-preferences/figures/tau_heatmap.png" alt="Heatmap of pairwise DiD preference shifts">
+        <p class="caption">Pairwise DiD heatmap from the report output.</p>
+      </div>
+      <div class="figure">
+        <img src="./reports/pairwise-preferences/figures/tau_forest.png" alt="Forest plot of pairwise DiD preference shifts with intervals">
+        <p class="caption">Per-pair estimates and descriptive intervals.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 36px;">Outcome 2: no detectable change in ranking coherence</h2>
+    <div class="panel">
+      <p>Kendall dispersion asks whether two randomly drawn participants in the same arm disagree on more or fewer option pairs after the intervention. The current pilot estimate is close to zero and statistically uninformative.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Quantity</th>
+            <th class="num">Value</th>
+            <th>Read</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Control change</td>
+            <td class="num">-0.34 pp</td>
+            <td>Comparison-arm dispersion was essentially stable.</td>
+          </tr>
+          <tr>
+            <td>Exposure change</td>
+            <td class="num">+0.84 pp</td>
+            <td>Exposure-arm dispersion rose slightly.</td>
+          </tr>
+          <tr>
+            <td>DiD</td>
+            <td class="num">+1.18 pp</td>
+            <td>No meaningful evidence of treatment-attributable spread or convergence.</td>
+          </tr>
+          <tr>
+            <td>RI p-value</td>
+            <td class="num">0.718</td>
+            <td>Null-compatible.</td>
+          </tr>
+          <tr>
+            <td>Bootstrap 95% CI</td>
+            <td class="num">[-4.64, +6.89] pp</td>
+            <td>Wide enough that the pilot mainly rules out nothing precise.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Largest dispersion contribution shifts</th>
+            <th class="num">Contribution DiD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Animal Rescue &gt; Community Health Clinic</td>
+            <td class="num">-9.96 pp</td>
+          </tr>
+          <tr>
+            <td>Community Health Clinic &gt; Urban Tree</td>
+            <td class="num">+7.03 pp</td>
+          </tr>
+          <tr>
+            <td>Food Pantry &gt; Urban Tree</td>
+            <td class="num">+4.10 pp</td>
+          </tr>
+          <tr>
+            <td>Animal Rescue &gt; Urban Tree</td>
+            <td class="num">+3.12 pp</td>
+          </tr>
+          <tr>
+            <td>Community Health Clinic &gt; Food Pantry</td>
+            <td class="num">+2.59 pp</td>
+          </tr>
+          <tr>
+            <td>Animal Rescue &gt; Food Pantry</td>
+            <td class="num">0.00 pp</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid2">
+      <div class="figure">
+        <img src="./reports/kendall-dispersion/figures/dispersion_decomposition.png" alt="Per-pair decomposition of Kendall dispersion change">
+        <p class="caption">Dispersion decomposition by option pair.</p>
+      </div>
+      <div class="figure">
+        <img src="./reports/kendall-dispersion/figures/delta_distribution.png" alt="Permutation or bootstrap distribution for Kendall dispersion DiD">
+        <p class="caption">Uncertainty around the dispersion DiD statistic.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 36px;">Outcome 3: synthetic-group decisions shift directionally toward Community Health Clinic</h2>
+    <div class="panel">
+      <p>The rule-output panel simulates small groups inside each arm and asks how often each voting rule picks each charity. At the primary group size k = 5, the largest movement is an increased probability that Community Health Clinic wins and a decreased probability that Food Pantry wins, but no k = 5 statistic rejects after RW correction in the manually corrected run.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Group size</th>
+            <th class="num">T_max obs</th>
+            <th class="num">Omnibus p</th>
+            <th>Read</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>k = 3</td>
+            <td class="num">3.750</td>
+            <td class="num">0.097</td>
+            <td>Directionally large but not significant after RI.</td>
+          </tr>
+          <tr>
+            <td>k = 5</td>
+            <td class="num">3.634</td>
+            <td class="num">0.113</td>
+            <td>Primary group-size readout; no RW rejection.</td>
+          </tr>
+          <tr>
+            <td>k = 7</td>
+            <td class="num">3.353</td>
+            <td class="num">0.147</td>
+            <td>Same directional pattern, weaker RI evidence.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th>k = 5 statistic</th>
+            <th class="num">TVD DiD</th>
+            <th class="num">RW p</th>
+            <th class="num">N/arm for 80% power</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plurality winner distribution</td>
+            <td class="num">0.289</td>
+            <td class="num">0.113</td>
+            <td class="num">400</td>
+          </tr>
+          <tr>
+            <td>Borda winner distribution</td>
+            <td class="num">0.252</td>
+            <td class="num">0.155</td>
+            <td class="num">410</td>
+          </tr>
+          <tr>
+            <td>IRV winner distribution</td>
+            <td class="num">0.270</td>
+            <td class="num">0.113</td>
+            <td class="num">370</td>
+          </tr>
+          <tr>
+            <td>Copeland winner distribution</td>
+            <td class="num">0.258</td>
+            <td class="num">0.137</td>
+            <td class="num">350</td>
+          </tr>
+          <tr>
+            <td>Condorcet existence</td>
+            <td class="num">0.018</td>
+            <td class="num">0.378</td>
+            <td class="num">Skipped</td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Largest k = 5 winner DiD cells</th>
+            <th class="num">Winner change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plurality, Community Health Clinic</td>
+            <td class="num">+28.23 pp</td>
+          </tr>
+          <tr>
+            <td>IRV, Community Health Clinic</td>
+            <td class="num">+24.58 pp</td>
+          </tr>
+          <tr>
+            <td>Copeland, Community Health Clinic</td>
+            <td class="num">+24.42 pp</td>
+          </tr>
+          <tr>
+            <td>Borda, Community Health Clinic</td>
+            <td class="num">+24.40 pp</td>
+          </tr>
+          <tr>
+            <td>Borda, Food Pantry</td>
+            <td class="num">-22.90 pp</td>
+          </tr>
+          <tr>
+            <td>Copeland, Food Pantry</td>
+            <td class="num">-22.50 pp</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note-box">
+        <p class="tiny"><strong>Why this matters:</strong> the pairwise results say the preference structure moves; the rule-output panel says those shifts are visible in what common voting rules would pick in small synthetic groups. Condorcet existence itself barely changes, so the story is winner identity, not whether cycles appear.</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="figure">
+        <img src="./reports/rule-output-panel/figures/tvd_panel.png" alt="Rule-output total variation distance panel by group size and voting rule">
+        <p class="caption">TVD DiD by voting rule and synthetic group size.</p>
+      </div>
+      <div class="figure">
+        <img src="./reports/rule-output-panel/figures/winner_distributions_primary.png" alt="Winner distributions for primary voting rule outputs">
+        <p class="caption">Winner distributions before and after, by arm and rule.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="power">
+    <p class="section-label">Power calculation outputs</p>
+    <h2>What sample sizes are worth planning around?</h2>
+    <p class="lede">The power outputs are assumption-dependent, but they are useful for sizing a follow-up. The most relevant numbers are the paired DiD pairwise matrix and the k = 5 rule-output panel, because those match the analysis reports most closely.</p>
+
+    <div class="panel">
+      <table>
+        <thead>
+          <tr>
+            <th>Target</th>
+            <th class="num">80% power estimate</th>
+            <th>Dashboard read</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pairwise matrix, paired DiD, RMS = 3 pp, RW-any discovery</td>
+            <td class="num">450-500 per arm</td>
+            <td>Main planning number for the primary preference-structure outcome.</td>
+          </tr>
+          <tr>
+            <td>Pairwise matrix, cross-sectional-style empirical calibration</td>
+            <td class="num">900-950 per arm</td>
+            <td>Useful if the final design cannot use the paired pre/post structure.</td>
+          </tr>
+          <tr>
+            <td>Kendall dispersion, direct target &Delta; = -5 pp</td>
+            <td class="num">300 per arm</td>
+            <td>Detectable if the treatment changes coherence directly at a moderate scale.</td>
+          </tr>
+          <tr>
+            <td>Kendall dispersion, direct target &Delta; = -3 pp</td>
+            <td class="num">800 per arm</td>
+            <td>Small coherence shifts need a much larger study.</td>
+          </tr>
+          <tr>
+            <td>Rule-output panel, k = 5, target TVD = 0.10</td>
+            <td class="num">350-410 per arm</td>
+            <td>Slightly below the paired pairwise target in this run; Borda is the most expensive k = 5 rule.</td>
+          </tr>
+          <tr>
+            <td>Condorcet existence power</td>
+            <td class="num">Not estimated</td>
+            <td>Skipped in the report because observed changes are small and ceiling-limited.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid2">
+      <div class="figure">
+        <img src="./reports/pairwise-preferences/figures/power_curves_did.png" alt="Pairwise preference DiD power curves">
+        <p class="caption">Pairwise DiD power curves for RMS = 3 percentage point alternatives.</p>
+      </div>
+      <div class="figure">
+        <img src="./reports/kendall-dispersion/figures/power_curves_delta.png" alt="Kendall dispersion direct delta power curves">
+        <p class="caption">Direct-delta dispersion power curves.</p>
+      </div>
+    </div>
+
+    <div class="narrative">Practical follow-up design: if the next study keeps a paired pre/post structure and prioritizes pairwise movement plus rule-output consequences, the planning band is roughly 500 participants per arm. Smaller studies may still estimate pilot effects, but they are unlikely to give stable multiplicity-aware discoveries.</div>
+  </section>
+
+  <section id="caveats">
+    <p class="section-label">Read this first</p>
+    <div class="panel">
+      <h2>What not to overclaim</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Caveat</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pilot uncertainty</td>
+            <td>The analysis is useful for design learning and prioritization, but all estimates remain sensitive to sample composition and the specific charity set.</td>
+          </tr>
+          <tr>
+            <td>Control trend is measured</td>
+            <td>The reports use pre/post movement in the comparison arm rather than assuming zero baseline movement. That is good statistically, but it means the exact design must be explained whenever results are shared.</td>
+          </tr>
+          <tr>
+            <td>Pairwise marginals are not the full ranking distribution</td>
+            <td>The pairwise matrix shows directional movement, while the rule-output panel is needed for downstream winner consequences.</td>
+          </tr>
+          <tr>
+            <td>Synthetic groups are a simulation device</td>
+            <td>Generating many synthetic groups does not create many independent observations. Inference remains at the participant/randomization level.</td>
+          </tr>
+          <tr>
+            <td>Power numbers depend on target effects</td>
+            <td>The estimates are only as portable as the assumed RMS, dispersion, and TVD targets. Use them as planning anchors, not fixed truths.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="source-row">
+        <a href="./notes/analysis-plan.md">Analysis plan</a>
+        <a href="./notes/plan.md">Condorcet RI note</a>
+        <a href="./reports/pairwise-preferences/REPORT.md">Pairwise report</a>
+        <a href="./reports/kendall-dispersion/REPORT.md">Dispersion report</a>
+        <a href="./reports/rule-output-panel/REPORT.md">Rule-output report</a>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

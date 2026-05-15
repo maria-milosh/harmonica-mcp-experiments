@@ -1,7 +1,7 @@
 pair_id,first_option,second_option,p_T_pre,p_T_post,p_C_pre,p_C_post
-animal_rescue > community_clinic,animal_rescue,community_clinic,0.28125,0.1875,0.26666666666666666,0.3
+animal_rescue > community_clinic,animal_rescue,community_clinic,0.28125,0.1875,0.3,0.3
 animal_rescue > food_pantry,animal_rescue,food_pantry,0.21875,0.21875,0.23333333333333334,0.23333333333333334
 animal_rescue > urban_tree,animal_rescue,urban_tree,0.65625,0.59375,0.8666666666666667,0.8666666666666667
-community_clinic > food_pantry,community_clinic,food_pantry,0.4375,0.53125,0.4,0.3333333333333333
+community_clinic > food_pantry,community_clinic,food_pantry,0.4375,0.53125,0.36666666666666664,0.3333333333333333
 community_clinic > urban_tree,community_clinic,urban_tree,0.8125,0.75,0.8666666666666667,0.8666666666666667
 food_pantry > urban_tree,food_pantry,urban_tree,0.84375,0.8125,0.9333333333333333,0.9333333333333333

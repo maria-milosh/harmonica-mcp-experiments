@@ -136,8 +136,8 @@
     "user_id": "461bc6fd-3f01-486f-84d5-366f9fcf803f",
     "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
     "initial_vote_ranking": [
-      "community_clinic",
       "food_pantry",
+      "community_clinic",
       "animal_rescue",
       "urban_tree"
     ],
@@ -174,8 +174,8 @@
     "user_id": "72db18c1-7eca-44df-a7a6-de036041946d",
     "session_id": "00b178be-a48b-4ace-a721-340bc0950179",
     "initial_vote_ranking": [
-      "community_clinic",
       "animal_rescue",
+      "community_clinic",
       "food_pantry",
       "urban_tree"
     ],

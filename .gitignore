@@ -3,10 +3,10 @@ dist/
 .env
 .env.local
 *.log
-.DS_Store
+*.DS_Store
 .crosspoll-data/
 data/crosspoll/
-data/responses/
+# data/responses/
 data/archive/
 *.sqlite
 *.sqlite-wal

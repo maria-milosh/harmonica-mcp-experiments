@@ -45,16 +45,16 @@ Positive DiD means treatment increased dispersion relative to control trend.
 
 | Quantity | Value |
 |---|---:|
-| `dbar_C_pre` | 0.3130 |
+| `dbar_C_pre` | 0.3153 |
 | `dbar_C_post` | 0.3119 |
-| `delta_C` | -0.0011 |
+| `delta_C` | -0.0034 |
 | `dbar_T_pre` | 0.3884 |
 | `dbar_T_post` | 0.3968 |
 | `delta_T` | +0.0084 |
-| **DiD** | **+0.0095** (= **+0.95 pp**) |
-| RI two-sided p | 0.7712 |
-| Bootstrap 95% CI | [-0.0511, +0.0682] |
-| Hájek 95% CI | [-0.1625, +0.1816] |
+| **DiD** | **+0.0118** (= **+1.18 pp**) |
+| RI two-sided p | 0.7178 |
+| Bootstrap 95% CI | [-0.0464, +0.0689] |
+| Hájek 95% CI | [-0.1597, +0.1834] |
 
 Interpretation: no evidence of a detectable DiD effect on dispersion in this run.
 
@@ -64,10 +64,10 @@ Per pair, the script tracks contribution shifts through `2p(1-p)` and reports Di
 
 | Pair | `p_C_pre` | `p_C_post` | `p_T_pre` | `p_T_post` | `contrib_did` |
 |---|---:|---:|---:|---:|---:|
-| animal_rescue > community_clinic | 0.2667 | 0.3000 | 0.2812 | 0.1875 | -0.1285 |
+| animal_rescue > community_clinic | 0.3000 | 0.3000 | 0.2812 | 0.1875 | -0.0996 |
 | animal_rescue > food_pantry | 0.2333 | 0.2333 | 0.2188 | 0.2188 | +0.0000 |
 | animal_rescue > urban_tree | 0.8667 | 0.8667 | 0.6562 | 0.5938 | +0.0312 |
-| community_clinic > food_pantry | 0.4000 | 0.3333 | 0.4375 | 0.5312 | +0.0414 |
+| community_clinic > food_pantry | 0.3667 | 0.3333 | 0.4375 | 0.5312 | +0.0259 |
 | community_clinic > urban_tree | 0.8667 | 0.8667 | 0.8125 | 0.7500 | +0.0703 |
 | food_pantry > urban_tree | 0.9333 | 0.9333 | 0.8438 | 0.8125 | +0.0410 |
 
@@ -132,7 +132,7 @@ This puts `n_per_arm_80 = 300` near the practical 80% threshold for that target 
 
 ## Caveats
 
-1. **Control pre/post now comes from extracted phase-1 initial/final rankings.** The current pipeline maps `initial_vote_ranking` and `final_vote_ranking` into `phase1_participant_changes.csv` (via `analysis/run_analysis.py`, `build_phase1_changes_rows`). So `delta_C` is no longer mechanically forced to zero. That said, phase-1 remains a no-cross-pollination condition, so observed pre/post movement there should still be interpreted as baseline within-session variation.
+1. **Control pre/post now comes from extracted phase-1 initial/final rankings.** The current pipeline maps `initial_vote_ranking` and `final_vote_ranking` into `phase1_participant_changes.csv` (via `analysis/run_analysis.py`, `build_phase1_changes_rows`). So `delta_C` is no longer mechanically forced to zero.
 2. **Dispersion is symmetric around 0.5 pair marginals.** Directional preference changes can be weakly represented in this scalar.
 3. **Single-scalar summary.** Outcome 2 is complementary to pairwise (Outcome 1), not a substitute.
 4. **Pilot uncertainty remains high.** RI is valid, but effect detectability is limited.
