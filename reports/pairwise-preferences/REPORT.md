@@ -63,24 +63,24 @@ The report keeps the analysis-plan headline scalars:
 
 | Quantity | Value |
 |---|---:|
-| **RMS DiD shift** | **0.0919** (= **9.19 pp**) |
-| Joint Wald `W` | 15.082 |
+| **RMS DiD shift** | **0.0750** (= **7.50 pp**) |
+| Joint Wald `W` | 12.980 |
 | Wald rank | 6 |
-| Wald p-value | 0.0196 |
-| Permutation `T_max` p-value | 0.1064 |
-| Permutation `T_ss` p-value | 0.0873 |
+| Wald p-value | 0.0434 |
+| Permutation `T_max` p-value | 0.3890 |
+| Permutation `T_ss` p-value | 0.1951 |
 | Joint reject @ `alpha=0.05` | **Yes by Wald; No by RI** |
 
-Interpretation: directional movement exists. The rank-aware Wald diagnostic rejects at `alpha=0.05`, but the RI-based joint tests remain above 0.05.
+Interpretation: directional movement is present but more modest after manual correction of two Phase 1 extraction rows. The rank-aware Wald diagnostic rejects at `alpha=0.05`, but the RI-based joint tests remain well above 0.05.
 
 ### Per-pair DiD estimates
 
 | Pair | `tau_did` | SE | 95% CI | raw RI p | RW-adjusted p |
 |---|---:|---:|---:|---:|---:|
-| community_clinic > food_pantry | +0.1604 | 0.0831 | [-0.0024, +0.3233] | 0.0782 | 0.1064 |
-| animal_rescue > community_clinic | -0.1271 | 0.0766 | [-0.2772, +0.0231] | 0.1255 | 0.3481 |
-| animal_rescue > urban_tree | -0.0625 | 0.0435 | [-0.1477, +0.0227] | 0.4944 | 0.7435 |
-| community_clinic > urban_tree | -0.0625 | 0.0435 | [-0.1477, +0.0227] | 0.4976 | 0.7435 |
+| community_clinic > food_pantry | +0.1271 | 0.0766 | [-0.0231, +0.2772] | 0.1356 | 0.3890 |
+| animal_rescue > community_clinic | -0.0938 | 0.0690 | [-0.2289, +0.0414] | 0.2369 | 0.7569 |
+| animal_rescue > urban_tree | -0.0625 | 0.0435 | [-0.1477, +0.0227] | 0.4944 | 0.7569 |
+| community_clinic > urban_tree | -0.0625 | 0.0435 | [-0.1477, +0.0227] | 0.4976 | 0.7569 |
 | food_pantry > urban_tree | -0.0312 | 0.0547 | [-0.1385, +0.0760] | 0.6495 | 0.8239 |
 | animal_rescue > food_pantry | +0.0000 | 0.0449 | [-0.0880, +0.0880] | 1.0000 | 1.0000 |
 
@@ -151,7 +151,7 @@ This is consistent with the reported `n_per_arm_80_rw_any = 2050`.
 
 ## Caveats
 
-1. **Control pre/post now comes from extracted phase-1 initial/final rankings.** The current pipeline maps `initial_vote_ranking` and `final_vote_ranking` into `phase1_participant_changes.csv`, so `Delta_C` is no longer mechanically fixed at zero. Phase 1 still serves as a no-cross-pollination baseline, so observed pre/post movement should be interpreted as within-session variation.
+1. **Control pre/post now comes from extracted phase-1 initial/final rankings.** The current pipeline maps `initial_vote_ranking` and `final_vote_ranking` into `phase1_participant_changes.csv`, so `Delta_C` is no longer mechanically fixed at zero.
 2. **Pairwise marginals are not the full ranking distribution.** Outcome 3 remains necessary for collective-choice consequences.
 3. **Multiplicity scope.** RW family here is the six pair tests only.
 4. **Pilot uncertainty.** RI calibration is exact under label-exchangeability, but sample size still limits power.

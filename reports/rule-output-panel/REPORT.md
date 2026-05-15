@@ -51,39 +51,39 @@ The `Target effect` and `N/arm 80%` columns are planning heuristics, not additio
 
 | k | T_max_obs | p_omnibus |
 |---:|---:|---:|
-| 3 | 4.4917 | 0.0256 |
-| 5 | 4.2020 | 0.0458 |
-| 7 | 4.3220 | 0.0374 |
+| 3 | 3.7498 | 0.0972 |
+| 5 | 3.6335 | 0.1128 |
+| 7 | 3.3527 | 0.1466 |
 
-Omnibus rejects at `alpha=0.05` for each k in this run.
+Omnibus does not reject at `alpha=0.05` for any k in this run after manual correction of two Phase 1 extraction rows.
 
 ### Per-statistic DiD distances and inference
 
 | k | Statistic | Value | null_mean | null_sd | raw p | RW p | Target effect | N/arm 80% |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|
-| 3 | plurality | 0.3380 | 0.1446 | 0.0752 | 0.0124 | 0.0256 | 0.10 | 360 |
-| 3 | borda | 0.2848 | 0.1198 | 0.0693 | 0.0266 | 0.0422 | 0.10 | 300 |
-| 3 | irv | 0.2769 | 0.1287 | 0.0666 | 0.0308 | 0.0422 | 0.10 | 300 |
-| 3 | copeland | 0.2857 | 0.1224 | 0.0664 | 0.0190 | 0.0302 | 0.10 | 290 |
-| 3 | condorcet | 0.0253 | 0.0155 | 0.0112 | 0.2012 | 0.2012 | skipped | skipped |
-| 5 | plurality | 0.3977 | 0.1707 | 0.0961 | 0.0222 | 0.0480 | 0.10 | 600 |
-| 5 | borda | 0.3360 | 0.1407 | 0.0903 | 0.0334 | 0.0624 | 0.10 | 470 |
-| 5 | irv | 0.3575 | 0.1446 | 0.0851 | 0.0198 | 0.0458 | 0.10 | 460 |
-| 5 | copeland | 0.3172 | 0.1413 | 0.0848 | 0.0360 | 0.0624 | 0.10 | 450 |
-| 5 | condorcet | 0.0213 | 0.0147 | 0.0111 | 0.2537 | 0.2537 | skipped | skipped |
-| 7 | plurality | 0.5020 | 0.2021 | 0.1162 | 0.0130 | 0.0374 | 0.10 | 900 |
-| 7 | borda | 0.3965 | 0.1564 | 0.1058 | 0.0286 | 0.0560 | 0.10 | 620 |
-| 7 | irv | 0.4152 | 0.1669 | 0.1058 | 0.0256 | 0.0508 | 0.10 | 660 |
-| 7 | copeland | 0.3613 | 0.1588 | 0.1005 | 0.0414 | 0.0682 | 0.10 | 610 |
-| 7 | condorcet | 0.0143 | 0.0113 | 0.0092 | 0.3031 | 0.3031 | skipped | skipped |
+| 3 | plurality | 0.2394 | 0.1257 | 0.0639 | 0.0468 | 0.0972 | 0.10 | 270 |
+| 3 | borda | 0.2122 | 0.1122 | 0.0631 | 0.0850 | 0.1302 | 0.10 | 250 |
+| 3 | irv | 0.2107 | 0.1191 | 0.0599 | 0.0876 | 0.1302 | 0.10 | 250 |
+| 3 | copeland | 0.2172 | 0.1128 | 0.0604 | 0.0572 | 0.1158 | 0.10 | 240 |
+| 3 | condorcet | 0.0154 | 0.0154 | 0.0111 | 0.4397 | 0.4397 | skipped | skipped |
+| 5 | plurality | 0.2893 | 0.1557 | 0.0796 | 0.0544 | 0.1128 | 0.10 | 400 |
+| 5 | borda | 0.2520 | 0.1319 | 0.0832 | 0.0956 | 0.1546 | 0.10 | 410 |
+| 5 | irv | 0.2697 | 0.1326 | 0.0759 | 0.0598 | 0.1128 | 0.10 | 370 |
+| 5 | copeland | 0.2577 | 0.1297 | 0.0799 | 0.0684 | 0.1372 | 0.10 | 350 |
+| 5 | condorcet | 0.0180 | 0.0160 | 0.0120 | 0.3777 | 0.3777 | skipped | skipped |
+| 7 | plurality | 0.3360 | 0.1835 | 0.1002 | 0.0768 | 0.1466 | 0.10 | 600 |
+| 7 | borda | 0.2962 | 0.1459 | 0.0974 | 0.0856 | 0.1504 | 0.10 | 540 |
+| 7 | irv | 0.3150 | 0.1531 | 0.0952 | 0.0730 | 0.1466 | 0.10 | 550 |
+| 7 | copeland | 0.2850 | 0.1432 | 0.0966 | 0.1012 | 0.1566 | 0.10 | 470 |
+| 7 | condorcet | 0.0047 | 0.0135 | 0.0111 | 0.7586 | 0.7586 | skipped | skipped |
 
 ### Condorcet existence DiD component
 
 | k | delta_T_cw | delta_C_cw | did_cw | abs_did_cw |
 |---:|---:|---:|---:|---:|
-| 3 | -0.0149 | 0.0103 | -0.0253 | 0.0253 |
-| 5 | -0.0050 | 0.0163 | -0.0213 | 0.0213 |
-| 7 | -0.0043 | 0.0100 | -0.0143 | 0.0143 |
+| 3 | -0.0149 | +0.0005 | -0.0154 | 0.0154 |
+| 5 | -0.0168 | +0.0012 | -0.0180 | 0.0180 |
+| 7 | -0.0040 | +0.0007 | -0.0047 | 0.0047 |
 
 ### k=5 winner-change diagnostics (DiD components)
 
@@ -91,12 +91,12 @@ At `k=5`, control deltas are expected to be smaller than treated deltas in many 
 
 Largest absolute `did` cells:
 
-- plurality, community_clinic: `+0.3882`
-- irv, community_clinic: `+0.3350`
-- borda, community_clinic: `+0.3260`
-- borda, food_pantry: `-0.3020`
-- copeland, community_clinic: `+0.3015`
-- irv, food_pantry: `-0.2848`
+- plurality, community_clinic: `+0.2823`
+- irv, community_clinic: `+0.2458`
+- copeland, community_clinic: `+0.2442`
+- borda, community_clinic: `+0.2440`
+- borda, food_pantry: `-0.2290`
+- copeland, food_pantry: `-0.2250`
 
 ## Literature Benchmarks
 
@@ -110,7 +110,7 @@ Direct apples-to-apples benchmarks are scarce: the literature usually reports at
 | Empirical IRV failure rates | Graham-Squire and McCune's IRV panel, summarized by Fox and Bruyns, reports low empirical failure rates: Condorcet-winner failure `1.1%`, compromise `3.8%`, spoiler `1.6%`, upward monotonicity `1.6%`, downward monotonicity `1.1%`, and no-show `0.5%`. | The report's treated-control changes are not failure rates, but these numbers are useful guardrails: major real-election rule failures are usually rare; the movement here is about which charity wins synthetic groups, not whether a rule violates a fairness criterion. |
 | Condorcet existence/cycles | Felsenthal, Maoz, and Rapoport find a Condorcet winner in `35/37` British organizational elections. Fox and Bruyns' U.S. RCV panel has a Condorcet winner in `419/421` elections. Barbaro and Kurella find no robust Condorcet paradox in `253` national-election surveys and only `5` cyclical triplets among `8,099` triplets (`0.06%`). | The Condorcet-existence DiD values here are small (`0.014`-`0.025`), which is in line with empirical work: when preferences are coherent enough that a Condorcet winner usually exists, treatment has little room to change existence. The more relevant movement is winner identity under rules, not Condorcet existence. |
 
-Practical read: the `k=5` rule-output TVDs around `0.32`-`0.40` are substantively large as distributional movements. The power-planning target is intentionally lower (`0.10`) because it is anchored to Farrar-scale deliberation movement, not to the larger observed pilot effects. Condorcet-existence power is skipped for now and should remain framed as a separate, ceiling-limited diagnostic.
+Practical read: the `k=5` rule-output TVDs around `0.25`-`0.29` remain substantively meaningful as distributional movements, but no k=5 statistic rejects after RW correction in the manually corrected run. The power-planning target remains lower (`0.10`) because it is anchored to Farrar-scale deliberation movement, not to the larger observed pilot effects. Condorcet-existence power is skipped for now and should remain framed as a separate, ceiling-limited diagnostic.
 
 ## Caveats
 
